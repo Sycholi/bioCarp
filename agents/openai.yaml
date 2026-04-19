@@ -1,0 +1,4 @@
+interface:
+  display_name: "biocarp"
+  short_description: "Cancer bioinformatics analysis and study design"
+  default_prompt: "Use $biocarp to plan or execute a tumor bioinformatics analysis and literature-grounded study design."
