@@ -1,5 +1,7 @@
 # Method Selection
 
+Use this file for concise route selection. Read `tool-landscape.md` as well when the user asks for broader package-family comparison, last-decade or last-two-decade method trends, or explicit strengths-versus-weaknesses across tools.
+
 ## Bulk Differential Expression
 
 ### limma

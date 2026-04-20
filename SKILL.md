@@ -1,6 +1,6 @@
 ---
 name: biocarp
-description: Comprehensive tumor and translational bioinformatics analysis, public-dataset reproduction, literature-grounded study design, and data-to-question mapping using a script-first R workflow aligned to the user's r_repo style. Use when Codex needs to analyze bulk, single-cell, spatial, immune repertoire, clinical survival, or multi-omics data; decide what analyses are feasible from available data; reproduce or extend published oncology studies from public cohorts; integrate the full bioSkills collection for method coverage; or build rigorous teaching or exploratory workflows without unnecessary abstraction.
+description: Comprehensive tumor and translational bioinformatics analysis, literature-corpus reconstruction, tool-landscape selection, public-dataset reproduction, and data-to-question mapping using a script-first R workflow aligned to the user's r_repo style. Use when Codex needs to analyze bulk, single-cell, spatial, immune repertoire, clinical survival, or multi-omics data; decide what analyses are feasible from available data; reconstruct the last-decade disease literature and public-dataset landscape for a concrete question; compare bioinformatics tool families before choosing a route; reproduce or extend published oncology studies from public cohorts; integrate the full bioSkills collection for method coverage; or build rigorous teaching or exploratory workflows without unnecessary abstraction.
 ---
 
 # biocarp
@@ -30,11 +30,25 @@ bash scripts/install-bioskills-for-codex.sh
 python3 scripts/summarize_r_repo.py --repo ~/r_repo --output references/r-repo-style-scan.md
 ```
 
-3. Read the references that match the task:
+3. When the request depends on the last 10 years of disease-specific papers, study-design logic, or "what can this dataset do", build a focused literature corpus first:
+
+```bash
+python3 scripts/build_literature_landscape.py \
+  --query "hepatocellular carcinoma AND single-cell RNA-seq AND macrophage" \
+  --years 10 \
+  --sort relevance \
+  --retmax 80 \
+  --output ./literature-landscape
+```
+
+4. Read the references that match the task:
 - `references/r-repo-style.md`
 - `references/workflow-playbook.md`
 - `references/method-selection.md`
 - `references/public-data-literature-playbook.md`
+- `references/literature-intelligence.md`
+- `references/tool-landscape.md`
+- `references/data-to-project-map.md`
 - `references/teaching-optimization-boundary.md`
 
 ## Execution Contract
@@ -66,6 +80,7 @@ Classify each request into one primary mode before coding:
 4. Literature-grounded study design
 5. "What can this dataset do?" consultation
 6. Tool, package, or method selection
+7. Literature or method-trend scan
 
 Then classify the data type:
 
@@ -79,6 +94,26 @@ Then classify the data type:
 - mixed public/private validation workflow
 
 Then choose the smallest end-to-end route in `references/workflow-playbook.md` that answers the question without creating a larger pipeline than needed.
+
+## Mandatory Literature, Tool, And Opportunity Sweep
+
+Do not skip this layer when the request touches study design, last-decade methods, unfamiliar diseases, unfamiliar modalities, or "what can this dataset do".
+
+1. Build a focused last-10-years corpus with `scripts/build_literature_landscape.py`.
+2. Read `references/literature-intelligence.md` and extract:
+- cohort and grouping structure
+- assay platform and preprocessing pattern
+- statistical and enrichment methods
+- figure chain and writing logic
+- public accession numbers and validation datasets
+3. Read `references/tool-landscape.md` and identify:
+- the default route that best matches the user's `~/r_repo` style
+- the strongest challenger route when a different tool materially improves fit
+4. Read `references/data-to-project-map.md` and translate the actual dataset into:
+- feasible analysis branches
+- publication-value branches
+- blocked branches that need more metadata or validation
+5. If no focused corpus has been built yet, say so and build it before making strong literature or tool claims.
 
 ## Use the Local Style
 
@@ -126,26 +161,40 @@ Prefer the user's existing plotting and file-organization style unless the reque
 ### Literature-Grounded Study Design
 
 - Start from the biological premise, specimen type, data modality, cohort availability, and validation path.
+- Reconstruct a disease-specific paper corpus from the last 10 years before proposing the figure chain.
 - Propose the shortest path that can actually be executed from available data.
 - Build a traceable argument chain:
   biological premise -> measurable signal -> available data -> analysis path -> validation path -> figures and tables
+- Use `references/literature-intelligence.md` for paper triage and writing-logic extraction.
+- Use `references/data-to-project-map.md` to map the available dataset into feasible question families.
 
 ### "What Can This Dataset Do?" Consultation
 
 - Enumerate every feasible analysis branch from the actual data structure and metadata.
 - Rank branches by scientific yield, publication value, and implementation cost.
 - State what is impossible without additional metadata, matched controls, or orthogonal validation.
+- Use `references/data-to-project-map.md` and produce an explicit feasible-vs-blocked matrix.
 
 ### Tool, Package, or Method Selection
 
 - Use upstream bioSkills for broad method coverage.
 - Prefer packages already prevalent in `~/r_repo` unless a newer tool clearly improves rigor or fit.
 - Read `references/method-selection.md` when choosing among comparable packages.
+- Read `references/tool-landscape.md` when the request asks for cross-era package comparison, method families, or strengths versus weaknesses.
+
+### Literature Or Method-Trend Scan
+
+- Build a disease-specific or task-specific corpus covering the last 10 years unless the user asks for a different window.
+- Summarize recurring data types, cohort sizes, endpoints, figure logic, and public accessions.
+- Summarize the dominant tool families, where they differ, and which route best fits the user's data and local codebase.
+- Do not pretend to have preloaded all literature. Execute the scan, save the corpus, then reason from it.
 
 ## Literature and Public Data Practice
 
 - Use primary sources for technical claims: PubMed, PMC, source journal pages, official package documentation, and official dataset portals.
 - Build a focused paper set around the actual disease, platform, and endpoint instead of pretending to preload the whole literature.
+- Use `scripts/build_literature_landscape.py` for the initial sweep, then read full text for anchor papers before making method-level claims.
+- Prefer PMCID or source-journal full text over abstract-only interpretation when extracting QC, preprocessing, or statistical details.
 - Extract at minimum: cohort, platform, sample counts, grouping, endpoints, preprocessing, QC, statistical model, enrichment method, validation cohort, key figures, and public accessions.
 - Use `references/public-data-literature-playbook.md` for the retrieval template, portal list, and reproduction checklist.
 
@@ -163,4 +212,7 @@ Prefer the user's existing plotting and file-organization style unless the reque
 - `references/workflow-playbook.md`
 - `references/method-selection.md`
 - `references/public-data-literature-playbook.md`
+- `references/literature-intelligence.md`
+- `references/tool-landscape.md`
+- `references/data-to-project-map.md`
 - `references/teaching-optimization-boundary.md`

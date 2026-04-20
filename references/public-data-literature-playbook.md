@@ -12,12 +12,13 @@
 
 Build literature and public-data context in this order:
 
-1. source paper or primary report
-2. supplementary methods and figures
-3. public accession page
-4. processed matrix or object, if available
-5. raw-data portal only when needed
-6. official package or pipeline documentation for method reproduction
+1. focused last-decade corpus from `scripts/build_literature_landscape.py`
+2. source paper or primary report
+3. supplementary methods and figures
+4. public accession page
+5. processed matrix or object, if available
+6. raw-data portal only when needed
+7. official package or pipeline documentation for method reproduction
 
 Do not claim to have preloaded the last decade of literature. Build a focused corpus around the actual disease, modality, and endpoint.
 
