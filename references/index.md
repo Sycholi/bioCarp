@@ -14,7 +14,8 @@ Read these in order:
 6. `methods.md` for concise package choice.
 7. `workflows.md` for current module-level QC, modeling, figure, and source requirements.
 8. `tools.md` when the task needs method-family comparison or a newer challenger route.
-9. `tool-issues.md` before using version-sensitive, web-service, fast-moving, or error-prone tools.
+9. `upstream.md`, `variants.md`, `immunopeptidomics.md`, `multiomics.md`, `epigenomics.md`, `proteomics.md`, `metabolomics.md`, `statistics.md`, or another modality file when the task enters that specific domain.
+10. `tool-issues.md` before using version-sensitive, web-service, fast-moving, or error-prone tools.
 
 ## Task-Specific Layers
 
@@ -55,23 +56,63 @@ Triggers:
 - survival, prediction modeling, clinical cohorts
 - multi-omics integration
 
+### Upstream Sequencing And Workflow Processing
+
+Use:
+
+- `upstream.md`
+- `workflows.md`
+- `methods.md`
+- `tools.md`
+- `tool-issues.md`
+
+Triggers:
+
+- FASTQ-to-count, FASTQ-to-BAM, FASTQ-to-matrix, FASTQ-to-peak, FASTQ-to-ASV, FASTQ-to-VCF, FASTQ-to-protein, or raw data processing
+- demultiplexing, sample-sheet review, lane merging, adapter trimming, alignment, quantification, UMI handling, MultiQC, or workflow deployment
+- nf-core, Nextflow, Snakemake, Cell Ranger, Space Ranger, STARsolo, alevin-fry, kallisto-bustools, simpleaf, Velocyto, bcl-convert, bcl2fastq, FastQC, MultiQC, STAR, Salmon, kallisto, featureCounts, or tximport
+
+### Variants, HLA, Antigen Peptides, And Immunopeptidomics
+
+Use:
+
+- `variants.md`
+- `immunopeptidomics.md`
+- `upstream.md` when raw WGS, WES, RNA-seq, or MS data are used
+- `proteomics.md` when immunopeptidomics LC-MS/MS data are used
+- `statistics.md`
+- `tool-issues.md`
+
+Triggers:
+
+- germline variants, somatic variants, MAF, VCF, CNV, SV, fusion, MSI, TMB, mutational signatures, tumor purity, clonality, or variant annotation
+- HLA typing, HLA loss, antigen peptide prediction, neoantigen, pVACtools, NetMHCpan, MHCflurry, MixMHCpred, BigMHC, PRIME, HLAthena, IEDB, immunopeptidomics, MhcVizPipe, or TCR-pMHC follow-up
+- GATK, Mutect2, HaplotypeCaller, DeepVariant, Strelka2, Manta, Delly, CNVkit, FACETS, PureCN, Sequenza, ASCAT, GISTIC2, VEP, ANNOVAR, SnpEff, maftools, SigProfiler, OptiType, arcasHLA, HLA-HD, or Polysolver
+
 ### Advanced Single-Cell And Spatial Methods
 
 Use:
 
 - `single-cell-advanced.md`
+- `multiomics.md` for CITE-seq, multiome, cross-modal integration, and reference mapping
+- `epigenomics.md` for scATAC, motif, footprinting, and regulatory interpretation
 - `tool-issues.md`
 - `workflows.md`
 
 Triggers:
 
 - single-cell QC, ambient RNA, doublets, normalization, integration, clustering, or annotation
+- DropletUtils, miQC, scuttle, scater, scran, batchelor, FastMNN, BBKNN, Scanorama, STARsolo, kallisto-bustools, kb-python, alevin-fry, Cell Ranger ARC, or Space Ranger
+- CITE-seq, ADT, dsb, CiteFuse, totalVI, MultiVI, muon, Multigrate, scGLUE, Cobolt, scJoint, scBridge, scMaui, scDART, UnionCom, scTriangulate, scConfluence, or MEFISTO
+- scType, scGate, UCell, AUCell, CellAssign, ProjecTILs, Symphony, popV, scPoli, treeArches, or CASSIA
 - phenotype-associated cell methods such as Scissor, SCIPAC, scPAS, or PACells
 - foundation models, virtual cells, virtual knockout, or in silico perturbation
 - Geneformer, scGPT, scFoundation, scTenifoldNet, scTenifoldKnk, CellOracle, or related tools
 - drug prediction, drug repurposing, DrugReflector, scDrug, scDrug+, scDrugPrio, or drug2cell
-- perturbation databases, Perturb-seq, CROP-seq, sci-Plex, ECCITE-seq, Perturb-ATAC, SHARE-seq, Mixscape, or pertpy
-- advanced spatial algorithms, niches, adjacency, neighborhood enrichment, BANKSY, CellCharter, Milo, BayesSpace, SpaGCN, GraphST, or PRECAST
+- perturbation databases, Perturb-seq, CROP-seq, sci-Plex, ECCITE-seq, Perturb-ATAC, SHARE-seq, Mixscape, pertpy, GEARS, CPA, chemCPA, CellOT, scVIDR, scCODA, MASC, DA-seq, or MELD
+- trajectory and velocity tools such as CellRank, dynamo, velocyto, Palantir, Waddington-OT, FateID, destiny or DPT, and CellRouter
+- cell-cell and spatial communication tools such as COMMOT, SpaTalk, NATMI, SingleCellSignalR, iTALK, CellCall, MISTy, MEBOCOST, MultiNicheNet, NicheCompass, or Tensor-cell2cell
+- advanced spatial algorithms, niches, adjacency, neighborhood enrichment, BANKSY, CellCharter, Milo, BayesSpace, SpaGCN, GraphST, PRECAST, STAGATE, DeepST, SEDR, SpaSEG, SpatialDE, nnSVG, MERINGUE, DestVI, SPOTlight, STdeconvolve, SpatialDecon, STRIDE, SpaOTsc, novoSpaRc, CellTrek, or CytoSPACE
 - emerging named tools such as scALPI that require name and source verification
 
 ### Bulk Functional Inference
@@ -79,6 +120,7 @@ Triggers:
 Use:
 
 - `bulk-inference.md`
+- `statistics.md`
 - `workflows.md`
 - `tool-issues.md`
 
@@ -92,11 +134,59 @@ Triggers:
 - CIBERSORTx, immunedeconv, xCell, MCP-counter, EPIC, quanTIseq, TIMER, MuSiC, BisqueRNA, BayesPrism, SCDC, DWLS, or ESTIMATE
 - bulk-to-single-cell interpretation
 
+### Epigenomics And Chromatin Regulation
+
+Use:
+
+- `epigenomics.md`
+- `upstream.md` when raw data are used
+- `multiomics.md` when linked to RNA, protein, variants, or spatial data
+- `statistics.md`
+- `tool-issues.md`
+
+Triggers:
+
+- ATAC-seq, scATAC-seq, CUT&Tag, CUT&Run, ChIP-seq, histone marks, TF binding, DNA methylation, bisulfite sequencing, Hi-C, HiChIP, PLAC-seq, Micro-C, promoter capture, chromatin interaction, motif, footprinting, co-accessibility, peak-to-gene links, or regulatory networks
+- MACS2, MACS3, deepTools, HOMER, MEME, FIMO, TOBIAS, chromVAR, Cicero, SnapATAC2, JASPAR, TFBSTools, motifmatchr, Bismark, methylKit, DSS, bsseq, ChAMP, RnBeads, HiC-Pro, Juicer, cooler, HiCExplorer, FitHiC, or cooltools
+
+### Proteomics, Metabolomics, And Metabolic Flux
+
+Use:
+
+- `proteomics.md`
+- `metabolomics.md`
+- `multiomics.md` when integrating with RNA, variants, microbiome, imaging, or clinical data
+- `upstream.md` when raw MS or raw sequencing data are used
+- `bulk-inference.md` for kinase, pathway, and regulator activity
+- `statistics.md`
+- `tool-issues.md`
+
+Triggers:
+
+- DDA, DIA, TMT, iTRAQ, LFQ, PRM, SRM, targeted proteomics, phosphoproteomics, PTM analysis, proteogenomics, peptide evidence, MaxQuant, FragPipe, MSFragger, DIA-NN, Spectronaut, OpenMS, Proteome Discoverer, Skyline, MSstats, MSstatsTMT, MSstatsPTM, DEP, PhosR, or QFeatures
+- metabolomics, lipidomics, untargeted LC-MS, GC-MS, NMR, targeted metabolite panels, isotope tracing, metabolic flux analysis, fluxomics, FBA, scFEA, Compass, COBRApy, COBRA Toolbox, INCA, OpenFLUX2, XCMS, MZmine, MS-DIAL, GNPS, MetaboAnalystR, SIRIUS, HMDB, LIPID MAPS, IsoCor, or AccuCor
+
+### Multi-Omics Integration
+
+Use:
+
+- `multiomics.md`
+- the modality files selected by the actual data types
+- `statistics.md`
+- `tool-issues.md`
+
+Triggers:
+
+- paired or unpaired bulk multi-omics, single-cell multi-omics, CITE-seq, multiome, scNMT-seq, spatial multi-omics, imaging multi-omics, proteogenomics, metabolomics integration, host-microbe integration, feature concordance, factor analysis, subtype discovery, cross-modality label transfer, or missing-modality imputation
+- MOFA2, MEFISTO, MultiAssayExperiment, mixOmics, DIABLO, SNFtool, iClusterPlus, Seurat WNN, totalVI, MultiVI, muon, scGLUE, Cobolt, MOJITOO, LIGER, scJoint, Multigrate, or scArches
+
 ### Metagenomics And Microbiome
 
 Use:
 
 - `metagenomics.md`
+- `metabolomics.md` when microbial metabolite, flux, or pathway integration is involved
+- `multiomics.md` when host omics, clinical, imaging, or metabolite data are linked
 - `workflows.md`
 - `methods.md`
 - `tools.md`
@@ -106,7 +196,7 @@ Triggers:
 
 - 16S rRNA, ITS, shotgun metagenomics, metatranscriptomics, virome, or long-read metagenomics
 - microbiome diversity, composition, differential abundance, network, or ecological analysis
-- Kraken2, Bracken, MetaPhlAn, HUMAnN, QIIME 2, DADA2, mothur, ANCOM-BC2, ALDEx2, MaAsLin2, LEfSe, phyloseq, vegan, or microbiomeMarker
+- Kraken2, Bracken, MetaPhlAn, HUMAnN, QIIME 2, DADA2, mothur, ANCOM-BC2, ALDEx2, MaAsLin2, LEfSe, phyloseq, vegan, microbiomeMarker, KneadData, decontam, StrainPhlAn, inStrain, PICRUSt2, AMRFinderPlus, ResFinder, VFDB, VirSorter2, VIBRANT, CheckV, or geNomad
 - MAGs, microbial assembly, microbial annotation, GTDB-Tk, CheckM2, dRep, Prokka, Bakta, DRAM, CARD, dbCAN, or eggNOG
 - host-microbe, tumor microbiome, therapy-response microbiome, or microbiome multi-omics integration
 
@@ -130,6 +220,7 @@ Triggers:
 Use:
 
 - `imaging.md`
+- `statistics.md`
 - `workflows.md`
 - `methods.md`
 - `tools.md`
@@ -147,6 +238,7 @@ Triggers:
 Use:
 
 - `sensitivity.md`
+- `statistics.md`
 - `data-assessment.md`
 
 Triggers:

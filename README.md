@@ -12,8 +12,10 @@
 - 单细胞转录组、单细胞 ATAC、多组学联合和空间转录组
 - 细胞通讯、拟时序、RNA velocity、CNV、克隆性和免疫组库
 - 转录因子活性、通路活性、激酶活性、反卷积和功能评分
+- WGS、WES、panel、RNA variant、HLA 分型、抗原肽、neoantigen 和免疫肽组学
 - ATAC-seq、ChIP-seq、CUT&Tag、CUT&Run、甲基化和染色质分析
 - 宏基因组、16S、ITS、宏转录组、MAG 和宿主-微生物联合分析
+- 蛋白质组、磷酸化组、PTM、靶向蛋白质组、代谢组、脂质组、同位素示踪和代谢流
 - 蛋白结构预测、分子对接、分子动力学模拟、虚拟药物筛选和 ADMET
 - 药物预测、扰动组学、Perturb-seq、CROP-seq 和单细胞扰动分析
 - 影像组学、病理图像、自动分割、自动勾画、虚拟多重免疫荧光和虚拟空间组学
@@ -27,10 +29,12 @@
 
 - FASTQ、BAM、CRAM、VCF、BED、GTF、GFF、peak、fragment、count matrix
 - bulk 表达矩阵、芯片矩阵、临床表、随访表、药物响应表
+- VCF、MAF、CNV segment、SV、HLA、抗原肽候选表和免疫肽组学结果
 - Seurat、SingleCellExperiment、AnnData、h5ad、h5Seurat、10x 数据
 - Visium、Slide-seq、Stereo-seq、MERFISH、Xenium、CosMx 等空间数据
 - TCR、BCR、CyTOF、流式、mIF、IMC、CODEX、MIBI 和 CyCIF 数据
 - 16S、ITS、shotgun metagenomics、metatranscriptomics、MAG 和 virome 数据
+- mzML、raw MS、proteinGroups、peptide、PTM site、metabolite feature、lipid feature、isotopologue 和 flux 表
 - PDB、mmCIF、FASTA、SDF、SMILES、分子库和药物筛选结果
 - WSI、H&E、IHC、IF、DICOM、NIfTI、病理切片和放疗勾画数据
 
@@ -61,6 +65,8 @@
 - ATAC 和 ChIP 类分析需要输出 QC、峰注释、信号热图、metaplot、motif、footprint 和关键位点浏览器轨道。
 - 空间组学需要输出组织空间图、空间 marker、邻域、共定位、空间通讯和组织图像对齐结果。
 - 结构和药物筛选需要输出置信度、结构视图、对接姿势、相互作用图、评分分布、RMSD、RMSF、SASA、氢键和自由能相关图。
+- 抗原肽和免疫肽组学需要输出 HLA 支持、候选肽过滤流程、MHC 结合分布、肽长度、motif、MS 证据和多层证据矩阵。
+- 蛋白质组、代谢组和代谢流需要输出 raw MS QC、鉴定数量、缺失率、标准化、PCA、差异图、PTM 位点、激酶活性、代谢物注释、脂质类别、同位素分布、flux map 和模型拟合图。
 - 影像和虚拟染色需要输出原始图、配准和分割 QC、真实值与预测叠加、Dice、Hausdorff、边界误差、表型图和不确定性图。
 
 如果数据缺少必需输入，技能会记录具体阻断原因。它不会用简单图替代完整方法输出。

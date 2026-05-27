@@ -8,6 +8,14 @@ Read `tools.md` as well when the user asks for broader package-family comparison
 
 ## Bulk Differential Expression
 
+### Upstream FASTQ Processing
+
+Use `upstream.md` before differential analysis when:
+
+- raw FASTQ, BCL, BAM, CRAM, mzML, vendor MS files, or raw imaging files are the starting point
+- the project needs standardized QC, alignment, quantification, matrix generation, or workflow deployment
+- sample-sheet, lane, barcode, reference, or chemistry choices affect the result
+
 ### nf-core/rnaseq
 
 Use when:
@@ -95,6 +103,14 @@ Cost:
 
 - more environment complexity than Seurat plus Harmony
 
+### CITE-seq, Multiome, And Single-Cell Multi-Omics
+
+Use `multiomics.md` when:
+
+- RNA and ADT, RNA and ATAC, methylation and RNA, or other modalities are paired or partly paired
+- totalVI, MultiVI, Seurat WNN, Signac, ArchR, scGLUE, Cobolt, MOJITOO, muon, or Multigrate may be needed
+- the analysis needs modality weights, missing-modality imputation, RNA-protein concordance, RNA-ATAC links, or cross-modal label transfer
+
 ## Cell Annotation
 
 ### Manual Marker Annotation
@@ -120,6 +136,18 @@ Best practice:
 
 - treat automated labels as draft labels
 - verify with marker expression before final naming
+
+### Scoring And Gate-Based Annotation
+
+Use when:
+
+- a known immune, tumor, stromal, or functional state can be represented by marker sets or gating rules
+- UCell, AUCell, scGate, scType, ProjecTILs, Symphony, popV, scPoli, or reference mapping adds useful evidence
+
+Best practice:
+
+- keep manual marker panels and automated calls side by side
+- do not rename clusters from one automated label without marker support
 
 ## Pathway and Enrichment
 
@@ -181,6 +209,13 @@ Use when:
 - spliced and unspliced counts exist and velocity-specific assumptions are satisfied
 - DeepVelo or TFvelo is justified by the biological question and model assumptions
 
+### CellRank, dynamo, Palantir, Waddington-OT, or destiny
+
+Use when:
+
+- terminal fate probabilities, vector-field dynamics, diffusion pseudotime, or transport-based fate mapping are central
+- the data contain suitable time, differentiation, perturbation, or state-transition information
+
 ## Cell-Cell Communication
 
 ### CellChat
@@ -207,6 +242,13 @@ Use when:
 - consensus ligand-receptor scoring across multiple methods or resources is needed
 - cross-condition communication programs need a systematic comparison
 - Python or mixed R/Python interop is acceptable
+
+### COMMOT, SpaTalk, MISTy, MultiNicheNet, NicheCompass, or Tensor-cell2cell
+
+Use when:
+
+- spatial coordinates, condition-aware communication, multi-sample communication programs, or microenvironment modeling are required
+- transcript-only communication results need spatial or target-program context
 
 ## CNV and Malignancy Inference
 
@@ -273,11 +315,25 @@ Use when:
 
 - spot or region deconvolution is needed and a compatible single-cell reference exists
 
+### DestVI, SPOTlight, STdeconvolve, SpatialDecon, STRIDE, Tangram, CellTrek, or CytoSPACE
+
+Use when:
+
+- spot-level, cell-level, or cross-platform spatial mapping needs a route beyond the default deconvolution tools
+- the selected method matches platform resolution and reference structure
+
 ### SpatialExperiment
 
 Use when:
 
 - Bioconductor-native spatial data management is preferable before method-specific analysis
+
+### STAGATE, DeepST, SEDR, SpaSEG, SpatialDE, nnSVG, or MERINGUE
+
+Use when:
+
+- spatial domain detection, spatially variable gene testing, or spatial graph representation is the main question
+- the tool has current documentation and fits the platform resolution
 
 ## ATAC-seq and scATAC-seq
 
@@ -299,6 +355,12 @@ Use when:
 Use when:
 
 - large scATAC-seq projects need richer ATAC-native workflows, peak-to-gene links, motif deviations, trajectories, and browser tracks
+
+### SnapATAC2, chromVAR, Cicero, TOBIAS, HOMER, MEME, or MACS3
+
+Use when:
+
+- large scATAC-seq, motif deviation, co-accessibility, footprinting, motif discovery, or updated peak calling is central
 
 ## ChIP-seq, CUT&Tag, and CUT&Run
 
@@ -339,6 +401,27 @@ Use when:
 Use when:
 
 - DMPs, DMRs, or methylation-aware enrichment are needed
+
+## Variants, HLA, And Antigen Peptides
+
+### GATK, DeepVariant, Strelka2, Mutect2, or nf-core/sarek
+
+Use when:
+
+- germline or somatic SNV and indel discovery starts from WGS, WES, panel, or RNA-seq data
+- standardized QC, variant calling, filtering, and annotation are required
+
+### CNVkit, FACETS, PureCN, Sequenza, ASCAT, Manta, Delly, or GISTIC2
+
+Use when:
+
+- copy number, allele-specific copy number, structural variants, recurrent peaks, or tumor purity and ploidy are central
+
+### OptiType, arcasHLA, HLA-HD, Polysolver, pVACtools, NetMHCpan, MHCflurry, MixMHCpred, or BigMHC
+
+Use when:
+
+- HLA typing, antigen peptide prediction, neoantigen prioritization, immunopeptidomics, or TCR-pMHC follow-up is requested
 
 ## Survival and Cohort Balancing
 
@@ -389,6 +472,12 @@ Use when:
 
 - sample matching across assays is complex and needs a formal container
 
+### totalVI, MultiVI, scGLUE, Cobolt, MOJITOO, muon, or MEFISTO
+
+Use when:
+
+- CITE-seq, RNA-ATAC multiome, unpaired single-cell modalities, missing-modality imputation, spatial or time-aware factors, or Python scverse workflows are better suited than a Seurat-only route
+
 ## Metagenomics And Microbiome
 
 ### QIIME 2, DADA2, or mothur
@@ -426,6 +515,38 @@ Use when:
 Use when:
 
 - assembly, MAG reconstruction, genome quality assessment, microbial taxonomy, or functional annotation is central
+
+### KneadData, decontam, StrainPhlAn, inStrain, VirSorter2, VIBRANT, CheckV, geNomad, PICRUSt2, AMRFinderPlus, ResFinder, or VFDB
+
+Use when:
+
+- contamination control, strain analysis, viral metagenomics, functional prediction, resistome, or virulence analysis is central
+
+## Proteomics, Metabolomics, And Flux
+
+### MaxQuant, FragPipe, MSFragger, DIA-NN, Spectronaut, OpenMS, or nf-core/quantms
+
+Use when:
+
+- raw DDA, DIA, LFQ, TMT, iTRAQ, PRM, SRM, or targeted proteomics needs identification, quantification, and QC
+
+### MSstats, MSstatsTMT, MSstatsPTM, DEP, proDA, PhosR, PTM-SEA, or KSEA
+
+Use when:
+
+- differential protein abundance, TMT analysis, PTM analysis, phosphoproteomics, or kinase activity from proteomics data is needed
+
+### XCMS, MZmine, MS-DIAL, GNPS, MetaboAnalystR, SIRIUS, HMDB, or LIPID MAPS
+
+Use when:
+
+- untargeted metabolomics, lipidomics, annotation, compound class analysis, or metabolite pathway analysis is needed
+
+### IsoCor, AccuCor, INCA, OpenFLUX2, COBRApy, COBRA Toolbox, cameo, scFEA, or Compass
+
+Use when:
+
+- isotope correction, isotope tracing, 13C metabolic flux analysis, flux balance analysis, or single-cell metabolism inference is requested
 
 ## Structural Biology And Virtual Screening
 
@@ -490,6 +611,20 @@ Use when:
 Use when:
 
 - virtual spatial transcriptomics or histology-to-expression prediction is requested and paired validation exists
+
+## Statistics And Visualization
+
+### ComplexHeatmap, EnhancedVolcano, UpSetR, circlize, ggtree, maftools, Gviz, or plotgardener
+
+Use when:
+
+- publication-grade heatmaps, volcano plots, set intersections, circular plots, tree plots, oncoplots, or genome tracks are required
+
+### lme4, glmmTMB, emmeans, metafor, riskRegression, pec, pROC, or timeROC
+
+Use when:
+
+- mixed models, marginal comparisons, meta-analysis, prediction metrics, calibration, ROC, or time-to-event model evaluation are required
 
 ## Practical Rule
 

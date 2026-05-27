@@ -81,9 +81,11 @@ Current route:
 
 1. Keep image acquisition, preprocessing, segmentation, feature extraction, and model evaluation separate.
 2. Use IBSI-aware radiomics principles when extracting handcrafted features.
-3. For pathology foundation models or WSI deep learning, split at patient level and preserve tile-to-slide aggregation logic.
-4. Report calibration, discrimination, decision-curve or clinical utility only when labels and sample size support it.
-5. Link imaging signatures to molecular, single-cell, spatial, microbiome, or clinical features only after checking cohort alignment.
+3. For DICOM, RTSTRUCT, NIfTI, and treatment-planning data, verify orientation, spacing, contour conversion, structure names, and patient-level matching with pydicom, SimpleITK, dcmqi, Plastimatch, 3D Slicer, or MONAI tools.
+4. For pathology WSI and pathomics, preserve slide metadata, magnification, tile coordinates, stain normalization, tissue masks, and tile-to-slide aggregation logic.
+5. Use OpenSlide, TIAToolbox, HistoQC, CLAM, CONCH, UNI, Virchow, or other pathology models only after checking model access, license, tissue domain, and input preprocessing.
+6. Report calibration, discrimination, decision-curve or clinical utility only when labels and sample size support it.
+7. Link imaging signatures to molecular, single-cell, spatial, microbiome, or clinical features only after checking cohort alignment.
 
 Required figures:
 
@@ -92,6 +94,11 @@ Required figures:
 - model performance with ROC, PR, calibration, and decision-curve plots when relevant
 - attention, heatmap, or tile-level attribution plots for WSI models
 - imaging-molecular association plots and external validation plots
+
+Primary tools:
+
+- pydicom, SimpleITK, dcmqi, Plastimatch, 3D Slicer, MONAI, PyRadiomics
+- OpenSlide, TIAToolbox, HistoQC, QuPath, CLAM, CONCH, UNI, Virchow
 
 ## Automatic Segmentation And Contouring
 
@@ -120,15 +127,29 @@ Required figures:
 
 ## Source Index
 
-Last checked: 2026-05-27.
+Last checked: 2026-05-28.
 
 - CODEX support: https://help.codex.bio/codex/mav/overview
+- MCMICRO: https://mcmicro.org/
+- ASHLAR: https://github.com/labsyspharm/ashlar
+- steinbock: https://bodenmillergroup.github.io/steinbock/latest/
+- cytomapper: https://bioconductor.org/packages/release/bioc/html/cytomapper.html
 - nnU-Net paper: https://www.nature.com/articles/s41592-020-01008-z
 - nnU-Net repository: https://github.com/MIC-DKFZ/nnUNet
 - MONAI: https://monai.io/
 - TotalSegmentator repository: https://github.com/wasserth/TotalSegmentator
+- pydicom: https://pydicom.github.io/
+- SimpleITK: https://simpleitk.org/
+- dcmqi: https://github.com/QIICR/dcmqi
+- Plastimatch: https://plastimatch.org/
+- 3D Slicer: https://www.slicer.org/
 - PyRadiomics documentation: https://pyradiomics.readthedocs.io/en/stable/index.html
 - IBSI radiomics standard paper: https://pmc.ncbi.nlm.nih.gov/articles/PMC7193906/
+- OpenSlide: https://openslide.org/
+- TIAToolbox: https://tia-toolbox.readthedocs.io/
+- HistoQC: https://github.com/choosehappy/HistoQC
+- CLAM: https://github.com/mahmoodlab/CLAM
+- CONCH: https://github.com/mahmoodlab/CONCH
 - Cellpose paper: https://www.nature.com/articles/s41592-020-01018-x
 - StarDist paper: https://arxiv.org/abs/1806.03535
 - QuPath paper: https://www.nature.com/articles/s41598-017-17204-5

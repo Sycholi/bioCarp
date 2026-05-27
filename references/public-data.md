@@ -38,7 +38,10 @@ Use primary or source-adjacent portals first:
 - ArrayExpress for archived expression studies
 - EGA when controlled-access studies matter
 - Human Protein Atlas for expression and pathology support
+- CELLxGENE Census, Human Cell Atlas, Single Cell Portal, Tabula Sapiens, TISCH, CancerSEA, HTAN, HuBMAP, and CZ CELLxGENE collections for single-cell and spatial reference data
 - ENA, MGnify, Qiita, HMP, GMrepo, and curated SRA projects for microbiome and metagenomics
+- PRIDE, MassIVE, ProteomeXchange, Panorama, PeptideAtlas, CPTAC, Metabolomics Workbench, MetaboLights, GNPS, HMDB, LIPID MAPS, and MoTrPAC for proteomics, immunopeptidomics, metabolomics, and flux-related resources
+- IEDB, HLA Ligand Atlas, SysteMHC Atlas, VDJdb, McPAS-TCR, ipMSDB, TANTIGEN, TSNAdb, and related primary antigen resources for antigen peptide and TCR-pMHC work
 - PDB, AlphaFold DB, UniProt, ChEMBL, PubChem, BindingDB, DrugBank, ZINC, and PDBbind for structural and ligand data
 - TCIA, CPTAC imaging collections, Cancer Imaging Archive-linked TCGA cohorts, IDC, and institutional DICOM exports for radiomics and contouring
 - public WSI and multiplex imaging resources linked to TCGA, CPTAC, HuBMAP, HTAN, CODEX, MIBI, IMC, or spatial transcriptomics papers

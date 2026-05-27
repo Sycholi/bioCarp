@@ -53,6 +53,28 @@ Required figures:
 - redocking RMSD or known-ligand validation plot when controls exist
 - cross-tool concordance plot for high-value claims
 
+Primary preparation and inspection tools:
+
+- PDBFixer, OpenBabel, Meeko, PDB2PQR, PropKa, Reduce, fpocket, DoGSiteScorer, PLIP, ProLIF, LigPlot+, PyMOL, ChimeraX
+
+## Protein, Peptide, Antibody, And Complex Docking
+
+Current route:
+
+1. Define whether the task is protein-protein, peptide-protein, antibody-antigen, protein-DNA, protein-RNA, or protein-ligand docking.
+2. Use experimental complex structures or known interface residues when available.
+3. Use AlphaFold-Multimer, AlphaFold 3, Chai-1, Boltz, HADDOCK, ClusPro, HDOCK, RosettaDock, PatchDock, or LightDock according to molecule type and access.
+4. Validate interface plausibility with known residues, mutational evidence, conservation, electrostatics, buried surface area, and external literature.
+5. For peptide antigens or pMHC complexes, connect to `immunopeptidomics.md`.
+
+Required figures:
+
+- complex pose and interface overview
+- interface residue and contact map
+- buried surface area or interface-score distribution when available
+- cluster or pose agreement plot
+- mutation, peptide, antibody CDR, or domain-specific interface panels
+
 ## Molecular Dynamics
 
 Current route:
@@ -73,6 +95,10 @@ Required figures:
 - radius of gyration, SASA, hydrogen bonds, salt bridges, contacts, and distance time series
 - PCA, clustering, free-energy landscape, or conformational state plots when used
 - final representative structures and binding-site interaction persistence plots
+
+Primary analysis tools:
+
+- MDAnalysis, MDTraj, CPPTRAJ, gmx_MMPBSA, ProLIF, PLIP, PyMOL, ChimeraX
 
 ## Virtual Screening And ADMET
 
@@ -97,7 +123,7 @@ Required figures:
 
 ## Source Index
 
-Last checked: 2026-05-27.
+Last checked: 2026-05-28.
 
 - AlphaFold 2 paper: https://www.nature.com/articles/s41586-021-03819-2
 - AlphaFold 3 paper: https://www.nature.com/articles/s41586-024-07487-w
@@ -105,12 +131,28 @@ Last checked: 2026-05-27.
 - Chai-1 technical report: https://chaiassets.com/chai-1/paper/technical_report_v1.pdf
 - Boltz-1: https://boltz.bio/boltz1
 - AutoDock Vina documentation: https://autodock-vina.readthedocs.io/
+- PDBFixer: https://github.com/openmm/pdbfixer
+- OpenBabel: https://openbabel.org/docs/
+- Meeko: https://github.com/forlilab/Meeko
+- PDB2PQR: https://pdb2pqr.readthedocs.io/
+- fpocket: https://github.com/Discngine/fpocket
+- PLIP: https://github.com/pharmai/plip
+- ProLIF: https://prolif.readthedocs.io/
+- LigPlot+: https://www.ebi.ac.uk/thornton-srv/software/LigPlus/
+- PyMOL: https://pymol.org/
+- ChimeraX: https://www.cgl.ucsf.edu/chimerax/
 - GNINA paper: https://pmc.ncbi.nlm.nih.gov/articles/PMC8191141/
 - GNINA repository: https://github.com/gnina/gnina
 - DiffDock repository: https://github.com/gcorso/DiffDock
+- HADDOCK: https://www.bonvinlab.org/software/haddock2.4/
+- ClusPro: https://cluspro.org/
+- RosettaDock: https://docs.rosettacommons.org/docs/latest/application_documentation/docking/docking-protocol
 - GROMACS documentation: https://manual.gromacs.org/documentation/2024.0/index.html
 - OpenMM: https://openmm.org/
 - AMBER: https://ambermd.org/
+- MDAnalysis: https://www.mdanalysis.org/
+- MDTraj: https://mdtraj.org/
+- gmx_MMPBSA: https://valdes-tresanco-ms.github.io/gmx_MMPBSA/
 - RDKit documentation: https://www.rdkit.org/docs/
 - Therapeutics Data Commons: https://tdcommons.ai/
 - SwissADME: http://www.swissadme.ch/

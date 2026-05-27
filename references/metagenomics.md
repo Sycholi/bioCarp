@@ -40,7 +40,7 @@ Required figures:
 
 Current route:
 
-1. Run read QC, adapter trimming, host read removal, low-complexity review, duplicate review when relevant, and MultiQC.
+1. Run read QC, adapter trimming, host read removal, low-complexity review, duplicate review when relevant, contamination control, and MultiQC.
 2. Choose a read-based taxonomic profiler such as `Kraken2` plus `Bracken`, `MetaPhlAn`, `mOTUs`, `sylph`, or a project-specific profiler.
 3. Use `HUMAnN`, `eggNOG-mapper`, `SUPER-FOCUS`, `FMAP`, or equivalent tools for functional profiling when reads or contigs support it.
 4. Keep taxonomic profiles, functional profiles, database versions, host-removal statistics, and unclassified read fractions.
@@ -57,6 +57,27 @@ Required figures:
 - pathway abundance and pathway coverage plots
 - heatmaps for selected taxa, gene families, pathways, resistome, or virulome
 - database coverage and sample-depth diagnostics
+
+## Contamination, Strain, Virus, Resistome, And Virulome
+
+Current route:
+
+1. For low-biomass, tumor, blood, tissue, or reagent-sensitive microbiome data, inspect negative controls, positive controls, extraction batch, and common contaminant taxa before biological interpretation.
+2. Use `KneadData`, Bowtie2, BWA, or platform-specific host-removal routes for host filtering.
+3. Use `decontam` or design-aware prevalence and frequency checks when negative controls or DNA concentration exist.
+4. Use `StrainPhlAn`, `inStrain`, StrainGE, or related methods for strain-level analysis only when read depth and marker coverage support it.
+5. Use `VirSorter2`, `VIBRANT`, `CheckV`, `geNomad`, or related tools for viral contigs and virome analysis.
+6. Use `AMRFinderPlus`, `CARD`, `RGI`, `ResFinder`, `VFDB`, dbCAN, antiSMASH, or DRAM modules when resistome, virulence, CAZyme, or biosynthetic potential is central.
+7. Use `PICRUSt2` for marker-gene functional prediction only as a weaker inference when shotgun functional profiling is unavailable.
+
+Required figures:
+
+- control and contaminant taxa review plots
+- host-removal and read-retention summary
+- strain-sharing and strain-diversity plots when strain tools are used
+- viral contig quality, taxonomy, and abundance plots
+- AMR, virulence, CAZyme, or biosynthetic-gene-cluster heatmaps
+- marker-gene predicted function plots labeled as inferred when using PICRUSt2
 
 ## Assembly, Binning, MAGs, And Microbial Genomes
 
@@ -136,7 +157,7 @@ Required figures:
 
 ## Source Index
 
-Last checked: 2026-05-27.
+Last checked: 2026-05-28.
 
 - QIIME 2 documentation: https://library.qiime2.org/docs
 - QIIME 2 Current Protocols workflow: https://curr-protoc-bioinformatics.qiime2.org/
@@ -152,3 +173,16 @@ Last checked: 2026-05-27.
 - MaAsLin2 paper: https://pmc.ncbi.nlm.nih.gov/articles/PMC8714082/
 - microbiome differential abundance benchmarking: https://pmc.ncbi.nlm.nih.gov/articles/PMC8763921/
 - NMDC MAG workflow: https://docs.microbiomedata.org/workflows/chapters/6_Metagenome_Assembled_Genome/
+- KneadData: https://huttenhower.sph.harvard.edu/kneaddata/
+- decontam: https://bioconductor.org/packages/release/bioc/html/decontam.html
+- StrainPhlAn: https://github.com/biobakery/MetaPhlAn/wiki/StrainPhlAn-4
+- inStrain: https://instrain.readthedocs.io/
+- VirSorter2: https://github.com/jiarong/VirSorter2
+- VIBRANT: https://github.com/AnantharamanLab/VIBRANT
+- CheckV: https://bitbucket.org/berkeleylab/checkv/
+- geNomad: https://portal.nersc.gov/genomad/
+- PICRUSt2: https://github.com/picrust/picrust2
+- AMRFinderPlus: https://github.com/ncbi/amr
+- CARD RGI: https://card.mcmaster.ca/analyze/rgi
+- ResFinder: https://bitbucket.org/genomicepidemiology/resfinder/
+- VFDB: http://www.mgc.ac.cn/VFs/

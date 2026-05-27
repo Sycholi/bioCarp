@@ -10,11 +10,13 @@
 6. Spatial route
 7. Clinical and survival route
 8. Multi-omics integration route
-9. Metagenomics route
-10. Structural bioinformatics route
-11. Imaging route
-12. "What can this dataset do?" route
-13. Paper-oriented output chain
+9. Variant and antigen route
+10. Proteomics, metabolomics, and flux route
+11. Metagenomics route
+12. Structural bioinformatics route
+13. Imaging route
+14. "What can this dataset do?" route
+15. Paper-oriented output chain
 
 ## Intake Checklist
 
@@ -23,7 +25,7 @@ Reconstruct these items before coding:
 - disease, tissue, and species
 - assay type and platform
 - sample unit: patient, sample, cell, spot, region, image, slide, molecule, ligand, protein, contig, MAG, or microbial feature
-- available metadata: response, stage, grade, survival, treatment, batch, tissue, clone, collection site, scanner, sequencing run, structure source, or compound library
+- available metadata: response, stage, grade, survival, treatment, batch, tissue, clone, collection site, scanner, sequencing run, structure source, compound library, HLA, raw MS batch, isotope tracer, or peptide evidence
 - requested endpoint or biological axis
 - custom data, public data, or mixed validation
 - intended output: figure, table, reusable script, full draft result, or study design
@@ -151,6 +153,44 @@ Shortest route:
 2. derive the core phenotype or axis
 3. project or validate that axis in the other modalities
 4. keep the figure narrative causal and compact
+
+### Variants, HLA, Antigen Peptides, Or Immunopeptidomics
+
+Feasible branches:
+
+- germline or somatic variant calling and annotation
+- CNV, SV, MSI, TMB, mutational signatures, clonality, and cancer driver summaries
+- HLA typing and HLA loss review
+- neoantigen and antigen peptide candidate ranking
+- immunopeptidomics QC, MHC motif analysis, peptide-source annotation, and peptide evidence review
+- TCR-pMHC candidate follow-up when TCR or epitope databases exist
+
+Shortest route:
+
+1. define sample type, HLA source, variant source, and evidence layers
+2. run or verify variant and HLA calls
+3. add expression, clonality, copy-number, and normal-tissue filters
+4. run antigen peptide prediction or immunopeptidomics interpretation
+5. rank candidates with explicit evidence and limitations
+
+### Proteomics, Metabolomics, Lipidomics, Or Metabolic Flux
+
+Feasible branches:
+
+- raw MS QC, peptide or metabolite identification, quantification, normalization, and differential analysis
+- protein, peptide, PTM-site, kinase, and pathway inference
+- metabolite, lipid class, pathway, and compound annotation analysis
+- isotope tracing, mass isotopomer distribution, and 13C metabolic flux modeling
+- genome-scale metabolic modeling, FBA, and single-cell metabolism inference
+- multi-omics integration with RNA, variants, microbiome, imaging, or clinical data
+
+Shortest route:
+
+1. verify raw data, acquisition type, batch, QC samples, and annotation evidence
+2. run assay-specific processing or verify supplied matrices
+3. perform normalization, missingness review, and sample-level QC
+4. run differential, pathway, PTM, lipid, flux, or modeling module
+5. connect results to expression, phenotype, or validation evidence
 
 ### Metagenomics Or Microbiome
 

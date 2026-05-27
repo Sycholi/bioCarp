@@ -17,6 +17,20 @@ Before running a module:
 7. Inspect every figure and record per-figure interpretation as required by `execution.md`.
 8. Regenerate failed figures until they pass inspection or a real blocker is documented.
 
+## Detailed Companion Layers
+
+Use these companion files for detailed routes that should not be duplicated here:
+
+- `upstream.md` for raw FASTQ, BCL, BAM, CRAM, mzML, vendor MS files, demultiplexing, alignment, quantification, and workflow outputs
+- `variants.md` for germline, somatic, CNV, SV, HLA, MSI, TMB, and mutational signatures
+- `immunopeptidomics.md` for antigen peptides, MHC binding prediction, neoantigens, immunopeptidomics, and TCR-pMHC follow-up
+- `single-cell-advanced.md` for advanced single-cell, spatial, perturbation, annotation, communication, trajectory, velocity, GRN, and drug-prediction modules
+- `multiomics.md` for paired or unpaired bulk, single-cell, spatial, imaging, proteogenomic, metabolomic, and host-microbe integration
+- `epigenomics.md` for ATAC, ChIP, CUT&Tag, CUT&Run, methylation, Hi-C, motif, footprinting, and regulatory interpretation
+- `proteomics.md` for DDA, DIA, TMT, LFQ, PTM, phosphoproteomics, targeted proteomics, and proteogenomics
+- `metabolomics.md` for untargeted and targeted metabolomics, lipidomics, isotope tracing, metabolic flux, and metabolic modeling
+- `statistics.md` for model diagnostics, visualization, figure construction, clinical prediction plots, and report tables
+
 ## Bulk RNA-seq And Microarray
 
 Current route:
@@ -57,15 +71,19 @@ Current route:
 2. Run per-sample QC for counts, detected genes, mitochondrial fraction, ribosomal fraction when relevant, doublets, ambient RNA, cell-cycle effects, and batch structure.
 3. Normalize with the selected route, usually Seurat `SCTransform` or log-normalization for R-first workflows. Use Bioconductor `SingleCellExperiment` or Scanpy routes when the object ecosystem requires it.
 4. Integrate only after checking whether biology and batch are separable. In Seurat v5 workflows, prefer layer-aware integration when it fits the object structure. Use Harmony, RPCA, scVI, or scANVI only when their assumptions fit the data.
-5. Cluster at multiple resolutions, annotate with manual markers plus reference transfer where useful, and preserve marker evidence for every final label.
-6. For group comparisons, use sample-aware pseudobulk or replicate-aware tools when biological replicates exist. Treat cell-level tests as descriptive unless the design justifies them.
-7. Run lineage subclustering before trajectory, communication, CNV, or functional state modules.
+5. Quantify integration quality with iLISI, cLISI, kBET, ASW or silhouette, graph connectivity, marker preservation, and sample or patient composition when integration affects the conclusion.
+6. Cluster at multiple resolutions, annotate with manual markers plus reference transfer where useful, and preserve marker evidence for every final label.
+7. Quantify cluster purity and heterogeneity with ROGUE, marker coherence, ASW or silhouette, cluster size, clustree or resolution stability, and reference-label agreement when annotation or subtype claims depend on clusters.
+8. For group comparisons, use sample-aware pseudobulk or replicate-aware tools when biological replicates exist. Treat cell-level tests as descriptive unless the design justifies them.
+9. Run lineage subclustering before trajectory, communication, CNV, or functional state modules.
 
 Required figures:
 
 - per-sample QC violin, ridge, and scatter plots, doublet and ambient RNA summaries, cell counts by sample
 - PCA elbow or variance plots before final clustering
 - integration diagnostics by sample, batch, condition, and major cell type
+- integration metric plots: iLISI, cLISI, kBET, ASW or silhouette, graph connectivity, marker preservation, and batch-versus-biology comparison when integration is used
+- cluster quality plots: ROGUE score distribution or heatmap, ASW or silhouette, cluster size, marker-coherence panels, and clustree or resolution stability plots when clusters drive biological claims
 - UMAP or t-SNE by sample, condition, cluster, major annotation, fine annotation, and key markers
 - marker dot plots, heatmaps, feature plots, and annotation evidence panels
 - cell fraction by sample or patient, pseudobulk summary, DE volcano or heatmap, pathway activity plot
@@ -77,6 +95,8 @@ Primary sources to check:
 - OSCA and Bioconductor single-cell workflows
 - Single-cell best-practices reviews and the current online best-practices guide
 - muscat, edgeR, DESeq2, or limma documentation for sample-aware testing
+- ROGUE documentation and paper for cluster purity and heterogeneity
+- LISI, scIB, and kBET documentation or benchmark papers for integration and batch-mixing metrics
 
 ## Trajectory, Pseudotime, Potency, And RNA Velocity
 
@@ -337,6 +357,7 @@ Current route:
 7. Use mixOmics or DIABLO when supervised multi-omics feature selection is explicitly needed.
 8. Use MultiAssayExperiment or equivalent structures when sample matching across assays is complex.
 9. Interpret integrated signals through modality-specific results, then validate in external cohorts, spatial data, clinical data, or orthogonal assays.
+10. Use `multiomics.md` for current tool selection, required figures, and single-cell, spatial, proteogenomic, metabolomic, imaging, or host-microbe integration details.
 
 Required figures:
 
@@ -432,16 +453,23 @@ Primary sources to check:
 Current route:
 
 1. For sequence, alignment, variant, assembly, annotation, primer, and genome-interval tasks, define organism, genome build, reference database, read technology, sample design, and output unit before selecting tools.
-2. For variant calling, preserve raw QC, alignment QC, duplicate or UMI handling, base recalibration or equivalent steps, variant filtering, annotation, and cohort-level summaries.
-3. For genome assembly and annotation, preserve assembly graph or contigs, N50, BUSCO or equivalent completeness, contamination, repeat annotation, gene calls, and functional annotation.
-4. For proteomics, metabolomics, small RNA, CLIP-seq, ribo-seq, epitranscriptomics, and alternative splicing, follow assay-specific QC, normalization, identification, quantification, differential testing, annotation, and enrichment routes.
-5. For flow cytometry, CyTOF, CRISPR screens, Perturb-seq, temporal genomics, ecological genomics, population genetics, phylogenetics, and comparative genomics, preserve assay-specific QC, design, statistical unit, and complete diagnostic figures.
+2. For raw sequencing and workflow processing, use `upstream.md` and preserve raw QC, workflow logs, MultiQC, reference versions, and output matrices or alignment files.
+3. For variant calling, use `variants.md` and preserve raw QC, alignment QC, duplicate or UMI handling, base recalibration or equivalent steps, variant filtering, annotation, and cohort-level summaries.
+4. For antigen peptides, HLA, neoantigens, immunopeptidomics, and TCR-pMHC follow-up, use `immunopeptidomics.md`.
+5. For genome assembly and annotation, preserve assembly graph or contigs, N50, BUSCO or equivalent completeness, contamination, repeat annotation, gene calls, and functional annotation.
+6. For proteomics, phosphoproteomics, PTM analysis, and targeted proteomics, use `proteomics.md`.
+7. For metabolomics, lipidomics, isotope tracing, metabolic flux, and metabolic modeling, use `metabolomics.md`.
+8. For small RNA, CLIP-seq, ribo-seq, epitranscriptomics, and alternative splicing, follow assay-specific QC, normalization, identification, quantification, differential testing, annotation, and enrichment routes.
+9. For flow cytometry, CyTOF, CRISPR screens, Perturb-seq, temporal genomics, ecological genomics, population genetics, phylogenetics, and comparative genomics, preserve assay-specific QC, design, statistical unit, and complete diagnostic figures.
 
 Required figures:
 
 - raw QC, alignment, mapping, duplication, coverage, contamination, and sample-level structure plots
 - variant quality, Ti/Tv, allele frequency, annotation, oncoplot, lollipop, mutational signature, CNV, and validation plots when variants are analyzed
+- HLA support, peptide candidate flow, MHC binding, immunopeptidomics motif, and antigen evidence matrix plots when antigen peptides are analyzed
 - assembly, annotation, BUSCO, genome feature, synteny, phylogeny, and comparative genomics plots when genomes are analyzed
+- proteomics raw QC, peptide or protein counts, missingness, normalization, PCA, volcano, heatmap, PTM-site, kinase, and protein network plots when proteomics is analyzed
+- metabolomics peak QC, annotation, blank and pooled-QC review, PCA, volcano, heatmap, pathway, lipid class, isotopologue, flux, and model-fit plots when metabolomics or flux is analyzed
 - assay-specific PCA, heatmap, volcano, enrichment, pathway, network, and validation plots for specialized omics
 
 Primary sources to check:

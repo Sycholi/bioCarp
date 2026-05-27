@@ -59,7 +59,9 @@ Current route:
 5. Check sample identity, sex markers, species-mixing markers, mitochondrial fraction, ribosomal fraction, hemoglobin genes, dissociation stress genes, cell-cycle scores, total counts, detected genes, and batch composition.
 6. Apply thresholds after plotting each metric by sample. Avoid one global threshold when samples have different quality distributions.
 7. Preserve a QC manifest with before-after cell counts per sample and reason for each filtering decision.
-8. For snRNA-seq, adjust mitochondrial expectations and ambient RNA review. For CITE-seq, multiome, or hashtag data, include modality-specific QC.
+8. After preliminary clustering, evaluate cluster quality and cell-state heterogeneity with marker coherence, cluster purity, silhouette or average silhouette width, graph connectivity, entropy-based metrics, and `ROGUE` when the question depends on cluster purity or subtype definition.
+9. For integrated objects, evaluate batch mixing and biological separation with `LISI` metrics such as iLISI and cLISI, plus kBET, ASW, graph connectivity, marker preservation, and sample or patient composition. Do not optimize batch mixing alone when it erases real biology.
+10. For snRNA-seq, adjust mitochondrial expectations and ambient RNA review. For CITE-seq, multiome, or hashtag data, include modality-specific QC.
 
 Required figures:
 
@@ -68,6 +70,8 @@ Required figures:
 - empty-droplet, ambient RNA, and doublet diagnostic plots when those tools are used
 - before-after UMAP or PCA by sample and QC class
 - removed-cell summary bar plot and QC manifest table
+- cluster quality plots: marker coherence, silhouette or ASW, cluster size distribution, ROGUE score distribution or heatmap when used
+- integration metric plots: iLISI, cLISI, kBET rejection rate, graph connectivity, batch mixing by sample and biology-preservation views when integration is used
 
 Primary tools:
 
@@ -75,6 +79,8 @@ Primary tools:
 - SoupX, CellBender, DecontX for ambient RNA
 - scDblFinder, DoubletFinder, Scrublet, Solo, hashtag or genotype demultiplexing for doublets
 - Seurat, Scanpy, scater, scran, SingleCellExperiment for core QC handling
+- ROGUE for entropy-based cluster purity and heterogeneity review
+- LISI, scIB, kBET, ASW, silhouette, graph connectivity, NMI, ARI, and related metrics for integration and clustering assessment
 
 ## Normalization, Integration, Clustering, And Annotation
 
@@ -85,14 +91,18 @@ Current route:
 3. Use integration only when batch effects interfere with biological comparison. Inspect unintegrated and integrated embeddings.
 4. Select dimensions using variance, elbow, marker stability, and batch-mixing diagnostics.
 5. Run resolution sweeps and clustering stability checks. Use Leiden, Louvain, Seurat graph clustering, PhenoGraph, or package-native clustering as appropriate.
-6. If a user names `phiClust` or another uncommon clustering method, verify the exact tool and documentation before use.
-7. Annotate with manual markers plus one or more reference tools when useful. Treat automated labels as draft labels.
-8. For tumor data, distinguish malignant cells, normal epithelial cells, immune cells, stromal cells, and cycling or stressed states before fine annotation.
+6. Evaluate resolution and annotation quality with ROGUE, silhouette or ASW, marker coherence, cluster size, nearest-neighbor graph connectivity, NMI or ARI across resolution sweeps, and reference-label agreement when suitable.
+7. Evaluate integration with iLISI, cLISI, kBET, ASW, graph connectivity, cell-type separation, marker preservation, and sample or patient composition. Prefer a balance between technical mixing and biological structure preservation.
+8. If a user names `phiClust` or another uncommon clustering method, verify the exact tool and documentation before use.
+9. Annotate with manual markers plus one or more reference tools when useful. Treat automated labels as draft labels.
+10. For tumor data, distinguish malignant cells, normal epithelial cells, immune cells, stromal cells, and cycling or stressed states before fine annotation.
 
 Required figures:
 
 - unintegrated and integrated PCA or UMAP by sample, batch, condition, chemistry, and tissue
 - resolution sweep, cluster tree or stability plots when clusters drive the claim
+- ROGUE score plots, silhouette or ASW plots, cluster purity or heterogeneity heatmaps, and marker-coherence panels when cluster identity drives the claim
+- iLISI, cLISI, kBET, ASW, graph connectivity, batch mixing, and marker-preservation plots when integration is used
 - marker dot plots, violin plots, feature plots, heatmaps, and reference-label confusion plots
 - annotation evidence panels for every final label
 - cell fraction by sample or patient
@@ -101,7 +111,83 @@ Primary tools:
 
 - Seurat v5, Harmony, RPCA, scVI, scANVI, scArches, Scanpy, SingleCellExperiment
 - SingleR, CellTypist, Azimuth, scANVI, Garnett, scmap, reference atlas transfer
+- scType, scGate, UCell, AUCell, CellAssign, ProjecTILs, Symphony, popV, scPoli, treeArches, CASSIA, and manual marker panels for annotation and state scoring
 - PhenoGraph or verified graph-clustering alternatives when standard clustering is not sufficient
+- ROGUE, LISI, scIB, kBET, silhouette or ASW, graph connectivity, NMI, ARI, clustree, and clusterExperiment when clustering or integration quality needs formal review
+
+## CITE-seq, ADT, And Single-Cell Multi-Omics
+
+Use this module when protein, chromatin, methylation, perturbation, or other modalities are paired with single-cell RNA or partly paired across related datasets.
+
+Current route:
+
+1. Run modality-specific QC before integration. For ADT, check background, isotype controls, antibody panel, tag swapping, and protein count distributions.
+2. For CITE-seq, use dsb, totalVI, Seurat WNN, CiteFuse, muon, or other verified routes according to object structure and batch design.
+3. For RNA plus ATAC multiome, use Seurat WNN, Signac, ArchR, MultiVI, scGLUE, Cobolt, MOJITOO, or SnapATAC2 according to pairing, scale, and regulatory question.
+4. For unpaired modalities, use scGLUE, Cobolt, LIGER, scJoint, scBridge, scMaui, scDART, UnionCom, Multigrate, scArches, or related tools only after checking assumptions and maintenance status.
+5. Keep modality weights, modality-specific signal, missing-modality imputation, and feature concordance visible.
+
+Required figures:
+
+- modality-specific QC, ADT background, antibody signal, fragment or peak QC, and missingness plots
+- integrated embedding by sample, batch, condition, annotation, and modality
+- modality weight or contribution plots
+- RNA-protein, RNA-ATAC, gene activity, peak-to-gene, motif-to-expression, and marker concordance panels
+- iLISI, cLISI, kBET, ASW, graph connectivity, marker preservation, and modality mixing diagnostics
+- imputation diagnostics when a missing modality is inferred
+
+Primary tools:
+
+- Seurat WNN, Signac, ArchR, dsb, CiteFuse, totalVI, MultiVI, muon, Multigrate
+- scGLUE, Cobolt, MOJITOO, LIGER, scJoint, scBridge, scMaui, scDART, UnionCom, scArches, Portal, SnapATAC2
+
+## Trajectory, Fate, And Velocity Extensions
+
+Use this module when the task needs fate probability, vector field, transition matrix, optimal transport, diffusion pseudotime, or terminal-state prioritization beyond a basic pseudotime plot.
+
+Current route:
+
+1. Confirm that the selected cells plausibly represent a biological process before running trajectory tools.
+2. Use CellRank when terminal fate probabilities, absorption probabilities, and driver genes are central.
+3. Use dynamo when vector-field reconstruction, acceleration, curvature, or perturbation-linked dynamics fit the data and assumptions.
+4. Use Palantir, Waddington-OT, FateID, destiny or DPT, PAGA, or CellRouter when their model and input fit the question.
+5. Anchor direction with time, markers, lineage labels, velocity, perturbation, or experimental design. State uncertainty when direction is not resolved.
+
+Required figures:
+
+- selected-cell embedding by sample, condition, cluster, and key markers
+- lineage graph, diffusion map, vector field, transition matrix, fate probability, terminal state, and driver-gene plots as supported
+- pseudotime or latent-time distribution by sample and condition
+- gene trends, branch heatmaps, and terminal-state marker panels
+- tool-specific diagnostics and uncertainty plots
+
+Primary tools:
+
+- CellRank, dynamo, velocyto, Palantir, Waddington-OT, FateID, destiny or DPT, PAGA, CellRouter, Monocle3, slingshot, tradeSeq, scVelo
+
+## Gene Regulatory Network And Regulon Analysis
+
+Use this module when the question depends on TF networks, enhancer-to-gene links, regulon activity, perturbation targets, or regulatory mechanism.
+
+Current route:
+
+1. Choose GRN tools by input modality: expression-only, ATAC-only, multiome, perturbation, or time-course.
+2. Use SCENIC or pySCENIC for expression-based regulon discovery and activity scoring.
+3. Use SCENIC+, Pando, CellOracle, scGLUE, Signac, ArchR, chromVAR, Cicero, or SnapATAC2 when chromatin or multiome evidence is available.
+4. Use GRNBoost2, GENIE3, PIDC, or Inferelator when network inference itself is the main method and assumptions are checked.
+5. Validate regulators with motif evidence, target expression, perturbation evidence, literature, and cell-state specificity.
+
+Required figures:
+
+- regulon activity UMAP, heatmap, and cell-type distribution
+- TF-target network or target-gene evidence plots
+- motif enrichment or motif deviation plots when ATAC data exist
+- peak-to-gene and TF-to-target support plots when multiome data exist
+- perturbation or external evidence panels when used
+
+Primary tools:
+
+- SCENIC, pySCENIC, SCENIC+, GRNBoost2, GENIE3, PIDC, Inferelator, Pando, CellOracle, scGLUE, chromVAR, Cicero, Signac, ArchR
 
 ## Phenotype-Associated Cell Methods
 
@@ -203,6 +289,8 @@ Current route:
 4. Use non-targeting controls, safe-targeting controls, and multiple guides per gene when available.
 5. Model perturbation effects at guide, gene, cell type, and pathway levels. Include replicate and batch when available.
 6. Use public resources such as scPerturb, PerturBase, Replogle-scale Perturb-seq, LINCS, CMap, and DepMap to support interpretation.
+7. For perturbation prediction or response transfer, use GEARS, CPA, chemCPA, CellOT, scVIDR, RespondOS, scGen, or related tools only after checking perturbation type, training domain, and validation evidence.
+8. For differential abundance or composition effects, use Milo, miloDE, scCODA, MASC, DA-seq, MELD, Augur, or replicate-aware models according to design.
 
 Required figures:
 
@@ -212,12 +300,14 @@ Required figures:
 - perturbation effect volcano, heatmap, and pathway summary
 - guide concordance and replicate concordance plots
 - benchmark or external perturbation signature comparison when available
+- differential abundance, response prediction, or perturbation transfer diagnostics when those tools are used
 
 Primary tools and resources:
 
 - Seurat Mixscape
 - pertpy Mixscape and Augur
-- scGen, GEARS, CPA, or verified perturbation-prediction models when prediction is required
+- scGen, GEARS, CPA, chemCPA, CellOT, scVIDR, RespondOS, or verified perturbation-prediction models when prediction is required
+- Milo, miloDE, scCODA, MASC, DA-seq, MELD for abundance or composition changes when design supports them
 - scPerturb
 - PerturBase
 - Replogle genome-scale Perturb-seq datasets
@@ -232,10 +322,11 @@ Current route:
 1. Identify platform resolution first: Visium, Visium HD, Slide-seq, MERFISH, Xenium, CosMx, Stereo-seq, DBiT-seq, CODEX, or imaging mass cytometry.
 2. Preserve tissue image, segmentation, coordinates, cell or spot area, slide, sample, region, batch, and histology labels.
 3. Build spatial graphs appropriate to the platform: radius, kNN, Delaunay, grid adjacency, or segmentation-derived contact graph.
-4. Run domain or niche detection with Seurat, Giotto, Squidpy, BANKSY, CellCharter, BayesSpace, SpaGCN, GraphST, PRECAST, stLearn, or verified alternatives.
+4. Run domain or niche detection with Seurat, Giotto, Squidpy, BANKSY, CellCharter, BayesSpace, SpaGCN, GraphST, PRECAST, STAGATE, DeepST, SEDR, SpaSEG, stLearn, or verified alternatives.
 5. Run neighborhood enrichment, co-occurrence, spatial autocorrelation, spatially variable genes, proximity, hotspot, and cell-type adjacency tests as needed.
-6. Use RCTD, cell2location, CARD, SpatialDWLS, Tangram, stereoscope, or equivalent tools for deconvolution or mapping only when references match.
+6. Use RCTD, cell2location, CARD, SpatialDWLS, Tangram, stereoscope, DestVI, SPOTlight, STdeconvolve, SpatialDecon, STRIDE, NMFreg, SpaOTsc, novoSpaRc, CellTrek, CytoSPACE, or equivalent tools for deconvolution or mapping only when references match.
 7. For differential abundance or differential neighborhoods, use sample-aware designs and tools such as Milo when the graph-neighborhood framework fits.
+8. For spatial communication or microenvironment modeling, use COMMOT, SpaTalk, MISTy, MultiNicheNet, NicheCompass, MEBOCOST, NATMI, or Tensor-cell2cell when spatial coordinates, conditions, or metabolic communication support the question.
 
 Required figures:
 
@@ -246,17 +337,19 @@ Required figures:
 - spatially variable gene maps and autocorrelation summaries
 - deconvolution maps, cell-type abundance maps, and reference-fit diagnostics
 - spatial interaction or ligand-receptor plots when supported
+- spatial domain, spatially variable gene, denoising, and spatial communication diagnostics from the selected tool
 
 Primary tools:
 
 - Seurat spatial, SpatialExperiment, Giotto, Squidpy
-- BANKSY, CellCharter, BayesSpace, SpaGCN, GraphST, PRECAST, stLearn
-- RCTD, cell2location, CARD, SpatialDWLS, Tangram, stereoscope
+- BANKSY, CellCharter, BayesSpace, SpaGCN, GraphST, PRECAST, STAGATE, DeepST, SEDR, SpaSEG, stLearn, SpatialDE, nnSVG, MERINGUE, Splotch, SpotClean
+- RCTD, cell2location, CARD, SpatialDWLS, Tangram, stereoscope, DestVI, SPOTlight, STdeconvolve, SpatialDecon, STRIDE, NMFreg, SpaOTsc, novoSpaRc, CellTrek, CytoSPACE
+- COMMOT, SpaTalk, MISTy, MultiNicheNet, NicheCompass, MEBOCOST, NATMI, Tensor-cell2cell
 - Milo or equivalent neighborhood differential abundance tools
 
 ## Source Index
 
-Last checked: 2026-05-27.
+Last checked: 2026-05-28.
 
 - Single-cell best practices review: https://www.nature.com/articles/s41576-023-00586-w
 - OSCA: https://bioconductor.org/books/release/OSCA/
@@ -270,9 +363,27 @@ Last checked: 2026-05-27.
 - scDblFinder: https://bioconductor.org/packages/release/bioc/html/scDblFinder.html
 - DoubletFinder: https://github.com/chris-mcginnis-ucsf/DoubletFinder
 - Scrublet: https://github.com/swolock/scrublet
+- DropletUtils: https://bioconductor.org/packages/release/bioc/html/DropletUtils.html
+- miQC: https://bioconductor.org/packages/release/bioc/html/miQC.html
+- scuttle: https://bioconductor.org/packages/release/bioc/html/scuttle.html
+- scran: https://bioconductor.org/packages/release/bioc/html/scran.html
 - CellTypist: https://www.celltypist.org/
 - Azimuth: https://azimuth.hubmapconsortium.org/
 - scANVI: https://docs.scvi-tools.org/en/stable/user_guide/models/scanvi.html
+- totalVI: https://docs.scvi-tools.org/en/latest/user_guide/models/totalvi.html
+- MultiVI: https://docs.scvi-tools.org/en/latest/user_guide/models/multivi.html
+- muon: https://muon.scverse.org/
+- scGLUE: https://scglue.readthedocs.io/
+- CellRank: https://cellrank.readthedocs.io/
+- dynamo: https://dynamo-release.readthedocs.io/
+- COMMOT paper: https://www.nature.com/articles/s41592-022-01728-4
+- MISTy paper: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02663-5
+- MultiNicheNet: https://github.com/saeyslab/multinichenetr
+- NicheCompass: https://github.com/Lotfollahi-lab/nichecompass
+- SCENIC: https://scenic.aertslab.org/
+- SCENIC+: https://scenicplus.readthedocs.io/
+- pySCENIC: https://pyscenic.readthedocs.io/
+- Pando: https://quadbiolab.github.io/Pando/
 - SCIPAC paper: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03263-1
 - Scissor repository: https://github.com/sunduanchen/Scissor
 - scPAS documentation: https://aiminxie.github.io/scPAS/
@@ -287,6 +398,10 @@ Last checked: 2026-05-27.
 - scPerturb paper: https://www.nature.com/articles/s41592-023-02144-y
 - PerturBase paper: https://academic.oup.com/nar/article/53/D1/D1099/7815638
 - Replogle Perturb-seq paper: https://pubmed.ncbi.nlm.nih.gov/35688146/
+- pertpy documentation: https://pertpy.readthedocs.io/
+- GEARS repository: https://github.com/snap-stanford/GEARS
+- CPA: https://github.com/theislab/cpa
+- chemCPA: https://github.com/theislab/chemCPA
 - CMap L1000 paper: https://pmc.ncbi.nlm.nih.gov/articles/PMC5990023/
 - CMap CLUE: https://clue.io/cmap
 - DepMap: https://depmap.org/
@@ -296,4 +411,9 @@ Last checked: 2026-05-27.
 - BANKSY Bioconductor package: https://bioconductor.org/packages/release/bioc/html/Banksy.html
 - CellCharter documentation: https://cellcharter.readthedocs.io/
 - Milo paper: https://pmc.ncbi.nlm.nih.gov/articles/PMC7617075/
+- Tangram: https://github.com/broadinstitute/Tangram
+- cell2location: https://cell2location.readthedocs.io/
+- SPOTlight: https://bioconductor.org/packages/release/bioc/html/SPOTlight.html
+- STAGATE: https://github.com/zhanglabtools/STAGATE
+- GraphST: https://github.com/JinmiaoChenLab/GraphST
 - scALPI GitLab project: https://gitlab.com/pwirapati/scalpi

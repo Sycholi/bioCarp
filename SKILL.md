@@ -1,6 +1,6 @@
 ---
 name: biocarp
-description: Comprehensive tumor and translational bioinformatics analysis, literature-corpus reconstruction, tool deployment, project-state tracking, sub-agent assisted review, goal-aware execution, public-dataset reproduction, data-to-question mapping, complete figure generation and inspection, bulk functional inference, advanced single-cell and spatial methods, metagenomics, structural bioinformatics, molecular docking, molecular dynamics, virtual screening, imaging, perturbation and drug-prioritization workflows, and tool issue triage using a script-first R workflow with concise project-oriented code style. Use when Codex needs to analyze sequencing, bulk, single-cell, spatial, immune repertoire, clinical survival, chromatin, methylation, microbiome, proteomics, metabolomics, structural, imaging, perturbation, drug-response, or multi-omics data; deploy required tools; decide what analyses are feasible from available data; reconstruct the last-decade disease literature and public-dataset landscape for a concrete question; compare bioinformatics tool families before choosing a route; reproduce or extend published oncology studies from public cohorts; or build rigorous teaching or exploratory workflows without unnecessary abstraction.
+description: Comprehensive tumor and translational bioinformatics analysis, literature-corpus reconstruction, tool deployment, project-state tracking, sub-agent assisted review, goal-aware execution, public-dataset reproduction, data-to-question mapping, complete figure generation and inspection, upstream FASTQ processing, variant and antigen-peptide analysis, bulk functional inference, advanced single-cell and spatial methods, metagenomics, proteomics, metabolomics, metabolic flux, structural bioinformatics, molecular docking, molecular dynamics, virtual screening, imaging, perturbation and drug-prioritization workflows, and tool issue triage using a script-first R workflow with concise project-oriented code style. Use when Codex needs to analyze sequencing, bulk, single-cell, spatial, immune repertoire, clinical survival, variants, antigen peptides, HLA, chromatin, methylation, microbiome, proteomics, metabolomics, fluxomics, structural, imaging, perturbation, drug-response, or multi-omics data; deploy required tools; decide what analyses are feasible from available data; reconstruct the last-decade disease literature and public-dataset landscape for a concrete question; compare bioinformatics tool families before choosing a route; reproduce or extend published oncology studies from public cohorts; or build rigorous teaching or exploratory workflows without unnecessary abstraction.
 ---
 
 # biocarp
@@ -98,11 +98,19 @@ Core rule:
 - `execution.md` defines project control, sub-agent use, goal handling, tool deployment, figure inspection, and required Markdown reports.
 - `learning.md` defines user-level assessment, proactive method suggestions, user habit records, bug learning, and method updates.
 - `coverage.md` lists the full capability scope and where each family belongs.
+- `upstream.md` covers FASTQ-to-matrix, workflow pipelines, raw QC, alignment, quantification, demultiplexing, and workflow outputs.
+- `variants.md` covers germline, somatic, CNV, SV, HLA typing, mutational signatures, and variant-to-antigen handoff.
+- `immunopeptidomics.md` covers antigen peptides, HLA binding prediction, neoantigens, immunopeptidomics, and TCR-pMHC follow-up.
 - `single-cell-advanced.md` covers advanced single-cell, spatial, perturbation, foundation-model, virtual-cell, and drug-prediction methods.
 - `bulk-inference.md` covers TF activity, pathway activity, kinase activity, deconvolution, signature scoring, WGCNA, and bulk-to-single-cell interpretation.
+- `multiomics.md` covers bulk, single-cell, spatial, imaging, proteogenomic, metabolomic, and host-microbe multi-omics integration.
+- `epigenomics.md` covers ATAC, scATAC, ChIP-seq, CUT&Tag, CUT&Run, methylation, Hi-C, motif, footprinting, and regulatory interpretation.
+- `proteomics.md` covers DDA, DIA, TMT, LFQ, phosphoproteomics, PTM analysis, proteogenomics, and targeted proteomics.
+- `metabolomics.md` covers untargeted and targeted metabolomics, lipidomics, isotope tracing, metabolic flux analysis, and constraint-based metabolic modeling.
 - `metagenomics.md` covers microbiome, metagenomics, metatranscriptomics, MAGs, and host-microbe integration.
 - `structural.md` covers protein structure prediction, docking, molecular dynamics, virtual screening, and ADMET.
 - `imaging.md` covers pathology imaging, multiplex imaging, virtual multiplex immunofluorescence, and virtual spatial transcriptomics.
+- `statistics.md` covers downstream statistics, clinical models, figure construction, report tables, and visualization quality checks.
 - `tool-issues.md` covers known bugs, open issues, version conflicts, and workarounds.
 - `literature.md`, `public-data.md`, and `data-assessment.md` cover study design, public data, and dataset opportunity mapping.
 
@@ -127,10 +135,11 @@ Then classify the data type:
 - spatial transcriptomics
 - TCR or BCR repertoire
 - ATAC-seq, ChIP-seq, methylation, CNV, or other genomic layers
+- WGS, WES, targeted panel, RNA variant, HLA, antigen peptide, or immunopeptidomics
 - clinical cohort or survival dataset
 - radiomics, pathomics, or multimodal integration
 - microbiome, metagenomics, metatranscriptomics, virome, or microbial genome analysis
-- proteomics, metabolomics, small RNA, CLIP-seq, ribo-seq, or other specialized omics
+- proteomics, phosphoproteomics, metabolomics, lipidomics, isotope tracing, metabolic flux, small RNA, CLIP-seq, ribo-seq, or other specialized omics
 - protein structure prediction, molecular docking, molecular dynamics, virtual screening, or chemoinformatics
 - multiplex imaging, imaging mass cytometry, radiomics, automatic segmentation, automatic contouring, virtual immunofluorescence, virtual staining, or virtual spatial omics
 - mixed public/private validation workflow
@@ -192,6 +201,8 @@ Every analysis must output the complete figure set expected for that method, not
   - enrichment, pathway, and regulon analysis: dot, bar, ridge, running-score, network, term-similarity, leading-edge, target-gene, and activity-distribution plots as supported by the package and the question
   - CNV, clonality, survival, differential expression, and multi-omics modules: heatmaps, genomic-position plots, clone-sharing or alluvial views, Kaplan-Meier and forest plots, volcano and ranked-gene plots, integration embeddings, feature concordance views, and other package-standard diagnostics needed for interpretation
   - microbiome and metagenomics: read QC, taxonomic composition, alpha and beta diversity, ordination, differential abundance, functional pathway, MAG quality, phylogenomic, and host-microbe association plots
+  - variants, HLA, antigen peptides, and immunopeptidomics: variant QC, oncoplots, signature plots, CNV or SV plots, HLA support, peptide filtering flow, MHC binding score distributions, immunopeptidomics peptide-length and motif plots, MS evidence plots, and antigen evidence matrices
+  - proteomics, phosphoproteomics, metabolomics, lipidomics, and metabolic flux: raw MS QC, identification counts, missingness, normalization, PCA, volcano, heatmap, PTM-site and kinase plots, metabolite annotation and class plots, pathway maps, isotopologue distributions, flux maps, model-fit diagnostics, and uncertainty plots
   - structural bioinformatics: pLDDT or confidence plots, PAE maps, structure views, docking poses, interaction diagrams, score distributions, MD RMSD, RMSF, radius of gyration, SASA, hydrogen-bond, PCA, and free-energy plots
   - imaging, automatic segmentation, virtual immunofluorescence, and virtual spatial omics: raw channel montages, registration and segmentation QC, ground-truth versus prediction overlays, Dice or surface Dice, Hausdorff or boundary-error plots, phenotype maps, neighborhood plots, measured-versus-predicted marker or expression maps, uncertainty maps, and external validation plots
 - If a required or signature plot cannot be produced because the data lack required inputs, package assumptions fail, or metadata are missing, record the exact blocker in the result notes and do not replace it with a simpler plot as if the full method had been completed.
@@ -297,11 +308,19 @@ Every analysis must output the complete figure set expected for that method, not
 - `references/method-updates.md`
 - `references/methods.md`
 - `references/workflows.md`
+- `references/upstream.md`
+- `references/variants.md`
+- `references/immunopeptidomics.md`
 - `references/single-cell-advanced.md`
 - `references/bulk-inference.md`
+- `references/multiomics.md`
+- `references/epigenomics.md`
+- `references/proteomics.md`
+- `references/metabolomics.md`
 - `references/metagenomics.md`
 - `references/structural.md`
 - `references/imaging.md`
+- `references/statistics.md`
 - `references/tool-issues.md`
 - `references/public-data.md`
 - `references/literature.md`

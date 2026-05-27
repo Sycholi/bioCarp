@@ -209,6 +209,70 @@ Usually blocked without molecular data:
 
 - mechanistic claims
 
+### Variants, HLA, and antigen peptides
+
+Directly feasible:
+
+- germline or somatic variant summary when VCF, MAF, or raw WGS, WES, panel, or RNA-seq data exist
+- CNV, SV, TMB, MSI, and mutational signature analysis when data type and depth support them
+- HLA typing when WES, WGS, RNA-seq, targeted HLA, or clinical HLA calls exist
+- antigen peptide or neoantigen prioritization when variants, HLA, expression, and annotation are available
+- immunopeptidomics interpretation when raw or processed LC-MS/MS peptide evidence exists
+
+High-value routes:
+
+- somatic variant -> HLA typing -> peptide binding prediction -> RNA or protein expression -> clonality and copy-number review
+- immunopeptidomics peptide evidence -> HLA motif validation -> source protein expression -> tumor specificity
+- variant, antigen, TCR, and clinical response integration when all layers are matched
+
+Usually blocked without key inputs:
+
+- neoantigen ranking without reliable HLA calls
+- antigen claims without expression or peptide evidence
+- TCR recognition claims without TCR data, known epitope database match, or functional validation
+
+### Proteomics, phosphoproteomics, and immunopeptidomics
+
+Directly feasible:
+
+- raw MS QC, identification, quantification, normalization, missingness review, and differential protein abundance
+- TMT, LFQ, DIA, targeted proteomics, phosphoproteomics, PTM analysis, and kinase activity when acquisition and metadata support them
+- protein pathway analysis, protein network analysis, and RNA-protein concordance
+
+High-value routes:
+
+- RNA signature -> protein validation -> pathway or kinase activity -> drug target prioritization
+- variant or fusion -> peptide evidence -> antigen prioritization
+- proteogenomics with matched DNA, RNA, protein, and clinical data
+
+Usually blocked without key inputs:
+
+- peptide-level claims without raw spectra or peptide evidence
+- PTM-site claims without localization probability or site-level quantification
+- differential protein claims without biological replicates or clear batch design
+
+### Metabolomics, lipidomics, and metabolic flux
+
+Directly feasible:
+
+- untargeted or targeted metabolomics QC, peak processing, annotation, normalization, and differential metabolite analysis
+- lipid class, chain length, unsaturation, and lipid pathway analysis
+- isotope tracing and metabolic flux analysis when tracer design, time points, and isotopologue data exist
+- constraint-based metabolic modeling when a suitable model and objective are defined
+- transcriptome-inferred single-cell or spatial metabolism scoring when measured metabolites are absent
+
+High-value routes:
+
+- metabolite changes -> pathway and enzyme expression -> cell type or spatial context -> external validation
+- isotope tracing -> flux map -> gene or protein evidence -> perturbation or drug link
+- microbiome function -> metabolite profile -> host immune or tumor state association
+
+Usually blocked without key inputs:
+
+- confirmed metabolite identity without MS/MS, retention time, standard, or high-confidence library evidence
+- flux claims without isotope correction, model fit, and tracer design
+- direct metabolite abundance claims from transcriptome-only scoring
+
 ### Metagenomics or microbiome
 
 Directly feasible:
@@ -291,6 +355,9 @@ Before promising an analysis branch, verify:
 6. covariates needed for confounding control exist
 7. controls exist for low-biomass microbiome or imaging prediction tasks when needed
 8. structure, ligand, annotation, or segmentation labels exist for structure and imaging tasks
+9. HLA, expression, clonality, peptide evidence, or TCR evidence exist when antigen claims are requested
+10. raw spectra, search database, FDR, and batch design exist when proteomics or immunopeptidomics claims are requested
+11. blanks, pooled QC, internal standards, annotation evidence, isotope correction, or tracer design exist when metabolomics or flux claims are requested
 
 If a gate is missing, mark the branch as blocked or exploratory-only.
 

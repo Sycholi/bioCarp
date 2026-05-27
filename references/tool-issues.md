@@ -109,6 +109,69 @@ Typical checks:
 - Save `.h5ad` after major processing stages.
 - Pin Python, scanpy, anndata, numpy, scipy, and scvi-tools versions when needed.
 
+### Upstream workflows and raw data processing
+
+Common issues:
+
+- Cell Ranger, Space Ranger, STARsolo, alevin-fry, kallisto-bustools, and nf-core workflows can use different gene models, barcode filters, intron handling, and output conventions.
+- Nextflow cache, container engines, profiles, and reference downloads can fail or silently reuse old outputs.
+- Public FASTQ metadata can have lane, sample, organism, and strandedness errors.
+
+Typical checks:
+
+- Record workflow version, command, profile, container, reference, annotation, and genome build.
+- Preserve MultiQC, logs, sample sheet, and per-sample output counts.
+- Compare expected sample count, read count, and chemistry with metadata before downstream analysis.
+
+### Variant, HLA, and antigen peptide tools
+
+Common issues:
+
+- Variant callers differ by tumor-normal pairing, panel size, purity, UMI handling, and platform.
+- HLA tools differ in class support, resolution, input type, and allele ambiguity.
+- Neoantigen workflows depend on transcript annotation, expression, HLA calls, phasing, clonality, and copy-number status.
+- NetMHCpan, MHCflurry, MixMHCpred, pVACtools, and related predictors can change model versions and output columns.
+
+Typical checks:
+
+- Record caller version, reference resources, panel of normals, germline resource, filter settings, and annotation database release.
+- Keep HLA allele support and ambiguity in reports.
+- Check pVACtools, NetMHCpan, and predictor version before comparing scores across runs.
+- Treat predicted peptides as candidates unless peptide evidence or functional evidence supports them.
+
+### Proteomics, metabolomics, and flux tools
+
+Common issues:
+
+- MaxQuant, FragPipe, DIA-NN, Spectronaut, and OpenMS differ in protein grouping, FDR, library handling, and missing-value behavior.
+- MS raw formats and vendor converters can change peak picking and metadata.
+- Metabolite annotation level is often lower than compound identity.
+- XCMS, MZmine, MS-DIAL, GNPS, SIRIUS, and MetaboAnalyst results depend on peak picking, adduct rules, retention-time alignment, blanks, and pooled QC.
+- Flux analysis depends on isotope correction, tracer design, steady-state assumptions, model definition, and parameter identifiability.
+
+Typical checks:
+
+- Record raw file conversion, search database, FDR, digestion enzyme, modifications, library, and quantification settings.
+- Preserve QC plots before imputation or normalization.
+- Report metabolite annotation level and supporting evidence.
+- For isotope tracing, record correction tool, tracer, time points, model, fit, residuals, and confidence intervals.
+
+### Epigenomics and chromatin tools
+
+Common issues:
+
+- MACS2, MACS3, SEACR, and broad-peak callers require mark- and protocol-specific settings.
+- deepTools, HOMER, MEME, TOBIAS, chromVAR, Cicero, and footprint tools depend on genome build, motif database, peak set, and background selection.
+- Bismark, methylKit, DSS, bsseq, minfi, sesame, ChAMP, and RnBeads can differ by normalization, probe filtering, coverage filtering, and annotation release.
+- Hi-C tools depend on restriction enzyme, resolution, normalization, and contact depth.
+
+Typical checks:
+
+- Record genome build, blacklist, peak caller, control, replicate handling, motif database, and normalization.
+- Save bigWig, peak, matrix, and browser-track evidence for key loci.
+- For methylation, report probe or CpG filtering and beta or M value choice.
+- For Hi-C, check valid pairs, distance decay, resolution, and normalization before loop or compartment claims.
+
 ### Metagenomics and microbiome tools
 
 Common issues:
@@ -182,7 +245,7 @@ Typical checks:
 
 ## Practical Source Index
 
-Last checked: 2026-05-27.
+Last checked: 2026-05-28.
 
 - GitHub issue API documentation: https://docs.github.com/en/rest/issues/issues
 - Seurat issue example for Assay5 layer handling: https://github.com/satijalab/seurat/issues/8176
@@ -202,3 +265,15 @@ Last checked: 2026-05-27.
 - nnU-Net repository: https://github.com/MIC-DKFZ/nnUNet
 - MONAI documentation: https://docs.monai.io/en/latest/
 - TotalSegmentator repository: https://github.com/wasserth/TotalSegmentator
+- nf-core documentation: https://nf-co.re/docs
+- Cell Ranger: https://www.10xgenomics.com/support/software/cell-ranger
+- alevin-fry: https://alevin-fry.readthedocs.io/
+- GATK documentation: https://gatk.broadinstitute.org/
+- pVACtools documentation: https://pvactools.readthedocs.io/
+- NetMHCpan: https://services.healthtech.dtu.dk/services/NetMHCpan-4.1a/
+- FragPipe: https://fragpipe.nesvilab.org/
+- DIA-NN: https://github.com/vdemichev/DiaNN
+- MetaboAnalystR: https://www.metaboanalyst.ca/
+- XCMS: https://bioconductor.org/packages/release/bioc/html/xcms.html
+- MACS3: https://macs3-project.github.io/MACS/
+- Bismark: https://www.bioinformatics.babraham.ac.uk/projects/bismark/

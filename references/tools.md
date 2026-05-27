@@ -4,15 +4,19 @@
 
 1. How to use this file
 2. Core selection rule
-3. Bulk and cohort tools
-4. Single-cell tools
-5. Spatial and deconvolution tools
-6. Immune-repertoire tools
-7. Multi-omics tools
-8. Metagenomics and microbiome tools
-9. Structural and chemoinformatics tools
-10. Imaging and segmentation tools
-11. Selection checklist
+3. Upstream workflow tools
+4. Bulk and cohort tools
+5. Single-cell tools
+6. Spatial and deconvolution tools
+7. Immune-repertoire and antigen tools
+8. Variant and epigenomics tools
+9. Multi-omics tools
+10. Proteomics, metabolomics, and flux tools
+11. Metagenomics and microbiome tools
+12. Structural and chemoinformatics tools
+13. Imaging and segmentation tools
+14. Statistics and visualization tools
+15. Selection checklist
 
 ## How To Use This File
 
@@ -37,6 +41,21 @@ Choose the route that satisfies all four conditions:
 4. it avoids unnecessary environment complexity
 
 Do not switch to a newer package only because it is newer. Switch only when the biological fit, statistical fit, or scale requirement is materially better.
+
+## Upstream Workflow Tools
+
+- `nf-core`
+  - Best for: standardized Nextflow workflows, containers, MultiQC, and versioned outputs across RNA-seq, scRNA-seq, ATAC, ChIP, methylation, WGS, WES, microbiome, and proteomics
+  - Weaknesses: workflow output still needs task-specific downstream interpretation
+- `Cell Ranger`, `Cell Ranger ARC`, `Space Ranger`, `Xenium Ranger`
+  - Best for: 10x Genomics single-cell, multiome, spatial, and in situ platforms
+  - Weaknesses: chemistry, reference, version, and license constraints must be recorded
+- `STARsolo`, `alevin-fry`, `simpleaf`, `kallisto-bustools`, `kb-python`
+  - Best for: single-cell FASTQ-to-matrix alternatives when reproducibility, speed, or spliced and unspliced output matters
+  - Weaknesses: gene-count conventions can differ from Cell Ranger
+- `FastQC`, `MultiQC`, `Picard`, `samtools`, `bcftools`, `UMI-tools`
+  - Best for: raw QC, alignment QC, file handling, UMI review, and reproducible preprocessing summaries
+  - Weaknesses: need assay-specific interpretation
 
 ## Bulk And Cohort Tools
 
@@ -97,6 +116,12 @@ Do not switch to a newer package only because it is newer. Switch only when the 
   - Strengths: better when matching single-cell reference exists
   - Weaknesses: strong dependence on reference compatibility
 
+### Microarray preprocessing
+
+- `GEOquery`, `affy`, `oligo`, `limma`, `arrayQualityMetrics`, `lumi`, `beadarray`
+  - Best for: GEO retrieval, Affymetrix and Illumina array preprocessing, QC, normalization, and platform annotation
+  - Weaknesses: probe annotation and platform version can dominate results
+
 ## Single-Cell Tools
 
 ### Object handling and integration
@@ -125,6 +150,15 @@ Do not switch to a newer package only because it is newer. Switch only when the 
 - `SingleCellExperiment`
   - Best for: Bioconductor-native workflows and sample-aware statistical analysis
   - Weaknesses: less direct handoff to Seurat-specific plotting scripts
+- `DropletUtils`, `scuttle`, `scater`, `scran`, `miQC`
+  - Best for: droplet detection, core QC, normalization, and Bioconductor-style preprocessing
+  - Weaknesses: requires careful object conversion when final workflow is Seurat-based
+- `batchelor`, `FastMNN`, `BBKNN`, `Scanorama`
+  - Best for: alternative batch handling or Python/Scanpy ecosystems
+  - Weaknesses: overcorrection and object handoff need explicit checks
+- `ROGUE`, `LISI`, `scIB`, `kBET`, `ASW`, `clustree`
+  - Best for: cluster purity, integration quality, batch mixing, biology preservation, and resolution assessment
+  - Weaknesses: metrics must be interpreted with marker evidence and sample structure
 
 ### Annotation
 
@@ -143,6 +177,9 @@ Do not switch to a newer package only because it is newer. Switch only when the 
 - `Azimuth`
   - Best for: reference mapping onto strong Seurat references
   - Weaknesses: less suitable when tumor-specific states dominate
+- `scType`, `scGate`, `UCell`, `AUCell`, `CellAssign`, `ProjecTILs`, `Symphony`, `popV`, `scPoli`, `treeArches`
+  - Best for: marker-set scoring, gate-based annotation, reference transfer, immune-state annotation, and atlas mapping
+  - Weaknesses: automated labels must be checked with marker panels and disease context
 
 ### Differential state and marker analysis
 
@@ -186,6 +223,9 @@ Do not switch to a newer package only because it is newer. Switch only when the 
 - `DeepVelo`, `TFvelo`
   - Best for: specialized velocity models when their assumptions fit
   - Weaknesses: heavier model assumptions and higher environment cost
+- `CellRank`, `dynamo`, `velocyto`, `Palantir`, `Waddington-OT`, `FateID`, `destiny`, `CellRouter`
+  - Best for: fate probabilities, vector fields, diffusion pseudotime, transport-based trajectories, or older lineage workflows
+  - Weaknesses: require suitable inputs and strong biological anchoring
 
 ### Cell-cell communication
 
@@ -205,6 +245,9 @@ Do not switch to a newer package only because it is newer. Switch only when the 
   - Best for: consensus-style ligand-receptor scoring across methods
   - Strengths: broader method harmonization
   - Weaknesses: higher complexity than many projects need
+- `COMMOT`, `SpaTalk`, `NATMI`, `SingleCellSignalR`, `iTALK`, `CellCall`, `MISTy`, `MEBOCOST`, `MultiNicheNet`, `NicheCompass`, `Tensor-cell2cell`
+  - Best for: spatial communication, condition-aware communication programs, metabolic communication, microenvironment modeling, and multi-sample communication patterns
+  - Weaknesses: database choice, spatial assumptions, and sample structure strongly affect conclusions
 
 ### CNV and malignancy inference
 
@@ -252,8 +295,14 @@ Do not switch to a newer package only because it is newer. Switch only when the 
 - `Squidpy`
   - Best for: Python spatial neighborhood, co-occurrence, image, and ligand-receptor workflows
   - Weaknesses: added Python complexity in an R-first environment
+- `DestVI`, `SPOTlight`, `STdeconvolve`, `SpatialDecon`, `STRIDE`, `NMFreg`, `SpaOTsc`, `novoSpaRc`, `CellTrek`, `CytoSPACE`
+  - Best for: spatial deconvolution, single-cell-to-space mapping, and spatial reconstruction when the platform and reference fit
+  - Weaknesses: inferred mappings require reference compatibility and spatial validation
+- `STAGATE`, `DeepST`, `SEDR`, `SpaSEG`, `SpatialDE`, `nnSVG`, `trendsceek`, `MERINGUE`, `Splotch`, `SpotClean`
+  - Best for: spatial domain detection, spatially variable genes, spatial graph representation, or spot-level denoising
+  - Weaknesses: platform resolution and tissue structure determine method fit
 
-## Immune-Repertoire Tools
+## Immune-Repertoire And Antigen Tools
 
 - `scRepertoire`
   - Best for: Seurat-linked clonotype integration in R
@@ -268,6 +317,42 @@ Do not switch to a newer package only because it is newer. Switch only when the 
 - `Dandelion`
   - Best for: richer single-cell BCR/TCR network and receptor-lineage workflows
   - Weaknesses: extra Python or mixed ecosystem complexity
+- `OptiType`, `arcasHLA`, `HLA-HD`, `Polysolver`, `HLAminer`, `Kourami`
+  - Best for: HLA typing from WES, WGS, RNA-seq, or targeted HLA inputs
+  - Weaknesses: class support, resolution, and input requirements differ
+- `pVACtools`, `NetMHCpan`, `MHCflurry`, `MixMHCpred`, `BigMHC`, `PRIME`, `HLAthena`
+  - Best for: neoantigen, MHC binding, presentation, and immunogenicity prioritization
+  - Weaknesses: predictions need expression, clonality, HLA, normal-tissue, and peptide evidence checks
+- `MhcVizPipe`, `GibbsCluster`, `MoDec`
+  - Best for: immunopeptidomics QC, motif clustering, and MHC specificity review
+  - Weaknesses: search settings and peptide evidence quality dominate outputs
+
+## Variant And Epigenomics Tools
+
+- `GATK`, `DeepVariant`, `Strelka2`, `FreeBayes`, `bcftools`, `Mutect2`
+  - Best for: germline and somatic SNV or indel discovery
+  - Weaknesses: tumor-normal status, filtering, and reference resources control reliability
+- `CNVkit`, `FACETS`, `PureCN`, `Sequenza`, `ASCAT`, `Control-FREEC`, `ichorCNA`
+  - Best for: copy number, purity, ploidy, and allele-specific copy number
+  - Weaknesses: assay size, normal reference, and tumor purity limit resolution
+- `Manta`, `Delly`, `SvABA`, `GRIDSS`, `Sniffles2`, `cuteSV`
+  - Best for: short-read and long-read structural variants
+  - Weaknesses: breakpoint validation and visualization are required for high-value claims
+- `VEP`, `ANNOVAR`, `SnpEff`, `maftools`, `SigProfiler`, `MutationalPatterns`
+  - Best for: variant annotation, cancer summaries, and mutational signatures
+  - Weaknesses: database versions and transcript choices affect interpretation
+- `MACS2`, `MACS3`, `SEACR`, `SICER`, `Genrich`
+  - Best for: peak calling across ATAC, ChIP, CUT&Tag, and CUT&Run contexts
+  - Weaknesses: mark type and control choice matter
+- `deepTools`, `HOMER`, `MEME`, `FIMO`, `TOBIAS`, `chromVAR`, `Cicero`, `SnapATAC2`
+  - Best for: signal metaplots, heatmaps, motif discovery, footprinting, motif activity, and co-accessibility
+  - Weaknesses: motif and footprint results need matched accessibility and expression checks
+- `Bismark`, `methylKit`, `DSS`, `bsseq`, `minfi`, `sesame`, `ChAMP`, `RnBeads`
+  - Best for: methylation sequencing and array processing
+  - Weaknesses: platform annotation, probe filtering, and coverage shape the result
+- `HiC-Pro`, `Juicer`, `cooler`, `HiCExplorer`, `FitHiC`, `cooltools`
+  - Best for: Hi-C, Micro-C, contact maps, compartments, loops, and interaction analysis
+  - Weaknesses: resolution, depth, and normalization limit claims
 
 ## Multi-Omics Tools
 
@@ -299,6 +384,36 @@ Do not switch to a newer package only because it is newer. Switch only when the 
   - Best for: multimodal single-cell integration when Seurat is already the backbone
 - `MultiAssayExperiment`
   - Best for: organizing partially matched multi-assay cohorts
+- `totalVI`, `MultiVI`, `muon`, `Multigrate`
+  - Best for: CITE-seq, multiome, paired and unpaired modality integration, and scverse workflows
+  - Weaknesses: GPU and Python environment can be limiting
+- `scGLUE`, `Cobolt`, `MOJITOO`, `scJoint`, `scBridge`, `scMaui`, `scDART`, `UnionCom`
+  - Best for: single-cell multi-omics, unpaired alignment, regulatory inference, and modality bridging
+  - Weaknesses: assumptions and maintenance status require current verification
+- `SNFtool`, `NEMO`, `MEFISTO`
+  - Best for: bulk subtype integration, network fusion, and spatial or temporal factor models
+  - Weaknesses: sample size and missingness shape factor stability
+
+## Proteomics, Metabolomics, And Flux Tools
+
+- `MaxQuant`, `FragPipe`, `MSFragger`, `DIA-NN`, `Spectronaut`, `OpenMS`, `Proteome Discoverer`, `MetaMorpheus`, `PEAKS`
+  - Best for: DDA, DIA, LFQ, TMT, iTRAQ, and raw proteomics processing
+  - Weaknesses: raw format, search database, FDR, missingness, and peptide grouping require explicit review
+- `MSstats`, `MSstatsTMT`, `MSstatsPTM`, `DEP`, `proDA`, `Perseus`, `QFeatures`, `MSnbase`
+  - Best for: differential protein, TMT, PTM, and peptide-level statistical analysis
+  - Weaknesses: missingness and protein-group ambiguity can dominate results
+- `PTM-SEA`, `KSEA`, `PhosR`, `KinasePA`, `decoupleR`
+  - Best for: phosphoproteomics, PTM enrichment, and kinase activity
+  - Weaknesses: substrate databases and site localization must be checked
+- `XCMS`, `MZmine`, `MS-DIAL`, `MetaboAnalystR`, `GNPS`, `SIRIUS`, `MS-FINDER`, `CAMERA`
+  - Best for: LC-MS or GC-MS feature detection, alignment, annotation, molecular networking, and statistics
+  - Weaknesses: annotation confidence and batch QC must be explicit
+- `LipidSearch`, `LipidHunter`, `LipidMatch`, `LIPID MAPS`
+  - Best for: lipidomics annotation and lipid-class analysis
+  - Weaknesses: adducts and isomers require cautious interpretation
+- `IsoCor`, `AccuCor`, `INCA`, `OpenFLUX2`, `13CFLUX2`, `COBRApy`, `COBRA Toolbox`, `cameo`, `scFEA`, `Compass`
+  - Best for: isotope correction, 13C flux, FBA, single-cell metabolic inference, and constraint-based modeling
+  - Weaknesses: flux claims need labeling design, model fit, and confidence intervals
 
 ## Metagenomics And Microbiome Tools
 
@@ -326,6 +441,18 @@ Do not switch to a newer package only because it is newer. Switch only when the 
 - `MetaBAT2`, `MaxBin2`, `CONCOCT`, `DAS Tool`, `CheckM2`, `GTDB-Tk`, `dRep`
   - Best for: MAG binning, refinement, quality assessment, taxonomy, and dereplication
   - Weaknesses: MAG claims need quality thresholds and abundance support
+- `KneadData`, `decontam`
+  - Best for: host removal, contaminant detection, and low-biomass review
+  - Weaknesses: metadata and negative controls are essential
+- `StrainPhlAn`, `inStrain`
+  - Best for: strain-level profiling and population variation
+  - Weaknesses: depth and mapping ambiguity limit confidence
+- `VirSorter2`, `VIBRANT`, `CheckV`, `geNomad`
+  - Best for: viral metagenomics and viral contig quality review
+  - Weaknesses: viral annotation remains database-sensitive
+- `PICRUSt2`, `AMRFinderPlus`, `ResFinder`, `VFDB`
+  - Best for: function prediction, resistome, and virulence review
+  - Weaknesses: marker-gene inferred function is weaker than shotgun functional profiling
 
 ## Structural And Chemoinformatics Tools
 
@@ -374,6 +501,21 @@ Do not switch to a newer package only because it is newer. Switch only when the 
 - `ST-Net`, `Hist2ST`, `HisToGene`, `THItoGene`, `iStar`, `STimage`, `FineST`
   - Best for: virtual spatial transcriptomics and histology-to-expression prediction
   - Weaknesses: outputs are inferred and need measured spatial or orthogonal validation
+
+## Statistics And Visualization Tools
+
+- `ComplexHeatmap`, `pheatmap`, `circlize`, `EnrichedHeatmap`
+  - Best for: heatmaps, oncoprints, genomic heatmaps, and multi-panel annotations
+  - Weaknesses: matrix scaling and clustering choices need reporting
+- `ggplot2`, `ggpubr`, `ggrepel`, `ggforce`, `ggdist`, `ggraph`, `ggalluvial`, `patchwork`, `cowplot`
+  - Best for: general publication figures and multi-panel layouts
+  - Weaknesses: plot code must preserve source table and group order
+- `EnhancedVolcano`, `UpSetR`, `ComplexUpset`, `maftools`, `ggtree`, `Gviz`, `karyoploteR`, `plotgardener`
+  - Best for: volcano plots, set intersections, cancer mutation figures, trees, and genome tracks
+  - Weaknesses: defaults often need manual checking for label overlap and size
+- `lme4`, `glmmTMB`, `emmeans`, `metafor`, `riskRegression`, `pec`, `pROC`, `timeROC`
+  - Best for: mixed models, model contrasts, meta-analysis, prediction evaluation, ROC, calibration, and survival prediction
+  - Weaknesses: design and sample size determine validity
 
 ## Selection Checklist
 
