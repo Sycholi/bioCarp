@@ -2,20 +2,6 @@
 
 `biocarp` 是面向生物医学、肿瘤生信和转化研究的 Codex 技能体系。它用于研究设计、数据评估、工具选择、流程执行、图表质控、结果解读、文献依据整理和项目状态记录。
 
-## 功能范围
-
-- bulk RNA-seq、芯片、临床队列、生存分析、预测模型和功能推断
-- 单细胞 RNA、CITE-seq、VDJ、scATAC、多组学、扰动组学、空间组学和邻域分析
-- ATAC-seq、ChIP-seq、CUT&Tag、CUT&Run、甲基化、Hi-C、motif 和 footprinting
-- WGS、WES、panel、RNA variant、CNV、SV、HLA、抗原肽、neoantigen 和免疫肽组学
-- 宏基因组、16S、ITS、宏转录组、virome、MAG 和宿主-微生物联合分析
-- 蛋白质组、磷酸化组、PTM、靶向蛋白质组、代谢组、脂质组、同位素示踪和代谢流
-- small RNA、splicing、long-read isoform、CLIP-seq、Ribo-seq、RNA modification、RNA editing、cfDNA、ctDNA、CTC 和 exosome
-- 蛋白结构预测、分子对接、分子动力学、虚拟筛选、ADMET 和药物预测
-- 影像组学、病理图像、自动分割、自动勾画、多重组织成像、虚拟染色和虚拟空间组学
-- 临床研究方案设计、样本量估计、真实世界证据、临床数据标准化和数据质量检查
-- 系统综述、meta 分析、网状 meta、MR、药物警戒、GWAS、PRS、fine mapping、colocalization、QTL、TWAS 和 biobank 分析
-
 ## 调用场景
 
 - 需要从数据和研究问题出发，设计一套完整的生信分析方案
@@ -53,14 +39,18 @@
 - 记录分析状态、工具配置、结果说明和参考依据，方便项目长期维护和继续分析
 - 默认使用中文输出项目说明，便于科研讨论、组内协作和结果复核
 
-## 目录结构
+## 功能范围
 
-```text
-.
-├── SKILL.md
-├── agents/
-├── references/
-└── scripts/
-```
+- bulk RNA-seq、芯片、临床队列、生存分析、预测模型和功能推断
+- 单细胞 RNA、CITE-seq、VDJ、scATAC、多组学、扰动组学、空间组学和邻域分析
+- ATAC-seq、ChIP-seq、CUT&Tag、CUT&Run、甲基化、Hi-C、motif 和 footprinting
+- WGS、WES、panel、RNA variant、CNV、SV、HLA、抗原肽、neoantigen 和免疫肽组学
+- 宏基因组、16S、ITS、宏转录组、virome、MAG 和宿主-微生物联合分析
+- 蛋白质组、磷酸化组、PTM、靶向蛋白质组、代谢组、脂质组、同位素示踪和代谢流
+- small RNA、splicing、long-read isoform、CLIP-seq、Ribo-seq、RNA modification、RNA editing、cfDNA、ctDNA、CTC 和 exosome
+- 蛋白结构预测、分子对接、分子动力学、虚拟筛选、ADMET 和药物预测
+- 影像组学、病理图像、自动分割、自动勾画、多重组织成像、虚拟染色和虚拟空间组学
+- 临床研究方案设计、样本量估计、真实世界证据、临床数据标准化和数据质量检查
+- 系统综述、meta 分析、网状 meta、MR、药物警戒、GWAS、PRS、fine mapping、colocalization、QTL、TWAS 和 biobank 分析
 
-`SKILL.md` 保存核心规则。`references/` 保存按任务调用的流程、工具、参数、文献和问题记录。`scripts/` 保存文献检索和代码风格摘要等辅助脚本。
+
