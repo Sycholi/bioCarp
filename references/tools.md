@@ -324,6 +324,21 @@ Read `platforms.md` and `parameters.md` before committing to a platform-sensitiv
   - Best for: linking single-cell states with phenotype, survival, response, or matched bulk cohorts
   - Weaknesses: outputs are hypothesis-generating unless externally validated
 
+### Foundation models and perturbation prediction
+
+- `Geneformer`, `scGPT`, `scFoundation`, `UCE`
+  - Best for: cell embeddings, annotation support, transfer, prioritization, or in silico perturbation when the training domain fits
+  - Weaknesses: zero-shot performance and biological interpretation require independent validation
+- `scBERT`, `tGPT`, `CellLM`, `CellPLM`, `scPRINT`, `GeneCompass`, `Nicheformer`, `SCimilarity`, `scMulan`, `CellFM`, `Cell2Sentence`
+  - Best for: emerging foundation-model routes, cross-tissue or cross-species transfer, spatial niche modeling, or gene-level representation when verified
+  - Weaknesses: access, checkpoints, vocabulary, preprocessing, and benchmarks differ widely
+- `Squidiff`, `PerturbDiff`, `PT-RAG`, `scDiff`, `StateXDiff`
+  - Best for: diffusion or retrieval-augmented single-cell perturbation, developmental trajectory, drug-response, or environmental-response prediction
+  - Weaknesses: predictions need held-out perturbations, real time-course data, or independent validation before biological claims
+- `GEARS`, `CPA`, `chemCPA`, `CellOT`, `scGen`, `scVIDR`, `RespondOS`
+  - Best for: established perturbation prediction or response transfer benchmarks
+  - Weaknesses: generalization across cell types, doses, drugs, and assays must be tested
+
 ## Spatial And Deconvolution Tools
 
 ### Spatial preprocessing and exploration
@@ -339,7 +354,10 @@ Read `platforms.md` and `parameters.md` before committing to a platform-sensitiv
 - `SpatialExperiment`
   - Best for: Bioconductor-native spatial object management
   - Weaknesses: usually needs companion tools for rich spatial statistics and plotting
-- `SpatialFeatureExperiment`, `Sopa`, `FICTURE`, `CartoScope`, `sosta`, `SpatialPCA`, `SPICEMIX`
+- `SpatialData`, `napari-spatialdata`, `spatialdata-io`, `MOSAIK`
+  - Best for: Python spatial omics object management, image-transcript integration, and cross-platform spatial data handling
+  - Weaknesses: conversion and coordinate conventions must be checked carefully
+- `SpatialFeatureExperiment`, `Sopa`, `FICTURE`, `CartoScope`, `sosta`, `SpatialPCA`, `SPICEMIX`, `Stereopy`
   - Best for: high-resolution spatial structures, molecular-resolution exploration, anatomical structure analysis, or spatial representation learning
   - Weaknesses: source, platform, and object-format support need current verification
 
@@ -353,6 +371,9 @@ Read `platforms.md` and `parameters.md` before committing to a platform-sensitiv
   - Weaknesses: gradient claims need visual tissue review and marker validation
 - `BayesSpace`
   - Best for: spot-level clustering refinement
+- `MENDER`, `BASS`, `SOTIP`, `SpaceFlow`, `CCST`
+  - Best for: tissue structure identification, domain discovery, and spatial graph modeling
+  - Weaknesses: platform resolution, tissue boundary structure, and scale affect model choice
 - `RCTD`, `cell2location`, `CARD`
   - Best for: cell-type deconvolution into spots
   - Strengths: useful when paired single-cell references exist

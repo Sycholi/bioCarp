@@ -48,6 +48,7 @@ Use these files first:
 - `platforms.md`: sequencing, single-cell, spatial, MS, imaging, sample-handling, acquisition, and platform-output differences
 - `parameters.md`: threshold, normalization, integration, model, database, and software-option effects on results
 - `methods.md`: route and package selection
+- `tool-evaluation.md`: new tool accessibility, value, research-fit, source-review, deployment, bug handling, and summary rules
 - `tools.md`: package-family comparison
 - `upstream.md`: FASTQ-to-matrix, FASTQ-to-BAM, raw QC, demultiplexing, alignment, quantification, workflow pipelines, and MultiQC outputs
 - `variants.md`: germline variants, somatic variants, CNV, SV, HLA typing, mutational signatures, and variant-to-antigen handoff

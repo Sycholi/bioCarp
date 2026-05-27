@@ -113,7 +113,7 @@ Typical checks:
 
 Common issues:
 
-- New tools such as SLOPER, scDecorr, PSGRN, TotalX-linked workflows, TrendCatcher, scSurv, scSurvival, RegDiffusion, seismicGWAS, and phenoptr-related pipelines can have narrow input assumptions, unstable installation paths, or limited examples.
+- New tools such as Squidiff, PerturbDiff, scDiff, SLOPER, scDecorr, PSGRN, TotalX-linked workflows, TrendCatcher, scSurv, scSurvival, RegDiffusion, seismicGWAS, SpatialData, Sopa, FICTURE, Stereopy, MENDER, and phenoptr-related pipelines can have narrow input assumptions, unstable installation paths, or limited examples.
 - Some methods are preprint-only, recent-paper-only, or repository-only and may not have mature error handling.
 - Tool names can be ambiguous. Confirm the exact repository or package before installing.
 - Spatial tools differ in coordinate conventions, image origin, spot or cell indexing, and supported object format.

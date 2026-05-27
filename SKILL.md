@@ -1,6 +1,6 @@
 ---
 name: biocarp
-description: Comprehensive biomedical, tumor, and translational bioinformatics analysis, literature-corpus reconstruction, tool deployment, project-state tracking, sub-agent assisted review, goal-aware execution, public-dataset reproduction, data-to-question mapping, complete figure generation and inspection, platform-aware assay review, clinical study design, sample-size planning, target trial emulation, causal inference, evidence synthesis, upstream FASTQ processing, variant and antigen-peptide analysis, genetic epidemiology, bulk functional inference, advanced single-cell and spatial methods, metagenomics, proteomics, metabolomics, metabolic flux, structural bioinformatics, molecular docking, molecular dynamics, virtual screening, imaging, perturbation and drug-prioritization workflows, and tool issue triage using a script-first R workflow with concise project-oriented code style. Use when Codex needs to analyze sequencing, bulk, single-cell, spatial, immune repertoire, clinical trials, clinical survival, EHR, registry, OMOP, FHIR, variants, antigen peptides, HLA, chromatin, methylation, microbiome, proteomics, metabolomics, fluxomics, structural, imaging, perturbation, drug-response, or multi-omics data; deploy required tools; decide what analyses are feasible from available data; reconstruct the last-decade disease literature and public-dataset landscape for a concrete question; compare bioinformatics tool families before choosing a route; reproduce or extend published biomedical studies from public cohorts; or build rigorous teaching or exploratory workflows without unnecessary abstraction.
+description: Comprehensive biomedical, tumor, and translational bioinformatics analysis, literature-corpus reconstruction, tool deployment, new-tool evaluation, project-state tracking, sub-agent assisted review, goal-aware execution, public-dataset reproduction, data-to-question mapping, complete figure generation and inspection, platform-aware assay review, clinical study design, sample-size planning, target trial emulation, causal inference, evidence synthesis, upstream FASTQ processing, variant and antigen-peptide analysis, genetic epidemiology, bulk functional inference, advanced single-cell and spatial methods, metagenomics, proteomics, metabolomics, metabolic flux, structural bioinformatics, molecular docking, molecular dynamics, virtual screening, imaging, perturbation and drug-prioritization workflows, and tool issue triage using a script-first R workflow with concise project-oriented code style. Use when Codex needs to analyze sequencing, bulk, single-cell, spatial, immune repertoire, clinical trials, clinical survival, EHR, registry, OMOP, FHIR, variants, antigen peptides, HLA, chromatin, methylation, microbiome, proteomics, metabolomics, fluxomics, structural, imaging, perturbation, drug-response, or multi-omics data; evaluate, compare, and deploy required tools; decide what analyses are feasible from available data; reconstruct the last-decade disease literature and public-dataset landscape for a concrete question; compare bioinformatics tool families before choosing a route; reproduce or extend published biomedical studies from public cohorts; or build rigorous teaching or exploratory workflows without unnecessary abstraction.
 ---
 
 # biocarp
@@ -94,6 +94,7 @@ Core rule:
 - `routing.md` routes the request.
 - `r-style.md` controls the abstract R analysis code style.
 - `methods.md` and `tools.md` choose tools.
+- `tool-evaluation.md` defines the mandatory gate for new, unfamiliar, updated, or user-named tools before deployment.
 - `workflows.md` defines current module workflows and figure requirements.
 - `execution.md` defines project control, sub-agent use, goal handling, tool deployment, figure inspection, and required Markdown reports.
 - `learning.md` defines user-level assessment, proactive method suggestions, user habit records, bug learning, and method updates.
@@ -119,6 +120,7 @@ Core rule:
 - `genetic-epidemiology.md` covers GWAS, PheWAS, PRS, fine mapping, colocalization, TWAS, QTL, LDSC, biobank genetics, and single-cell trait-genetics integration.
 - `specialized-omics.md` covers single-cell total RNA, small RNA, alternative splicing, long-read transcriptomics, CLIP-seq, ribo-seq, epitranscriptomics, RNA editing, liquid biopsy, cfDNA, ctDNA, CTC, and exosome assays.
 - `statistics.md` covers downstream statistics, clinical models, figure construction, report tables, and visualization quality checks.
+- `tool-evaluation.md` covers accessibility, role, value, research-fit, source-review, deployment, bug-fix, and summary requirements for new tools.
 - `tool-issues.md` covers known bugs, open issues, version conflicts, and workarounds.
 - `literature.md`, `public-data.md`, and `data-assessment.md` cover study design, public data, and dataset opportunity mapping.
 
@@ -173,11 +175,12 @@ Do not skip this layer when the request touches study design, platform choice, a
 6. Read `references/tools.md` and identify:
 - the default route that best matches the project code style
 - the strongest challenger route when a different tool materially improves fit
-7. Read `references/data-assessment.md` and translate the actual dataset into:
+7. Read `references/tool-evaluation.md` before using any new, unfamiliar, updated, user-named, or weakly documented tool.
+8. Read `references/data-assessment.md` and translate the actual dataset into:
 - feasible analysis branches
 - publication-value branches
 - blocked branches that need more metadata or validation
-8. If no focused corpus has been built yet, say so and build it before making strong literature or tool claims.
+9. If no focused corpus has been built yet, say so and build it before making strong literature or tool claims.
 
 ## Use the Local Style
 

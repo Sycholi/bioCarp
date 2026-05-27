@@ -33,13 +33,15 @@ For any real analysis, assume required tools should be installed or deployed whe
 
 Required practice:
 
-1. Check whether the tool, package, reference database, model checkpoint, or command-line dependency already exists.
-2. Install missing requirements in the project environment or a clearly named environment.
-3. Prefer `renv`, `conda`, `mamba`, `pip`, `BiocManager`, Docker, Singularity, or Nextflow profiles according to the method.
-4. Use GPU or multi-threading when the tool supports it and the machine can provide it.
-5. Preserve Tailscale and Clash connectivity. Do not stop, restart, disable, or reconfigure those services during tool deployment.
-6. Record installed tools, versions, installation commands, database or checkpoint versions, environment path, GPU or thread settings, and install time in `工具部署记录.md`.
-7. If installation fails, record the exact command, error, attempted fix, and remaining blocker.
+1. Read `tool-evaluation.md` when the tool is new, unfamiliar, updated, user-named, or weakly documented.
+2. Check whether the tool, package, reference database, model checkpoint, or command-line dependency already exists.
+3. Install missing requirements in the project environment or a clearly named environment.
+4. Avoid changing an existing working environment unless the user approves. Use an isolated environment when a new tool has heavy, fragile, or conflicting dependencies.
+5. Prefer `renv`, `conda`, `mamba`, `pip`, `BiocManager`, Docker, Singularity, or Nextflow profiles according to the method.
+6. Use GPU or multi-threading when the tool supports it and the machine can provide it.
+7. Preserve Tailscale and Clash connectivity. Do not stop, restart, disable, or reconfigure those services during tool deployment.
+8. Record installed tools, versions, installation commands, database or checkpoint versions, environment path, GPU or thread settings, and install time in `工具部署记录.md`.
+9. If installation fails, record the exact command, error, attempted fix, and remaining blocker.
 
 ## Workspace Rule
 

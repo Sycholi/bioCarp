@@ -177,11 +177,11 @@ Current route:
 2. Fix the object structure before analysis: `SpatialExperiment`, Seurat, AnnData, or Giotto. Preserve image, coordinates, spot or cell segmentation, slide, sample, region, and histology annotations.
 3. Run platform-aware QC for counts, detected genes, mitochondrial fraction, tissue coverage, spot or cell density, and image alignment.
 4. For R-first Visium or Visium HD projects, use Seurat spatial workflows when sufficient. Use Giotto Suite for richer spatial neighborhoods, multiscale spatial features, and technology-agnostic spatial workflows.
-5. Use Squidpy or Scanpy-based tools when Python spatial statistics, image features, or AnnData integration are central.
+5. Use Squidpy, SpatialData, Sopa, MOSAIK, or Scanpy-based tools when Python spatial statistics, image features, AnnData, or SpatialData integration are central.
 6. Run deconvolution or label transfer with RCTD, cell2location, CARD, SpatialDWLS, or equivalent tools only when the reference is compatible.
 7. Analyze spatially variable genes, domains, niches, cell-type neighborhoods, pathway activity, gradients, tissue structures, and spatial support for single-cell findings.
 8. Use SPARK, SPARK-X, SpatialDE, SpatialDE2, nnSVG, MERINGUE, scBSP, SMASH, SpaGene, Splotch, or trendsceek for spatial expression patterns according to scale and model assumptions.
-9. Use SLOPER, SpatialPCA, SpaceWalker, sosta, Sopa, FICTURE, CartoScope, or SPICEMIX when gradient, anatomical structure, or high-resolution molecular exploration is central.
+9. Use SLOPER, SpatialPCA, SpaceWalker, sosta, Sopa, FICTURE, CartoScope, SPICEMIX, Stereopy, MENDER, BASS, SOTIP, SpaceFlow, or CCST when gradient, anatomical structure, tissue domain, multi-sample spatial, 3D spatial, or high-resolution molecular exploration is central.
 
 Required figures:
 
@@ -191,7 +191,7 @@ Required figures:
 - deconvolution maps and cell-type composition summaries when deconvolution is used
 - neighborhood enrichment, co-occurrence, proximity, or spatial interaction plots
 - spatially variable gene plots, module maps, and selected locus or marker panels
-- spatial gradient, anatomical structure, molecular-resolution map, and boundary-support plots when specialized spatial tools are used
+- spatial gradient, anatomical structure, domain, multi-sample spatial, 3D spatial, molecular-resolution map, and boundary-support plots when specialized spatial tools are used
 
 Primary sources to check:
 
@@ -200,7 +200,7 @@ Primary sources to check:
 - Giotto Suite documentation and recent Giotto Suite papers
 - Squidpy tutorials and paper
 - cell2location, RCTD, CARD, or SpatialDWLS documentation
-- SPARK, SPARK-X, SLOPER, SpatialDE2, scBSP, SMASH, SpaGene, SpatialPCA, sosta, Sopa, and FICTURE documentation or papers when those methods drive claims
+- SPARK, SPARK-X, SLOPER, SpatialData, Sopa, MOSAIK, Stereopy, MENDER, SpatialDE2, scBSP, SMASH, SpaGene, SpatialPCA, sosta, and FICTURE documentation or papers when those methods drive claims
 
 ## TCR, BCR, And Immune Repertoire
 

@@ -14,10 +14,11 @@ Read these in order:
 6. `platforms.md` when platform, chemistry, instrument, acquisition mode, sample handling, or run design affects the result.
 7. `parameters.md` when threshold, normalization, integration strength, model setting, database, or software option can change the conclusion.
 8. `methods.md` for concise package choice.
-9. `workflows.md` for current module-level QC, modeling, figure, and source requirements.
-10. `tools.md` when the task needs method-family comparison or a newer challenger route.
-11. `upstream.md`, `variants.md`, `immunopeptidomics.md`, `multiomics.md`, `epigenomics.md`, `proteomics.md`, `metabolomics.md`, `clinical-research.md`, `causal-inference.md`, `clinical-data.md`, `evidence-synthesis.md`, `genetic-epidemiology.md`, `specialized-omics.md`, `statistics.md`, or another modality file when the task enters that specific domain.
-12. `tool-issues.md` before using version-sensitive, web-service, fast-moving, or error-prone tools.
+9. `tool-evaluation.md` before using a new, unfamiliar, updated, user-named, or weakly documented tool.
+10. `workflows.md` for current module-level QC, modeling, figure, and source requirements.
+11. `tools.md` when the task needs method-family comparison or a newer challenger route.
+12. `upstream.md`, `variants.md`, `immunopeptidomics.md`, `multiomics.md`, `epigenomics.md`, `proteomics.md`, `metabolomics.md`, `clinical-research.md`, `causal-inference.md`, `clinical-data.md`, `evidence-synthesis.md`, `genetic-epidemiology.md`, `specialized-omics.md`, `statistics.md`, or another modality file when the task enters that specific domain.
+13. `tool-issues.md` before using version-sensitive, web-service, fast-moving, or error-prone tools.
 
 ## Task-Specific Layers
 
@@ -51,6 +52,7 @@ Use:
 - `execution.md`
 - `methods.md`
 - `tools.md`
+- `tool-evaluation.md` when a tool is new, unfamiliar, updated, user-named, or weakly documented
 - `platforms.md` when platform or chemistry can change QC, processing, or interpretation
 - `parameters.md` when thresholds, normalization, integration, peak calling, search, annotation, or model settings can change the result
 
@@ -122,13 +124,13 @@ Triggers:
 - CITE-seq, ADT, dsb, CiteFuse, totalVI, MultiVI, muon, Multigrate, scGLUE, Cobolt, scJoint, scBridge, scMaui, scDART, UnionCom, scTriangulate, scConfluence, scDecorr, scDREAMER, or MEFISTO
 - scType, scGate, UCell, AUCell, CellAssign, ProjecTILs, Symphony, popV, scPoli, treeArches, or CASSIA
 - phenotype-associated cell methods such as Scissor, SCIPAC, scPAS, PACells, DEGAS, scSurv, or scSurvival
-- foundation models, virtual cells, virtual knockout, or in silico perturbation
-- Geneformer, scGPT, scFoundation, scTenifoldNet, scTenifoldKnk, CellOracle, PSGRN, RegDiffusion, Scribe, SINGE, or related tools
+- foundation models, virtual cells, virtual knockout, diffusion models, perturbation prediction, or in silico perturbation
+- Geneformer, scGPT, scFoundation, UCE, scBERT, CellPLM, scPRINT, Nicheformer, GeneCompass, scTenifoldNet, scTenifoldKnk, CellOracle, Squidiff, PerturbDiff, PT-RAG, scDiff, StateXDiff, PSGRN, RegDiffusion, Scribe, SINGE, or related tools
 - drug prediction, drug repurposing, DrugReflector, scDrug, scDrug+, scDrugPrio, or drug2cell
 - perturbation databases, Perturb-seq, CROP-seq, sci-Plex, ECCITE-seq, Perturb-ATAC, SHARE-seq, Mixscape, pertpy, GEARS, CPA, chemCPA, CellOT, scVIDR, scCODA, MASC, DA-seq, or MELD
 - trajectory, time-course, and velocity tools such as CellRank, dynamo, velocyto, Palantir, Waddington-OT, FateID, destiny or DPT, CellRouter, TrendCatcher, condiments, and Lamian
 - cell-cell and spatial communication tools such as COMMOT, SpaTalk, NATMI, SingleCellSignalR, iTALK, CellCall, MISTy, MEBOCOST, MultiNicheNet, NicheCompass, or Tensor-cell2cell
-- advanced spatial algorithms, niches, adjacency, neighborhood enrichment, BANKSY, CellCharter, Milo, BayesSpace, SpaGCN, GraphST, PRECAST, STAGATE, DeepST, SEDR, SpaSEG, SpatialDE, SpatialDE2, SPARK, SPARK-X, SLOPER, scBSP, SMASH, SpaGene, SpatialPCA, Sopa, FICTURE, CartoScope, sosta, SpaceWalker, nnSVG, MERINGUE, DestVI, SPOTlight, STdeconvolve, SpatialDecon, STRIDE, SpaOTsc, novoSpaRc, CellTrek, or CytoSPACE
+- advanced spatial algorithms, niches, adjacency, neighborhood enrichment, SpatialData, MOSAIK, Stereopy, BANKSY, CellCharter, Milo, BayesSpace, MENDER, BASS, SOTIP, SpaceFlow, SpaGCN, GraphST, PRECAST, STAGATE, DeepST, SEDR, SpaSEG, SpatialDE, SpatialDE2, SPARK, SPARK-X, SLOPER, scBSP, SMASH, SpaGene, SpatialPCA, Sopa, FICTURE, CartoScope, sosta, SpaceWalker, nnSVG, MERINGUE, DestVI, SPOTlight, STdeconvolve, SpatialDecon, STRIDE, SpaOTsc, novoSpaRc, CellTrek, or CytoSPACE
 - single-cell and GWAS integration tools such as seismicGWAS, scDRS, CELLECT, MAGMA_Celltyping, RolyPoly, or LDSC-SEG
 - emerging named tools such as scALPI that require name and source verification
 
@@ -352,6 +354,7 @@ It controls:
 - provisional user preference records
 - recurring bug and error records
 - new tool version, new workflow, and new literature update records
+- new tool accessibility, value, research-fit, deployment, bug review, and summary records
 
 ## Output Artifacts
 

@@ -17,6 +17,27 @@
 
 ### 2026-05-28
 
+- 工具、流程、数据集或文献名称：新工具强制评估流程、Squidiff、PerturbDiff、scDiff、StateXDiff、PT-RAG、SpatialData、Sopa、FICTURE、MOSAIK、Stereopy、MENDER、单细胞基础模型扩展
+- 来源链接：
+  - https://www.nature.com/articles/s41592-025-02877-y
+  - https://github.com/siyuh/Squidiff
+  - https://katarinayuan.github.io/PerturbDiff-ProjectPage/
+  - https://github.com/OmicsML/scDiff
+  - https://www.nature.com/articles/s12276-025-01547-5
+  - https://www.nature.com/articles/s41592-024-02212-x
+  - https://pmc.ncbi.nlm.nih.gov/articles/PMC11167053/
+  - https://seqscope.github.io/ficture/
+  - https://joss.theoj.org/papers/10.21105/joss.08795
+  - https://www.nature.com/articles/s41467-025-58079-9
+  - https://www.nature.com/articles/s41467-023-44367-9
+- 更新内容：新增 `tool-evaluation.md`，将新工具的可及性、功能、输入、过程、输出、价值、同类比较、研究设计匹配、原始说明、issue、运行验证、环境隔离、错误修复和中文总结写成强制流程。补入 Squidiff 及相邻单细胞扩散和扰动预测工具，扩展单细胞基础模型清单。补入 SpatialData、Sopa、FICTURE、MOSAIK、Stereopy、MENDER 等空间组学对象管理、图像空间整合、高分辨率空间探索、多样本空间和组织结构识别工具。
+- 输入要求：新工具名称、官方来源、论文、代码仓库、安装说明、输入数据格式、示例数据、研究问题、设计信息、平台信息、模型 checkpoint、数据库版本、依赖环境、GPU 或线程需求。
+- 输出结果：新工具评估记录、安装和运行记录、官方示例或小样本验证结果、工具问题记录、方法学说明、图表清单、图表解读、参考文献与依据、阶段报告。Squidiff 等工具需要输出预测响应、时间或状态轨迹、扰动效应、基因和通路变化、基准比较、外部验证和异常检查图。
+- 局限性：扩散模型、基础模型和新空间工具更新快，部分工具仍处于预印本、代码快速变化或依赖复杂阶段。中心结论需要成熟方法对照、真实扰动、真实时间序列、组织结构证据或外部队列支持。
+- 已更新的本地参考文件：`SKILL.md`、`references/index.md`、`references/coverage.md`、`references/execution.md`、`references/tool-evaluation.md`、`references/single-cell-advanced.md`、`references/tools.md`、`references/workflows.md`、`references/tool-issues.md`、`references/method-updates.md`
+
+### 2026-05-28
+
 - 工具、流程、数据集或文献名称：SLOPER、scDecorr、PSGRN、TotalX、seismicGWAS、TrendCatcher、scSurv、scSurvival、SPARK、SPARK-X、phenoptr、RegDiffusion 及相邻工具族
 - 来源链接：
   - https://chitra-lab.github.io/2025/12/01/sloper/

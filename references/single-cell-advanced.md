@@ -6,14 +6,18 @@ This file is a working knowledge map. Before implementing any named tool, verify
 
 ## Tool Verification Gate
 
-For every named or emerging tool:
+For every named, emerging, updated, or user-requested tool, also read `tool-evaluation.md`.
+
+Minimum checks:
 
 1. Confirm the exact tool name. Similar names often refer to unrelated projects.
-2. Find the primary paper, official documentation, official repository, or package page.
-3. Check whether the method is peer-reviewed, preprint-only, code-only, or course material.
-4. Check input requirements, model assumptions, supported species, supported modalities, output type, and required reference database.
-5. Run a small validation or example when the task will depend on the result.
-6. Label output as exploratory when the tool is new, weakly benchmarked, trained outside the disease context, or dependent on proprietary or unstable resources.
+2. Find the primary paper, official documentation, official repository, package page, license, release status, and installation route.
+3. Check whether the method is peer-reviewed, preprint-only, code-only, web-only, proprietary, or course material.
+4. Check input requirements, model assumptions, supported species, supported modalities, output type, required reference database, hardware needs, and expected figures.
+5. Compare with mature alternatives and decide whether the tool adds scientific value for the actual study design.
+6. Read official examples, issue trackers, release notes, and practical forum reports before deployment.
+7. Run a small validation or official example when the task will depend on the result.
+8. Label output as exploratory when the tool is new, weakly benchmarked, trained outside the disease context, or dependent on proprietary or unstable resources.
 
 Examples:
 
@@ -31,6 +35,7 @@ Examples:
 - `scSurv` and `scSurvival` connect single-cell states with survival outcomes. Use patient-level survival metadata and keep clinical model diagnostics visible.
 - `seismicGWAS` links GWAS summary statistics with single-cell expression for genetically implicated cell-type and driver-gene analysis.
 - `phenoptr` and `phenoptrReports` are multiplex imaging and inForm-linked analysis tools. Route these through `imaging.md`.
+- `Squidiff` is a diffusion model for single-cell development and perturbation response prediction. Treat its predictions as model-based hypotheses unless supported by real perturbation or time-course data.
 - If a named tool cannot be verified from a reliable source, do not invent a workflow for it. Record it as unresolved and use a verified method family.
 
 ## Practical Training-Course Layer
@@ -249,15 +254,18 @@ Current route:
 
 1. Confirm whether the model operates on raw counts, normalized expression, ranked genes, tokens, GRNs, multimodal features, or embeddings.
 2. Check whether the training corpus covers the species, tissue, disease, assay, and perturbation type.
-3. Do not treat foundation-model predictions as biological validation. Use them for prioritization, embedding, annotation support, perturbation hypothesis generation, or candidate ranking.
-4. For virtual perturbation, compare with real Perturb-seq, CROP-seq, CRISPR, drug perturbation, knockout, or literature evidence when possible.
-5. Record model version, checkpoint, gene vocabulary, preprocessing, and prompt or perturbation settings.
+3. Use Squidiff, GEARS, CPA, chemCPA, CellOT, scGen, scVIDR, RespondOS, PerturbDiff, PT-RAG, scDiff, StateXDiff, or related perturbation-prediction methods only after checking perturbation type, training domain, data split, and benchmark comparability.
+4. Do not treat foundation-model predictions as biological validation. Use them for prioritization, embedding, annotation support, perturbation hypothesis generation, or candidate ranking.
+5. For virtual perturbation, compare with real Perturb-seq, CROP-seq, CRISPR, drug perturbation, knockout, or literature evidence when possible.
+6. Record model version, checkpoint, gene vocabulary, preprocessing, training data scope, prompt or perturbation settings, random seed, and hardware.
 
 Required figures:
 
 - embedding or latent-space visualization before and after model use
 - predicted perturbation effect size, direction, and uncertainty when available
 - top genes, pathways, regulons, and cell states affected by virtual perturbation
+- predicted time-course, cell-state transition, or response trajectory plots when Squidiff or diffusion models are used
+- benchmark plots against held-out perturbations, known controls, or mature baselines
 - comparison against known perturbation signatures or external datasets
 - failure or out-of-distribution diagnostics when available
 
@@ -266,7 +274,8 @@ Primary tools:
 - Geneformer
 - scGPT
 - scFoundation
-- UCE or related single-cell foundation models when verified
+- UCE, scBERT, tGPT, CellLM, CellPLM, scPRINT, GeneCompass, Nicheformer, SCimilarity, scMulan, CellFM, Cell2Sentence, and related single-cell foundation models when verified
+- Squidiff, PerturbDiff, PT-RAG, scDiff, StateXDiff, GEARS, CPA, chemCPA, CellOT, scGen, scVIDR, RespondOS for development, drug, gene, or environmental perturbation prediction when the data and validation route fit
 - scTenifoldNet and scTenifoldKnk for GRN comparison and virtual knockout
 - CellOracle or related GRN-based perturbation tools when regulatory network context is required
 
@@ -313,7 +322,7 @@ Current route:
 4. Use non-targeting controls, safe-targeting controls, and multiple guides per gene when available.
 5. Model perturbation effects at guide, gene, cell type, and pathway levels. Include replicate and batch when available.
 6. Use public resources such as scPerturb, PerturBase, Replogle-scale Perturb-seq, LINCS, CMap, and DepMap to support interpretation.
-7. For perturbation prediction or response transfer, use GEARS, CPA, chemCPA, CellOT, scVIDR, RespondOS, scGen, or related tools only after checking perturbation type, training domain, and validation evidence.
+7. For perturbation prediction or response transfer, use Squidiff, GEARS, CPA, chemCPA, CellOT, scVIDR, RespondOS, scGen, PerturbDiff, PT-RAG, scDiff, StateXDiff, or related tools only after checking perturbation type, training domain, data split, model availability, and validation evidence.
 8. For differential abundance or composition effects, use Milo, miloDE, scCODA, MASC, DA-seq, MELD, Augur, or replicate-aware models according to design.
 
 Required figures:
@@ -330,7 +339,7 @@ Primary tools and resources:
 
 - Seurat Mixscape
 - pertpy Mixscape and Augur
-- scGen, GEARS, CPA, chemCPA, CellOT, scVIDR, RespondOS, or verified perturbation-prediction models when prediction is required
+- Squidiff, scGen, GEARS, CPA, chemCPA, CellOT, scVIDR, RespondOS, PerturbDiff, PT-RAG, scDiff, StateXDiff, or verified perturbation-prediction models when prediction is required
 - Milo, miloDE, scCODA, MASC, DA-seq, MELD for abundance or composition changes when design supports them
 - scPerturb
 - PerturBase
@@ -346,11 +355,11 @@ Current route:
 1. Identify platform resolution first: Visium, Visium HD, Slide-seq, MERFISH, Xenium, CosMx, Stereo-seq, DBiT-seq, CODEX, or imaging mass cytometry.
 2. Preserve tissue image, segmentation, coordinates, cell or spot area, slide, sample, region, batch, and histology labels.
 3. Build spatial graphs appropriate to the platform: radius, kNN, Delaunay, grid adjacency, or segmentation-derived contact graph.
-4. Run domain or niche detection with Seurat, Giotto, Squidpy, BANKSY, CellCharter, BayesSpace, SpaGCN, GraphST, PRECAST, STAGATE, DeepST, SEDR, SpaSEG, stLearn, or verified alternatives.
+4. Run domain or niche detection with Seurat, Giotto, Squidpy, SpatialData workflows, Stereopy, MENDER, BANKSY, CellCharter, BayesSpace, SpaGCN, GraphST, PRECAST, STAGATE, DeepST, SEDR, SpaSEG, stLearn, or verified alternatives.
 5. Run neighborhood enrichment, co-occurrence, spatial autocorrelation, spatially variable genes, proximity, hotspot, and cell-type adjacency tests as needed. Use SPARK, SPARK-X, SpatialDE, SpatialDE2, nnSVG, MERINGUE, scBSP, SMASH, SpaGene, Splotch, or trendsceek according to scale and model fit.
 6. Use RCTD, cell2location, CARD, SpatialDWLS, Tangram, stereoscope, DestVI, SPOTlight, STdeconvolve, SpatialDecon, STRIDE, NMFreg, SpaOTsc, novoSpaRc, CellTrek, CytoSPACE, or equivalent tools for deconvolution or mapping only when references match.
 7. For differential abundance or differential neighborhoods, use sample-aware designs and tools such as Milo when the graph-neighborhood framework fits.
-8. Use SLOPER, SpaceWalker, SpatialPCA, sosta, SpatialFeatureExperiment, Sopa, FICTURE, CartoScope, SPICEMIX, or other verified tools when the task asks for gradients, anatomical structure, molecular-resolution maps, or specialized spatial exploration.
+8. Use SLOPER, SpaceWalker, SpatialPCA, sosta, SpatialFeatureExperiment, SpatialData, Sopa, FICTURE, MOSAIK, CartoScope, SPICEMIX, MENDER, Stereopy, or other verified tools when the task asks for gradients, anatomical structure, molecular-resolution maps, multi-sample spatial analysis, 3D spatial analysis, or specialized spatial exploration.
 9. For spatial communication or microenvironment modeling, use COMMOT, SpaTalk, MISTy, MultiNicheNet, NicheCompass, MEBOCOST, NATMI, or Tensor-cell2cell when spatial coordinates, conditions, or metabolic communication support the question.
 
 Required figures:
@@ -367,8 +376,8 @@ Required figures:
 
 Primary tools:
 
-- Seurat spatial, SpatialExperiment, Giotto, Squidpy
-- BANKSY, CellCharter, BayesSpace, SpaGCN, GraphST, PRECAST, STAGATE, DeepST, SEDR, SpaSEG, stLearn, SpatialDE, SpatialDE2, nnSVG, MERINGUE, Splotch, SpotClean
+- Seurat spatial, SpatialExperiment, Giotto, Squidpy, SpatialData, Sopa, MOSAIK, Stereopy
+- BANKSY, CellCharter, BayesSpace, MENDER, SpaGCN, GraphST, PRECAST, STAGATE, DeepST, SEDR, SpaSEG, stLearn, SpatialDE, SpatialDE2, nnSVG, MERINGUE, Splotch, SpotClean
 - SPARK, SPARK-X, scBSP, SMASH, SpaGene, trendsceek for spatial expression pattern detection
 - SLOPER, SpaceWalker, SpatialPCA, sosta, SpatialFeatureExperiment, Sopa, FICTURE, CartoScope, SPICEMIX for gradients, anatomical structures, molecular-resolution exploration, or spatial representation learning when verified
 - RCTD, cell2location, CARD, SpatialDWLS, Tangram, stereoscope, DestVI, SPOTlight, STdeconvolve, SpatialDecon, STRIDE, NMFreg, SpaOTsc, novoSpaRc, CellTrek, CytoSPACE
@@ -413,6 +422,17 @@ Last checked: 2026-05-28.
 - SPARK paper: https://www.nature.com/articles/s41592-019-0701-7
 - SPARK repository: https://github.com/xzhoulab/SPARK
 - SLOPER note and source pointer: https://chitra-lab.github.io/2025/12/01/sloper/
+- Squidiff paper: https://www.nature.com/articles/s41592-025-02877-y
+- Squidiff repository: https://github.com/siyuh/Squidiff
+- PerturbDiff project: https://katarinayuan.github.io/PerturbDiff-ProjectPage/
+- scDiff repository: https://github.com/OmicsML/scDiff
+- single-cell foundation model review: https://www.nature.com/articles/s12276-025-01547-5
+- SpatialData paper: https://www.nature.com/articles/s41592-024-02212-x
+- Sopa paper: https://pmc.ncbi.nlm.nih.gov/articles/PMC11167053/
+- Stereopy paper: https://www.nature.com/articles/s41467-025-58079-9
+- MENDER paper: https://www.nature.com/articles/s41467-023-44367-9
+- FICTURE documentation: https://seqscope.github.io/ficture/
+- MOSAIK paper: https://joss.theoj.org/papers/10.21105/joss.08795
 - CellRank: https://cellrank.readthedocs.io/
 - dynamo: https://dynamo-release.readthedocs.io/
 - COMMOT paper: https://www.nature.com/articles/s41592-022-01728-4
