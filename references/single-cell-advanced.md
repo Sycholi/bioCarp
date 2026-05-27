@@ -22,6 +22,15 @@ Examples:
 - `scPAS` is another phenotype-associated subpopulation method and should be compared with SCIPAC or Scissor only after checking inputs and endpoint fit.
 - `scALPI` appears to refer to a GitLab single-cell analysis pipeline. Verify its wiki, scripts, and usage before treating it as a method standard.
 - `scTenifoldNet` and `scTenifoldKnk` are gene-regulatory network and virtual knockout tools. Verify whether the task requires network perturbation rather than expression-only scoring.
+- `SLOPER` is a spatial transcriptomics gradient-estimation method. Use it only when the question depends on spatial gradient direction, magnitude, or boundary structure.
+- `SPARK` and `SPARK-X` are spatial expression pattern methods. Use them for spatially variable genes, then check selected genes on tissue maps.
+- `scDecorr` is a feature-decorrelation representation learning method for single-cell integration. Compare it with established integration metrics before choosing it over routine routes.
+- `TotalX` is a single-cell total RNA profiling protocol, not a downstream package. Treat it as an assay-specific preprocessing and QC route.
+- `PSGRN` and `RegDiffusion` are GRN inference tools. PSGRN is linked to perturbational single-cell data; RegDiffusion uses diffusion-model logic for GRN inference.
+- `TrendCatcher` is a longitudinal RNA-seq and scRNA-seq trend-analysis package. Use it when time-course trend classes matter.
+- `scSurv` and `scSurvival` connect single-cell states with survival outcomes. Use patient-level survival metadata and keep clinical model diagnostics visible.
+- `seismicGWAS` links GWAS summary statistics with single-cell expression for genetically implicated cell-type and driver-gene analysis.
+- `phenoptr` and `phenoptrReports` are multiplex imaging and inForm-linked analysis tools. Route these through `imaging.md`.
 - If a named tool cannot be verified from a reliable source, do not invent a workflow for it. Record it as unresolved and use a verified method family.
 
 ## Practical Training-Course Layer
@@ -97,9 +106,10 @@ Current route:
 5. Run resolution sweeps and clustering stability checks. Use Leiden, Louvain, Seurat graph clustering, PhenoGraph, or package-native clustering as appropriate.
 6. Evaluate resolution and annotation quality with ROGUE, silhouette or ASW, marker coherence, cluster size, nearest-neighbor graph connectivity, NMI or ARI across resolution sweeps, and reference-label agreement when suitable.
 7. Evaluate integration with iLISI, cLISI, kBET, ASW, graph connectivity, cell-type separation, marker preservation, and sample or patient composition. Prefer a balance between technical mixing and biological structure preservation.
-8. If a user names `phiClust` or another uncommon clustering method, verify the exact tool and documentation before use.
-9. Annotate with manual markers plus one or more reference tools when useful. Treat automated labels as draft labels.
-10. For tumor data, distinguish malignant cells, normal epithelial cells, immune cells, stromal cells, and cycling or stressed states before fine annotation.
+8. When self-supervised or deep-learning integration is requested, check `scDecorr`, `scDREAMER`, `scConfluence`, or scVI-family methods against the same integration and marker-preservation metrics.
+9. If a user names `phiClust` or another uncommon clustering method, verify the exact tool and documentation before use.
+10. Annotate with manual markers plus one or more reference tools when useful. Treat automated labels as draft labels.
+11. For tumor data, distinguish malignant cells, normal epithelial cells, immune cells, stromal cells, and cycling or stressed states before fine annotation.
 
 Required figures:
 
@@ -114,6 +124,7 @@ Required figures:
 Primary tools:
 
 - Seurat v5, Harmony, RPCA, scVI, scANVI, scArches, Scanpy, SingleCellExperiment
+- scDecorr, scDREAMER, scConfluence, and verified representation-learning integration tools when routine integration is insufficient
 - SingleR, CellTypist, Azimuth, scANVI, Garnett, scmap, reference atlas transfer
 - scType, scGate, UCell, AUCell, CellAssign, ProjecTILs, Symphony, popV, scPoli, treeArches, CASSIA, and manual marker panels for annotation and state scoring
 - PhenoGraph or verified graph-clustering alternatives when standard clustering is not sufficient
@@ -155,7 +166,8 @@ Current route:
 2. Use CellRank when terminal fate probabilities, absorption probabilities, and driver genes are central.
 3. Use dynamo when vector-field reconstruction, acceleration, curvature, or perturbation-linked dynamics fit the data and assumptions.
 4. Use Palantir, Waddington-OT, FateID, destiny or DPT, PAGA, or CellRouter when their model and input fit the question.
-5. Anchor direction with time, markers, lineage labels, velocity, perturbation, or experimental design. State uncertainty when direction is not resolved.
+5. Use TrendCatcher, tradeSeq, condiments, or Lamian when longitudinal trend classes, differential trajectories, or time-course expression programs are central.
+6. Anchor direction with time, markers, lineage labels, velocity, perturbation, or experimental design. State uncertainty when direction is not resolved.
 
 Required figures:
 
@@ -163,11 +175,12 @@ Required figures:
 - lineage graph, diffusion map, vector field, transition matrix, fate probability, terminal state, and driver-gene plots as supported
 - pseudotime or latent-time distribution by sample and condition
 - gene trends, branch heatmaps, and terminal-state marker panels
+- time-course trend-class plots, fitted curves, and gene-set summaries when TrendCatcher or related trend tools are used
 - tool-specific diagnostics and uncertainty plots
 
 Primary tools:
 
-- CellRank, dynamo, velocyto, Palantir, Waddington-OT, FateID, destiny or DPT, PAGA, CellRouter, Monocle3, slingshot, tradeSeq, scVelo
+- CellRank, dynamo, velocyto, Palantir, Waddington-OT, FateID, destiny or DPT, PAGA, CellRouter, Monocle3, slingshot, tradeSeq, scVelo, TrendCatcher, condiments, Lamian
 
 ## Gene Regulatory Network And Regulon Analysis
 
@@ -179,7 +192,9 @@ Current route:
 2. Use SCENIC or pySCENIC for expression-based regulon discovery and activity scoring.
 3. Use SCENIC+, Pando, CellOracle, scGLUE, Signac, ArchR, chromVAR, Cicero, or SnapATAC2 when chromatin or multiome evidence is available.
 4. Use GRNBoost2, GENIE3, PIDC, or Inferelator when network inference itself is the main method and assumptions are checked.
-5. Validate regulators with motif evidence, target expression, perturbation evidence, literature, and cell-state specificity.
+5. Use PSGRN, CellOracle, Scribe, SINGE, or verified perturbation-aware tools when interventional, temporal, or pseudotemporal data support causal or directional network claims.
+6. Use RegDiffusion, PMF-GRN, scSGL, scMGATGRN, SCODE, SINCERITIES, LEAP, or TENET only after checking training data, benchmark setting, input scale, and maintenance status.
+7. Validate regulators with motif evidence, target expression, perturbation evidence, literature, and cell-state specificity.
 
 Required figures:
 
@@ -188,10 +203,12 @@ Required figures:
 - motif enrichment or motif deviation plots when ATAC data exist
 - peak-to-gene and TF-to-target support plots when multiome data exist
 - perturbation or external evidence panels when used
+- network benchmark, edge-confidence, perturbation-recovery, or pseudotime-direction diagnostics when advanced GRN methods are used
 
 Primary tools:
 
 - SCENIC, pySCENIC, SCENIC+, GRNBoost2, GENIE3, PIDC, Inferelator, Pando, CellOracle, scGLUE, chromVAR, Cicero, Signac, ArchR
+- PSGRN, RegDiffusion, Scribe, SINGE, PMF-GRN, scSGL, scMGATGRN, SCODE, SINCERITIES, LEAP, TENET when the data and validation plan fit
 
 ## Phenotype-Associated Cell Methods
 
@@ -201,7 +218,7 @@ Current route:
 
 1. Harmonize genes between single-cell and bulk data.
 2. Confirm that the bulk phenotype is biologically compatible with the single-cell tissue and disease state.
-3. Use Scissor, SCIPAC, scPAS, or related methods according to phenotype type and output required.
+3. Use Scissor, SCIPAC, scPAS, PACells, DEGAS, scSurv, scSurvival, or related methods according to phenotype type and output required.
 4. Keep the bulk prediction model, phenotype label, clinical covariates, and cross-validation visible.
 5. Compare phenotype-associated cells with cell type, cluster, pathway activity, CNV status, sample, and patient composition.
 6. Treat results as hypothesis-generating unless validated in independent single-cell, spatial, clinical, or perturbation data.
@@ -212,6 +229,7 @@ Required figures:
 - UMAP colored by phenotype-association score or class
 - association score by cell type, cluster, sample, and condition
 - marker and pathway plots for phenotype-associated states
+- hazard contribution, survival-stratified cell-state, and spatial hazard maps when survival-oriented tools are used
 - validation plots in external cohort or spatial data when available
 
 Primary tools:
@@ -219,6 +237,8 @@ Primary tools:
 - Scissor
 - SCIPAC
 - scPAS
+- DEGAS
+- scSurv and scSurvival for survival-oriented single-cell state analysis
 - PACells for scATAC-to-bulk ATAC phenotype association when appropriate
 
 ## Foundation Models, Virtual Cells, And In Silico Perturbation
@@ -327,10 +347,11 @@ Current route:
 2. Preserve tissue image, segmentation, coordinates, cell or spot area, slide, sample, region, batch, and histology labels.
 3. Build spatial graphs appropriate to the platform: radius, kNN, Delaunay, grid adjacency, or segmentation-derived contact graph.
 4. Run domain or niche detection with Seurat, Giotto, Squidpy, BANKSY, CellCharter, BayesSpace, SpaGCN, GraphST, PRECAST, STAGATE, DeepST, SEDR, SpaSEG, stLearn, or verified alternatives.
-5. Run neighborhood enrichment, co-occurrence, spatial autocorrelation, spatially variable genes, proximity, hotspot, and cell-type adjacency tests as needed.
+5. Run neighborhood enrichment, co-occurrence, spatial autocorrelation, spatially variable genes, proximity, hotspot, and cell-type adjacency tests as needed. Use SPARK, SPARK-X, SpatialDE, SpatialDE2, nnSVG, MERINGUE, scBSP, SMASH, SpaGene, Splotch, or trendsceek according to scale and model fit.
 6. Use RCTD, cell2location, CARD, SpatialDWLS, Tangram, stereoscope, DestVI, SPOTlight, STdeconvolve, SpatialDecon, STRIDE, NMFreg, SpaOTsc, novoSpaRc, CellTrek, CytoSPACE, or equivalent tools for deconvolution or mapping only when references match.
 7. For differential abundance or differential neighborhoods, use sample-aware designs and tools such as Milo when the graph-neighborhood framework fits.
-8. For spatial communication or microenvironment modeling, use COMMOT, SpaTalk, MISTy, MultiNicheNet, NicheCompass, MEBOCOST, NATMI, or Tensor-cell2cell when spatial coordinates, conditions, or metabolic communication support the question.
+8. Use SLOPER, SpaceWalker, SpatialPCA, sosta, SpatialFeatureExperiment, Sopa, FICTURE, CartoScope, SPICEMIX, or other verified tools when the task asks for gradients, anatomical structure, molecular-resolution maps, or specialized spatial exploration.
+9. For spatial communication or microenvironment modeling, use COMMOT, SpaTalk, MISTy, MultiNicheNet, NicheCompass, MEBOCOST, NATMI, or Tensor-cell2cell when spatial coordinates, conditions, or metabolic communication support the question.
 
 Required figures:
 
@@ -339,6 +360,7 @@ Required figures:
 - spatial domain maps from selected algorithms
 - neighborhood enrichment, co-occurrence, proximity, or adjacency plots
 - spatially variable gene maps and autocorrelation summaries
+- gradient vector, gradient magnitude, spatial boundary, and tissue-structure plots when SLOPER, SpaceWalker, or related gradient tools are used
 - deconvolution maps, cell-type abundance maps, and reference-fit diagnostics
 - spatial interaction or ligand-receptor plots when supported
 - spatial domain, spatially variable gene, denoising, and spatial communication diagnostics from the selected tool
@@ -346,7 +368,9 @@ Required figures:
 Primary tools:
 
 - Seurat spatial, SpatialExperiment, Giotto, Squidpy
-- BANKSY, CellCharter, BayesSpace, SpaGCN, GraphST, PRECAST, STAGATE, DeepST, SEDR, SpaSEG, stLearn, SpatialDE, nnSVG, MERINGUE, Splotch, SpotClean
+- BANKSY, CellCharter, BayesSpace, SpaGCN, GraphST, PRECAST, STAGATE, DeepST, SEDR, SpaSEG, stLearn, SpatialDE, SpatialDE2, nnSVG, MERINGUE, Splotch, SpotClean
+- SPARK, SPARK-X, scBSP, SMASH, SpaGene, trendsceek for spatial expression pattern detection
+- SLOPER, SpaceWalker, SpatialPCA, sosta, SpatialFeatureExperiment, Sopa, FICTURE, CartoScope, SPICEMIX for gradients, anatomical structures, molecular-resolution exploration, or spatial representation learning when verified
 - RCTD, cell2location, CARD, SpatialDWLS, Tangram, stereoscope, DestVI, SPOTlight, STdeconvolve, SpatialDecon, STRIDE, NMFreg, SpaOTsc, novoSpaRc, CellTrek, CytoSPACE
 - COMMOT, SpaTalk, MISTy, MultiNicheNet, NicheCompass, MEBOCOST, NATMI, Tensor-cell2cell
 - Milo or equivalent neighborhood differential abundance tools
@@ -378,6 +402,17 @@ Last checked: 2026-05-28.
 - MultiVI: https://docs.scvi-tools.org/en/latest/user_guide/models/multivi.html
 - muon: https://muon.scverse.org/
 - scGLUE: https://scglue.readthedocs.io/
+- scDecorr paper: https://www.nature.com/articles/s41598-026-50586-z
+- TotalX paper: https://www.nature.com/articles/s41587-026-03068-6
+- PSGRN repository: https://github.com/GuanLab/PSGRN
+- RegDiffusion repository: https://github.com/TuftsBCB/RegDiffusion
+- TrendCatcher documentation: https://jaleesr.github.io/TrendCatcher/
+- scSurv paper: https://pmc.ncbi.nlm.nih.gov/articles/PMC12797213/
+- scSurvival paper: https://aacrjournals.org/cancerdiscovery/article/16/5/931/784405/scSurvival-Single-Cell-Survival-Analysis-of
+- seismicGWAS documentation: https://ylaboratory.github.io/seismic/
+- SPARK paper: https://www.nature.com/articles/s41592-019-0701-7
+- SPARK repository: https://github.com/xzhoulab/SPARK
+- SLOPER note and source pointer: https://chitra-lab.github.io/2025/12/01/sloper/
 - CellRank: https://cellrank.readthedocs.io/
 - dynamo: https://dynamo-release.readthedocs.io/
 - COMMOT paper: https://www.nature.com/articles/s41592-022-01728-4

@@ -109,6 +109,23 @@ Typical checks:
 - Save `.h5ad` after major processing stages.
 - Pin Python, scanpy, anndata, numpy, scipy, and scvi-tools versions when needed.
 
+### Emerging single-cell, spatial, and imaging tools
+
+Common issues:
+
+- New tools such as SLOPER, scDecorr, PSGRN, TotalX-linked workflows, TrendCatcher, scSurv, scSurvival, RegDiffusion, seismicGWAS, and phenoptr-related pipelines can have narrow input assumptions, unstable installation paths, or limited examples.
+- Some methods are preprint-only, recent-paper-only, or repository-only and may not have mature error handling.
+- Tool names can be ambiguous. Confirm the exact repository or package before installing.
+- Spatial tools differ in coordinate conventions, image origin, spot or cell indexing, and supported object format.
+- Survival and GWAS-linked single-cell tools can fail when patient labels, event times, LD reference, or annotation granularity do not match assumptions.
+
+Typical checks:
+
+- Record the source URL, commit, package version, example dataset, and successful smoke test.
+- Run the official example before running project data when the tool is new to the environment.
+- Compare the result with a mature method family when the conclusion depends on a new tool.
+- Preserve all input conversions and intermediate tables so source-format errors can be traced.
+
 ### Upstream workflows and raw data processing
 
 Common issues:

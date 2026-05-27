@@ -22,7 +22,7 @@ Current route:
 3. Read `parameters.md` for tile size, color normalization, segmentation thresholds, patient-level split, radiomics settings, and preprocessing choices.
 4. Run image QC for blur, saturation, tissue folds, background, autofluorescence, channel spillover, registration, and batch effects.
 5. Segment nuclei and cells with method appropriate to the platform. Use existing validated masks when available.
-6. Quantify marker intensities, normalize channels, define cell phenotypes, and preserve marker evidence.
+6. Quantify marker intensities, normalize channels, define cell phenotypes, and preserve marker evidence. For Akoya Phenoptics or inForm exports, verify phenoptr, phenoptrReports, rtree, and exported table schema before analysis.
 7. Analyze cell abundance, co-expression, neighborhoods, cell-cell contacts, spatial statistics, and tissue regions.
 8. Use pathology review or marker panels to validate phenotypes before biological interpretation.
 
@@ -34,6 +34,11 @@ Required figures:
 - cell phenotype UMAP or t-SNE, marker heatmap, and phenotype evidence panels
 - spatial cell maps, neighborhood maps, contact graphs, and interaction heatmaps
 - region-level composition plots and group comparisons
+
+Primary tools:
+
+- MCMICRO, ASHLAR, steinbock, cytomapper, histoCAT, imcRtools, Squidpy, Giotto
+- phenoptr, phenoptrReports, rtree, and inForm-linked exports for Akoya Phenoptics workflows
 
 ## Virtual Multiplex Immunofluorescence And Virtual Staining
 
@@ -137,6 +142,9 @@ Last checked: 2026-05-28.
 - ASHLAR: https://github.com/labsyspharm/ashlar
 - steinbock: https://bodenmillergroup.github.io/steinbock/latest/
 - cytomapper: https://bioconductor.org/packages/release/bioc/html/cytomapper.html
+- phenoptr: https://akoyabio.github.io/phenoptr/
+- phenoptrReports: https://akoyabio.github.io/phenoptrReports/
+- Akoya phenoptrReports technical note: https://www.akoyabio.com/wp-content/uploads/2022/01/Spatial-Biology-with-phentoprReports-TechNote.pdf
 - nnU-Net paper: https://www.nature.com/articles/s41592-020-01008-z
 - nnU-Net repository: https://github.com/MIC-DKFZ/nnUNet
 - MONAI: https://monai.io/

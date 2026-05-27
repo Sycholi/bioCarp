@@ -103,7 +103,7 @@ Core rule:
 - `upstream.md` covers FASTQ-to-matrix, workflow pipelines, raw QC, alignment, quantification, demultiplexing, and workflow outputs.
 - `variants.md` covers germline, somatic, CNV, SV, HLA typing, mutational signatures, and variant-to-antigen handoff.
 - `immunopeptidomics.md` covers antigen peptides, HLA binding prediction, neoantigens, immunopeptidomics, and TCR-pMHC follow-up.
-- `single-cell-advanced.md` covers advanced single-cell, spatial, perturbation, foundation-model, virtual-cell, and drug-prediction methods.
+- `single-cell-advanced.md` covers advanced single-cell, spatial, perturbation, foundation-model, virtual-cell, GRN, phenotype-linked cell states, single-cell and GWAS integration, and drug-prediction methods.
 - `bulk-inference.md` covers TF activity, pathway activity, kinase activity, deconvolution, signature scoring, WGCNA, and bulk-to-single-cell interpretation.
 - `multiomics.md` covers bulk, single-cell, spatial, imaging, proteogenomic, metabolomic, and host-microbe multi-omics integration.
 - `epigenomics.md` covers ATAC, scATAC, ChIP-seq, CUT&Tag, CUT&Run, methylation, Hi-C, motif, footprinting, and regulatory interpretation.
@@ -116,8 +116,8 @@ Core rule:
 - `causal-inference.md` covers target trial emulation, real-world evidence, external controls, matching, weighting, g-methods, and quasi-experimental designs.
 - `clinical-data.md` covers EHR, registry, REDCap, OMOP, FHIR, CDISC, SDTM, ADaM, terminology, and clinical data quality.
 - `evidence-synthesis.md` covers systematic reviews, meta-analysis, network meta-analysis, Mendelian randomization, and pharmacovigilance.
-- `genetic-epidemiology.md` covers GWAS, PheWAS, PRS, fine mapping, colocalization, TWAS, QTL, LDSC, and biobank genetics.
-- `specialized-omics.md` covers small RNA, alternative splicing, long-read transcriptomics, CLIP-seq, ribo-seq, epitranscriptomics, RNA editing, liquid biopsy, cfDNA, ctDNA, CTC, and exosome assays.
+- `genetic-epidemiology.md` covers GWAS, PheWAS, PRS, fine mapping, colocalization, TWAS, QTL, LDSC, biobank genetics, and single-cell trait-genetics integration.
+- `specialized-omics.md` covers single-cell total RNA, small RNA, alternative splicing, long-read transcriptomics, CLIP-seq, ribo-seq, epitranscriptomics, RNA editing, liquid biopsy, cfDNA, ctDNA, CTC, and exosome assays.
 - `statistics.md` covers downstream statistics, clinical models, figure construction, report tables, and visualization quality checks.
 - `tool-issues.md` covers known bugs, open issues, version conflicts, and workarounds.
 - `literature.md`, `public-data.md`, and `data-assessment.md` cover study design, public data, and dataset opportunity mapping.
@@ -139,8 +139,8 @@ Classify each request into one primary mode before coding:
 Then classify the data type:
 
 - bulk RNA-seq or microarray
-- single-cell RNA-seq
-- spatial transcriptomics
+- single-cell RNA-seq, single-cell total RNA, single-cell GRN, single-cell survival association, or single-cell trait-genetics integration
+- spatial transcriptomics, spatial gradients, spatially variable genes, or high-resolution spatial exploration
 - TCR or BCR repertoire
 - ATAC-seq, ChIP-seq, methylation, CNV, or other genomic layers
 - WGS, WES, targeted panel, RNA variant, HLA, antigen peptide, or immunopeptidomics
@@ -208,7 +208,7 @@ Every analysis must output the complete figure set expected for that method, not
   - cell-cell communication: global interaction count or strength plots, pathway-level network plots, ligand-receptor bubble or heatmap views, incoming and outgoing signaling roles, contribution plots, and selected axis-level plots such as chord, circle, hierarchy, or river plots when supported
   - ATAC-seq or single-cell ATAC-seq: fragment and TSS-enrichment QC, nucleosome signal, peak or gene-activity embeddings, differential accessibility plots, motif enrichment or deviation plots, footprint plots when supported, co-accessibility links when supported, and genome-browser coverage tracks at key loci
   - ChIP-seq or CUT&Tag/CUT&Run: alignment and peak QC, FRiP or cross-correlation diagnostics when available, peak annotation, metaplots, signal heatmaps around peaks or TSS, differential binding plots, motif enrichment, and genome-browser tracks at key loci
-  - spatial transcriptomics: tissue-space feature maps, cluster or niche maps, spatial marker panels, co-localization or neighborhood plots, spatial ligand-receptor views when supported, and histology-aligned outputs
+  - spatial transcriptomics: tissue-space feature maps, cluster or niche maps, spatial marker panels, co-localization or neighborhood plots, spatial gradient maps, spatially variable gene views, spatial ligand-receptor views when supported, and histology-aligned outputs
   - enrichment, pathway, and regulon analysis: dot, bar, ridge, running-score, network, term-similarity, leading-edge, target-gene, and activity-distribution plots as supported by the package and the question
   - CNV, clonality, survival, differential expression, and multi-omics modules: heatmaps, genomic-position plots, clone-sharing or alluvial views, Kaplan-Meier and forest plots, volcano and ranked-gene plots, integration embeddings, feature concordance views, and other package-standard diagnostics needed for interpretation
   - microbiome and metagenomics: read QC, taxonomic composition, alpha and beta diversity, ordination, differential abundance, functional pathway, MAG quality, phylogenomic, and host-microbe association plots

@@ -17,6 +17,30 @@
 
 ### 2026-05-28
 
+- 工具、流程、数据集或文献名称：SLOPER、scDecorr、PSGRN、TotalX、seismicGWAS、TrendCatcher、scSurv、scSurvival、SPARK、SPARK-X、phenoptr、RegDiffusion 及相邻工具族
+- 来源链接：
+  - https://chitra-lab.github.io/2025/12/01/sloper/
+  - https://www.nature.com/articles/s41598-026-50586-z
+  - https://github.com/GuanLab/PSGRN
+  - https://www.nature.com/articles/s41587-026-03068-6
+  - https://ylaboratory.github.io/seismic/
+  - https://www.nature.com/articles/s41467-025-63753-z
+  - https://jaleesr.github.io/TrendCatcher/
+  - https://pmc.ncbi.nlm.nih.gov/articles/PMC12797213/
+  - https://aacrjournals.org/cancerdiscovery/article/16/5/931/784405/scSurvival-Single-Cell-Survival-Analysis-of
+  - https://www.nature.com/articles/s41592-019-0701-7
+  - https://github.com/xzhoulab/SPARK
+  - https://akoyabio.github.io/phenoptr/
+  - https://akoyabio.github.io/phenoptrReports/
+  - https://github.com/TuftsBCB/RegDiffusion
+- 更新内容：将用户点名工具全部归入对应模块。空间转录组补入空间变异基因、梯度、结构和高分辨率空间探索工具。单细胞补入自监督整合、GRN、扰动 GRN、趋势分析、单细胞生存关联、单细胞与 GWAS 整合。专项 RNA 补入单细胞总 RNA 和非 poly(A) RNA 流程。多重成像补入 phenoptr、phenoptrReports、rtree 和 inForm 导出表路线。
+- 输入要求：空间坐标、组织图像、单细胞表达矩阵、扰动标签、时间点、患者生存数据、GWAS summary statistics、LD reference、单细胞注释、mIF 图像、inForm 导出表、TotalX 或相关总 RNA 原始输出。
+- 输出结果：空间变异基因图、梯度图、组织结构图、整合质量图、GRN 网络和边置信度图、扰动恢复图、趋势类别图、单细胞生存风险图、空间风险图、细胞类型遗传关联图、driver gene 证据表、mIF 表型和邻域图、总 RNA 生物类型和非编码 RNA QC 图。
+- 局限性：这些工具更新较快，部分工具文档和安装方式仍需在每次真实分析前核对。涉及生存、遗传和空间梯度的结论需要患者层面、LD reference、组织结构和外部证据支持。
+- 已更新的本地参考文件：`references/single-cell-advanced.md`、`references/tools.md`、`references/index.md`、`references/workflows.md`、`references/imaging.md`、`references/genetic-epidemiology.md`、`references/specialized-omics.md`、`references/coverage.md`、`references/tool-issues.md`、`references/method-updates.md`
+
+### 2026-05-28
+
 - 工具、流程、数据集或文献名称：ROGUE、LISI、scIB、kBET、ASW、graph connectivity、NMI、ARI、clustree
 - 来源链接：
   - https://github.com/PaulingLiu/ROGUE

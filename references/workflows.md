@@ -179,7 +179,9 @@ Current route:
 4. For R-first Visium or Visium HD projects, use Seurat spatial workflows when sufficient. Use Giotto Suite for richer spatial neighborhoods, multiscale spatial features, and technology-agnostic spatial workflows.
 5. Use Squidpy or Scanpy-based tools when Python spatial statistics, image features, or AnnData integration are central.
 6. Run deconvolution or label transfer with RCTD, cell2location, CARD, SpatialDWLS, or equivalent tools only when the reference is compatible.
-7. Analyze spatially variable genes, domains, niches, cell-type neighborhoods, pathway activity, and spatial support for single-cell findings.
+7. Analyze spatially variable genes, domains, niches, cell-type neighborhoods, pathway activity, gradients, tissue structures, and spatial support for single-cell findings.
+8. Use SPARK, SPARK-X, SpatialDE, SpatialDE2, nnSVG, MERINGUE, scBSP, SMASH, SpaGene, Splotch, or trendsceek for spatial expression patterns according to scale and model assumptions.
+9. Use SLOPER, SpatialPCA, SpaceWalker, sosta, Sopa, FICTURE, CartoScope, or SPICEMIX when gradient, anatomical structure, or high-resolution molecular exploration is central.
 
 Required figures:
 
@@ -189,6 +191,7 @@ Required figures:
 - deconvolution maps and cell-type composition summaries when deconvolution is used
 - neighborhood enrichment, co-occurrence, proximity, or spatial interaction plots
 - spatially variable gene plots, module maps, and selected locus or marker panels
+- spatial gradient, anatomical structure, molecular-resolution map, and boundary-support plots when specialized spatial tools are used
 
 Primary sources to check:
 
@@ -197,6 +200,7 @@ Primary sources to check:
 - Giotto Suite documentation and recent Giotto Suite papers
 - Squidpy tutorials and paper
 - cell2location, RCTD, CARD, or SpatialDWLS documentation
+- SPARK, SPARK-X, SLOPER, SpatialDE2, scBSP, SMASH, SpaGene, SpatialPCA, sosta, Sopa, and FICTURE documentation or papers when those methods drive claims
 
 ## TCR, BCR, And Immune Repertoire
 
@@ -400,13 +404,13 @@ Required figures:
 
 - study selection flow, risk-of-bias summary, forest, funnel, influence, heterogeneity, and network plots for evidence synthesis
 - pharmacovigilance disproportionality and signal-prioritization plots when used
-- GWAS sample QC, ancestry PCA, QQ, Manhattan, regional association, fine-mapping credible set, colocalization, PRS calibration, stratification, and validation plots
+- GWAS sample QC, ancestry PCA, QQ, Manhattan, regional association, fine-mapping credible set, colocalization, PRS calibration, stratification, single-cell cell-type-trait association, driver-gene evidence, and validation plots
 
 Primary sources to check:
 
 - `evidence-synthesis.md`
 - `genetic-epidemiology.md`
-- PRISMA 2020, RoB 2, ROBINS-I, metafor, meta, netmeta, OpenGWAS, TwoSampleMR, PLINK2, SAIGE, REGENIE, PRSice, LDpred2, coloc, susieR
+- PRISMA 2020, RoB 2, ROBINS-I, metafor, meta, netmeta, OpenGWAS, TwoSampleMR, PLINK2, SAIGE, REGENIE, PRSice, LDpred2, coloc, susieR, seismicGWAS, scDRS, CELLECT, MAGMA_Celltyping, RolyPoly, LDSC-SEG
 
 ## Multi-Omics And Public/Private Validation
 
@@ -495,7 +499,7 @@ Current route:
 1. Define modality, file format, resolution, scanner, annotation, label protocol, patient split, and endpoint.
 2. For radiomics, preserve segmentation, preprocessing, feature extraction, feature stability, model training, validation, and reporting.
 3. For automatic segmentation or contouring, use nnU-Net as a strong default baseline for compatible volumetric medical images; use MONAI, TotalSegmentator, MedSAM, Cellpose, StarDist, QuPath, Hover-Net, Mesmer, or platform-specific models when they better fit the input.
-4. For multiplex imaging, run image QC, registration, segmentation, marker quantification, phenotype definition, neighborhood analysis, and spatial statistics.
+4. For multiplex imaging, run image QC, registration, segmentation, marker quantification, phenotype definition, neighborhood analysis, and spatial statistics. Use phenoptr, phenoptrReports, rtree, inForm, MCMICRO, ASHLAR, steinbock, cytomapper, histoCAT, imcRtools, Squidpy, or Giotto according to exported tables and image structure.
 5. For virtual immunofluorescence, virtual staining, or virtual spatial transcriptomics, require measured paired data or a documented compatible pretrained model, then report prediction accuracy and uncertainty.
 6. Split train, validation, and test data by patient or slide. Avoid tile-level leakage.
 
@@ -510,7 +514,7 @@ Required figures:
 Primary sources to check:
 
 - `imaging.md`
-- nnU-Net, MONAI, TotalSegmentator, Cellpose, StarDist, QuPath, CODEX, IMC, MIBI, ST-Net, Hist2ST, STimage, and virtual staining documentation or papers
+- nnU-Net, MONAI, TotalSegmentator, Cellpose, StarDist, QuPath, phenoptr, phenoptrReports, CODEX, IMC, MIBI, ST-Net, Hist2ST, STimage, and virtual staining documentation or papers
 
 ## General Sequencing And Specialized Omics
 
@@ -523,7 +527,7 @@ Current route:
 5. For genome assembly and annotation, preserve assembly graph or contigs, N50, BUSCO or equivalent completeness, contamination, repeat annotation, gene calls, and functional annotation.
 6. For proteomics, phosphoproteomics, PTM analysis, and targeted proteomics, use `proteomics.md`.
 7. For metabolomics, lipidomics, isotope tracing, metabolic flux, and metabolic modeling, use `metabolomics.md`.
-8. For small RNA, CLIP-seq, ribo-seq, epitranscriptomics, alternative splicing, isoforms, long-read transcriptomics, RNA editing, liquid biopsy, cfDNA, ctDNA, CTC, and exosome data, read `specialized-omics.md` and follow assay-specific QC, normalization, identification, quantification, differential testing, annotation, and enrichment routes.
+8. For small RNA, single-cell total RNA, TotalX, CLIP-seq, ribo-seq, epitranscriptomics, alternative splicing, isoforms, long-read transcriptomics, RNA editing, liquid biopsy, cfDNA, ctDNA, CTC, and exosome data, read `specialized-omics.md` and follow assay-specific QC, normalization, identification, quantification, differential testing, annotation, and enrichment routes.
 9. For platform-sensitive assays, read `platforms.md`. For parameter-sensitive assays, read `parameters.md`.
 10. For flow cytometry, CyTOF, CRISPR screens, Perturb-seq, temporal genomics, ecological genomics, population genetics, phylogenetics, and comparative genomics, preserve assay-specific QC, design, statistical unit, and complete diagnostic figures.
 

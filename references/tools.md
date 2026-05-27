@@ -99,6 +99,15 @@ Read `platforms.md` and `parameters.md` before committing to a platform-sensitiv
   - Strengths: widely recognized, shrinkage options, straightforward reporting
   - Weaknesses: slower on very large matrices, not automatically the best choice for every complex design
 
+### Longitudinal and time-course expression
+
+- `TrendCatcher`
+  - Best for: longitudinal RNA-seq or scRNA-seq trend classes and fitted temporal patterns
+  - Weaknesses: time-point spacing, sample structure, and replicate count control interpretability
+- `ImpulseDE2`, `maSigPro`, `TCseq`, `Mfuzz`, `tradeSeq`, `condiments`, `Lamian`
+  - Best for: bulk or single-cell temporal expression programs, pseudotime trends, and differential trajectories
+  - Weaknesses: method choice depends on measured time, pseudotime, branch structure, and replicate design
+
 ### Survival and clinical modeling
 
 - `survival` + `survminer`
@@ -190,6 +199,9 @@ Read `platforms.md` and `parameters.md` before committing to a platform-sensitiv
 - `ROGUE`, `LISI`, `scIB`, `kBET`, `ASW`, `clustree`
   - Best for: cluster purity, integration quality, batch mixing, biology preservation, and resolution assessment
   - Weaknesses: metrics must be interpreted with marker evidence and sample structure
+- `scDecorr`, `scDREAMER`, `scConfluence`
+  - Best for: self-supervised or deep-learning integration when routine methods fail to preserve biology
+  - Weaknesses: require the same metric review as other integration methods and current source verification
 
 ### Annotation
 
@@ -257,6 +269,9 @@ Read `platforms.md` and `parameters.md` before committing to a platform-sensitiv
 - `CellRank`, `dynamo`, `velocyto`, `Palantir`, `Waddington-OT`, `FateID`, `destiny`, `CellRouter`
   - Best for: fate probabilities, vector fields, diffusion pseudotime, transport-based trajectories, or older lineage workflows
   - Weaknesses: require suitable inputs and strong biological anchoring
+- `TrendCatcher`
+  - Best for: measured or inferred temporal trend classes in RNA-seq and scRNA-seq
+  - Weaknesses: trend classes should be supported by time points, markers, and replicate-level checks
 
 ### Cell-cell communication
 
@@ -294,6 +309,21 @@ Read `platforms.md` and `parameters.md` before committing to a platform-sensitiv
   - Best for: niche scenarios needing alternative CNV logic
   - Weaknesses: less standard for a shortest-path workflow
 
+### GRN, perturbation, and phenotype-associated single-cell analysis
+
+- `SCENIC`, `pySCENIC`, `SCENIC+`, `GRNBoost2`, `GENIE3`, `PIDC`, `Inferelator`
+  - Best for: expression-based regulons and GRN inference
+  - Weaknesses: inferred edges need motif, perturbation, or external evidence before mechanism claims
+- `Pando`, `CellOracle`, `scGLUE`, `chromVAR`, `Cicero`, `Signac`, `ArchR`
+  - Best for: chromatin-supported regulons, peak-to-gene links, and regulatory interpretation
+  - Weaknesses: peak set, motif database, and gene-link assumptions must be recorded
+- `PSGRN`, `RegDiffusion`, `Scribe`, `SINGE`, `PMF-GRN`, `scSGL`, `scMGATGRN`, `SCODE`, `SINCERITIES`, `LEAP`, `TENET`
+  - Best for: perturbation-aware, diffusion-model, pseudotime-aware, or benchmark-oriented GRN inference
+  - Weaknesses: each tool has distinct input assumptions and should be validated on controls or known regulators
+- `Scissor`, `SCIPAC`, `scPAS`, `PACells`, `DEGAS`, `scSurv`, `scSurvival`
+  - Best for: linking single-cell states with phenotype, survival, response, or matched bulk cohorts
+  - Weaknesses: outputs are hypothesis-generating unless externally validated
+
 ## Spatial And Deconvolution Tools
 
 ### Spatial preprocessing and exploration
@@ -309,11 +339,18 @@ Read `platforms.md` and `parameters.md` before committing to a platform-sensitiv
 - `SpatialExperiment`
   - Best for: Bioconductor-native spatial object management
   - Weaknesses: usually needs companion tools for rich spatial statistics and plotting
+- `SpatialFeatureExperiment`, `Sopa`, `FICTURE`, `CartoScope`, `sosta`, `SpatialPCA`, `SPICEMIX`
+  - Best for: high-resolution spatial structures, molecular-resolution exploration, anatomical structure analysis, or spatial representation learning
+  - Weaknesses: source, platform, and object-format support need current verification
 
 ### Spatial statistics and deconvolution
 
-- `SPARK-X`
-  - Best for: spatially variable gene testing
+- `SPARK`, `SPARK-X`
+  - Best for: spatial expression pattern and spatially variable gene testing
+  - Weaknesses: scale and sparsity determine whether classical SPARK or SPARK-X is practical
+- `SLOPER`, `SpaceWalker`
+  - Best for: spatial gradient estimation, local gradient exploration, and tissue boundary reasoning
+  - Weaknesses: gradient claims need visual tissue review and marker validation
 - `BayesSpace`
   - Best for: spot-level clustering refinement
 - `RCTD`, `cell2location`, `CARD`
@@ -329,7 +366,7 @@ Read `platforms.md` and `parameters.md` before committing to a platform-sensitiv
 - `DestVI`, `SPOTlight`, `STdeconvolve`, `SpatialDecon`, `STRIDE`, `NMFreg`, `SpaOTsc`, `novoSpaRc`, `CellTrek`, `CytoSPACE`
   - Best for: spatial deconvolution, single-cell-to-space mapping, and spatial reconstruction when the platform and reference fit
   - Weaknesses: inferred mappings require reference compatibility and spatial validation
-- `STAGATE`, `DeepST`, `SEDR`, `SpaSEG`, `SpatialDE`, `nnSVG`, `trendsceek`, `MERINGUE`, `Splotch`, `SpotClean`
+- `STAGATE`, `DeepST`, `SEDR`, `SpaSEG`, `SpatialDE`, `SpatialDE2`, `nnSVG`, `trendsceek`, `MERINGUE`, `Splotch`, `SpotClean`, `scBSP`, `SMASH`, `SpaGene`
   - Best for: spatial domain detection, spatially variable genes, spatial graph representation, or spot-level denoising
   - Weaknesses: platform resolution and tissue structure determine method fit
 
@@ -518,9 +555,15 @@ Read `platforms.md` and `parameters.md` before committing to a platform-sensitiv
   - Best for: PRS construction and validation
 - `FINEMAP`, `SuSiE`, `PolyFun`, `PAINTOR`, `CAVIAR`, `eCAVIAR`, `HyPrColoc`, `SMR`, `FUSION`, `S-PrediXcan`, `MAGMA`, `Pascal`
   - Best for: fine mapping, colocalization, TWAS, gene-level tests, and pathway analysis
+- `seismicGWAS`, `scDRS`, `CELLECT`, `MAGMA_Celltyping`, `RolyPoly`, `LDSC-SEG`
+  - Best for: linking GWAS or trait summary statistics to single-cell cell types, cell states, and driver-gene evidence
+  - Weaknesses: cell-type definitions, marker specificity, LD reference, and ancestry fit shape the result
 
 ## Specialized RNA And Liquid-Biopsy Tools
 
+- `TotalX`, `VASA-seq`, `Smart-seq-total`, `SUPeR-seq`, `RamDA-seq`
+  - Best for: single-cell total RNA or non-poly(A) RNA profiling, including coding and noncoding transcript classes
+  - Weaknesses: protocol-specific rRNA depletion, small-fragment handling, gene-model choice, and QC differ from standard 3 prime scRNA-seq
 - `nf-core/smrnaseq`, `miRDeep2`, `sRNAbench`, `miRge`, `miRTrace`, `ShortStack`
   - Best for: small RNA, miRNA, isomiR, piRNA, and related short RNA workflows
 - `rMATS`, `MAJIQ`, `SUPPA2`, `DEXSeq`, `JunctionSeq`, `LeafCutter`, `MISO`, `SplAdder`
@@ -581,6 +624,9 @@ Read `platforms.md` and `parameters.md` before committing to a platform-sensitiv
 - `histoCAT`, `imcRtools`, `Squidpy`, `Giotto`, `CODEX MAV`
   - Best for: multiplex imaging, IMC, CODEX, MIBI, and spatial single-cell tissue analysis
   - Weaknesses: segmentation and channel normalization quality limit downstream conclusions
+- `phenoptr`, `phenoptrReports`, `rtree`, `inForm`
+  - Best for: Akoya Phenoptics or inForm-linked mIF cell tables, phenotype reports, nearest-neighbor summaries, and spatial maps
+  - Weaknesses: marker thresholding, tissue segmentation, and exported table structure must be checked before statistics
 - `ST-Net`, `Hist2ST`, `HisToGene`, `THItoGene`, `iStar`, `STimage`, `FineST`
   - Best for: virtual spatial transcriptomics and histology-to-expression prediction
   - Weaknesses: outputs are inferred and need measured spatial or orthogonal validation

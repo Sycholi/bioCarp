@@ -19,7 +19,7 @@ When a task falls into a capability group:
 - read processing: read QC, trimming, demultiplexing, alignment, quantification, UMI handling, contamination review, and workflow execution
 - platform and parameter review: sequencing platforms, single-cell chemistries, spatial platforms, MS instruments, imaging scanners, acquisition modes, sample handling, run design, and parameter effects on results
 - RNA-seq and expression: RNA quantification, differential expression, expression matrix analysis
-- single-cell and spatial: scRNA-seq, CITE-seq, scATAC-seq, multiome, spatial transcriptomics, spatial proteomics, perturbation, velocity, communication, and neighborhood analysis
+- single-cell and spatial: scRNA-seq, CITE-seq, scATAC-seq, multiome, single-cell total RNA, spatial transcriptomics, spatial proteomics, perturbation, velocity, communication, GRN, survival-linked cell states, GWAS-linked cell states, gradients, spatially variable genes, and neighborhood analysis
 - variant analysis: germline, somatic, copy number, structural variants, phasing, imputation, HLA typing, MSI, TMB, signatures, and antigen-peptide handoff
 - epigenomics: ChIP-seq, CUT&Tag, CUT&Run, ATAC-seq, scATAC-seq, methylation, Hi-C, motif, footprinting, co-accessibility, and chromatin interaction
 - metagenomics and microbiome: 16S, ITS, shotgun metagenomics, metatranscriptomics, virome, strain analysis, MAGs, microbiome statistics, and host-microbe integration
@@ -28,7 +28,7 @@ When a task falls into a capability group:
 - temporal and ecological: time-series genomics, ecological genomics
 - immunology and clinical: immunoinformatics, clinical databases, clinical trial design, real-world evidence, target trial emulation, TCR/BCR, epidemiological genomics
 - clinical research and evidence: interventional, observational, diagnostic, prognostic, prediction, implementation, health-services, health-economic, translational, adaptive, master-protocol, registry, EHR, REDCap, OMOP, FHIR, CDISC, sample size, SAP, meta-analysis, network meta-analysis, pharmacovigilance, Mendelian randomization
-- specialized omics: proteomics, phosphoproteomics, immunopeptidomics, metabolomics, lipidomics, isotope tracing, metabolic flux, alternative splicing, long-read transcriptomics, CLIP-seq, ribo-seq, epitranscriptomics, RNA editing, chemoinformatics, and liquid biopsy
+- specialized omics: proteomics, phosphoproteomics, immunopeptidomics, metabolomics, lipidomics, isotope tracing, metabolic flux, single-cell total RNA, alternative splicing, long-read transcriptomics, CLIP-seq, ribo-seq, epitranscriptomics, RNA editing, chemoinformatics, and liquid biopsy
 - genetic epidemiology: GWAS, PheWAS, PRS, fine mapping, colocalization, QTL, TWAS, heritability, genetic correlation, and biobank genetics
 - RNA biology: small RNA-seq, epitranscriptomics, CLIP-seq, ribo-seq
 - phylogenetics and evolution: phylogenetics, population genetics, comparative genomics
@@ -52,7 +52,7 @@ Use these files first:
 - `upstream.md`: FASTQ-to-matrix, FASTQ-to-BAM, raw QC, demultiplexing, alignment, quantification, workflow pipelines, and MultiQC outputs
 - `variants.md`: germline variants, somatic variants, CNV, SV, HLA typing, mutational signatures, and variant-to-antigen handoff
 - `immunopeptidomics.md`: antigen peptides, neoantigens, MHC binding prediction, immunopeptidomics, and TCR-pMHC follow-up
-- `single-cell-advanced.md`: advanced single-cell, spatial, perturbation, virtual cell, single-cell drug prediction
+- `single-cell-advanced.md`: advanced single-cell, spatial, perturbation, virtual cell, single-cell drug prediction, GRN, survival-linked cell states, GWAS-linked cell states, and specialized spatial algorithms
 - `bulk-inference.md`: bulk regulator, pathway, deconvolution, co-expression, score inference
 - `multiomics.md`: bulk, single-cell, spatial, imaging, proteogenomic, metabolomic, and host-microbe multi-omics integration
 - `epigenomics.md`: ATAC, ChIP, CUT&Tag, CUT&Run, methylation, Hi-C, motif analysis, footprinting, and regulatory interpretation
@@ -66,7 +66,7 @@ Use these files first:
 - `clinical-data.md`: EHR, registry, REDCap, OMOP, FHIR, CDISC, SDTM, ADaM, terminology, and clinical data quality
 - `evidence-synthesis.md`: systematic review, meta-analysis, network meta-analysis, diagnostic and prognostic meta-analysis, Mendelian randomization, and pharmacovigilance
 - `genetic-epidemiology.md`: GWAS, PheWAS, PRS, fine mapping, colocalization, QTL, TWAS, LDSC, and biobank genetics
-- `specialized-omics.md`: small RNA, miRNA, splicing, isoforms, long-read transcriptomics, CLIP-seq, Ribo-seq, epitranscriptomics, RNA editing, cfDNA, ctDNA, CTC, and exosome assays
+- `specialized-omics.md`: single-cell total RNA, small RNA, miRNA, splicing, isoforms, long-read transcriptomics, CLIP-seq, Ribo-seq, epitranscriptomics, RNA editing, cfDNA, ctDNA, CTC, and exosome assays
 - `statistics.md`: downstream statistics, clinical models, visualization, figure checks, and report tables
 - `tool-issues.md`: version conflicts, unresolved issues, forum errors, GitHub issues
 - `literature.md` and `public-data.md`: literature and public data extraction

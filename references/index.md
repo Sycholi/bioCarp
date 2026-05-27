@@ -119,16 +119,17 @@ Triggers:
 
 - single-cell QC, ambient RNA, doublets, normalization, integration, clustering, or annotation
 - DropletUtils, miQC, scuttle, scater, scran, batchelor, FastMNN, BBKNN, Scanorama, STARsolo, kallisto-bustools, kb-python, alevin-fry, Cell Ranger ARC, or Space Ranger
-- CITE-seq, ADT, dsb, CiteFuse, totalVI, MultiVI, muon, Multigrate, scGLUE, Cobolt, scJoint, scBridge, scMaui, scDART, UnionCom, scTriangulate, scConfluence, or MEFISTO
+- CITE-seq, ADT, dsb, CiteFuse, totalVI, MultiVI, muon, Multigrate, scGLUE, Cobolt, scJoint, scBridge, scMaui, scDART, UnionCom, scTriangulate, scConfluence, scDecorr, scDREAMER, or MEFISTO
 - scType, scGate, UCell, AUCell, CellAssign, ProjecTILs, Symphony, popV, scPoli, treeArches, or CASSIA
-- phenotype-associated cell methods such as Scissor, SCIPAC, scPAS, or PACells
+- phenotype-associated cell methods such as Scissor, SCIPAC, scPAS, PACells, DEGAS, scSurv, or scSurvival
 - foundation models, virtual cells, virtual knockout, or in silico perturbation
-- Geneformer, scGPT, scFoundation, scTenifoldNet, scTenifoldKnk, CellOracle, or related tools
+- Geneformer, scGPT, scFoundation, scTenifoldNet, scTenifoldKnk, CellOracle, PSGRN, RegDiffusion, Scribe, SINGE, or related tools
 - drug prediction, drug repurposing, DrugReflector, scDrug, scDrug+, scDrugPrio, or drug2cell
 - perturbation databases, Perturb-seq, CROP-seq, sci-Plex, ECCITE-seq, Perturb-ATAC, SHARE-seq, Mixscape, pertpy, GEARS, CPA, chemCPA, CellOT, scVIDR, scCODA, MASC, DA-seq, or MELD
-- trajectory and velocity tools such as CellRank, dynamo, velocyto, Palantir, Waddington-OT, FateID, destiny or DPT, and CellRouter
+- trajectory, time-course, and velocity tools such as CellRank, dynamo, velocyto, Palantir, Waddington-OT, FateID, destiny or DPT, CellRouter, TrendCatcher, condiments, and Lamian
 - cell-cell and spatial communication tools such as COMMOT, SpaTalk, NATMI, SingleCellSignalR, iTALK, CellCall, MISTy, MEBOCOST, MultiNicheNet, NicheCompass, or Tensor-cell2cell
-- advanced spatial algorithms, niches, adjacency, neighborhood enrichment, BANKSY, CellCharter, Milo, BayesSpace, SpaGCN, GraphST, PRECAST, STAGATE, DeepST, SEDR, SpaSEG, SpatialDE, nnSVG, MERINGUE, DestVI, SPOTlight, STdeconvolve, SpatialDecon, STRIDE, SpaOTsc, novoSpaRc, CellTrek, or CytoSPACE
+- advanced spatial algorithms, niches, adjacency, neighborhood enrichment, BANKSY, CellCharter, Milo, BayesSpace, SpaGCN, GraphST, PRECAST, STAGATE, DeepST, SEDR, SpaSEG, SpatialDE, SpatialDE2, SPARK, SPARK-X, SLOPER, scBSP, SMASH, SpaGene, SpatialPCA, Sopa, FICTURE, CartoScope, sosta, SpaceWalker, nnSVG, MERINGUE, DestVI, SPOTlight, STdeconvolve, SpatialDecon, STRIDE, SpaOTsc, novoSpaRc, CellTrek, or CytoSPACE
+- single-cell and GWAS integration tools such as seismicGWAS, scDRS, CELLECT, MAGMA_Celltyping, RolyPoly, or LDSC-SEG
 - emerging named tools such as scALPI that require name and source verification
 
 ### Clinical Research, Real-World Evidence, And Clinical Data Standards
@@ -163,7 +164,7 @@ Use:
 Triggers:
 
 - systematic review, scoping review, meta-analysis, diagnostic meta-analysis, prognostic meta-analysis, network meta-analysis, umbrella review, pharmacovigilance, FAERS, VigiBase-style signal detection, or Mendelian randomization
-- GWAS, PheWAS, PRS, fine mapping, colocalization, TWAS, eQTL, pQTL, mQTL, sQTL, LDSC, genetic correlation, heritability, ancestry, imputation, UK Biobank, FinnGen, OpenGWAS, dbGaP, or GWAS Catalog
+- GWAS, PheWAS, PRS, fine mapping, colocalization, TWAS, eQTL, pQTL, mQTL, sQTL, LDSC, genetic correlation, heritability, ancestry, imputation, UK Biobank, FinnGen, OpenGWAS, dbGaP, GWAS Catalog, seismicGWAS, scDRS, CELLECT, MAGMA_Celltyping, RolyPoly, or LDSC-SEG
 
 ### Specialized RNA, Long-Read, And Liquid-Biopsy Assays
 
@@ -178,7 +179,7 @@ Use:
 
 Triggers:
 
-- small RNA, miRNA, piRNA, tRNA fragment, lncRNA, circRNA, alternative splicing, isoform, long-read transcriptomics, CLIP-seq, RIP-seq, Ribo-seq, epitranscriptomics, RNA editing, cfDNA, ctDNA, CTC, exosome RNA, liquid biopsy, fragmentomics, or MRD analysis
+- small RNA, miRNA, piRNA, tRNA fragment, lncRNA, circRNA, alternative splicing, isoform, long-read transcriptomics, single-cell total RNA, TotalX, VASA-seq, Smart-seq-total, SUPeR-seq, CLIP-seq, RIP-seq, Ribo-seq, epitranscriptomics, RNA editing, cfDNA, ctDNA, CTC, exosome RNA, liquid biopsy, fragmentomics, or MRD analysis
 
 ### Bulk Functional Inference
 
@@ -295,6 +296,7 @@ Triggers:
 
 - pathology imaging, radiomics, pathomics, WSI, H&E, IHC, IF, mIF, MxIF, CODEX, MIBI, IMC, CyCIF, or CyTOF-linked tissue analysis
 - automatic segmentation, automatic contouring, radiotherapy structure generation, nnU-Net, MONAI, TotalSegmentator, MedSAM, Cellpose, StarDist, QuPath, Hover-Net, Mesmer, or ilastik
+- multiplex imaging analysis tools such as phenoptr, phenoptrReports, rtree, inForm, histoCAT, imcRtools, MCMICRO, ASHLAR, or steinbock
 - virtual multiplex immunofluorescence, virtual staining, H&E-to-marker prediction, label-free-to-stain prediction, or sequential IHC virtual multiplexing
 - virtual spatial transcriptomics, histology-to-gene-expression prediction, spatial expression imputation, ST-Net, Hist2ST, HisToGene, THItoGene, iStar, BLEEP, STimage, or FineST
 

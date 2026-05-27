@@ -10,6 +10,26 @@ Before implementation, verify:
 - input level: FASTQ, BAM, junction counts, transcript abundance, circRNA candidates, small RNA counts, peak files, modification calls, isoform table, or liquid biopsy variant table
 - endpoint: differential expression, isoform switching, splicing, RNA-binding protein target, translation efficiency, RNA modification, RNA editing, minimal residual disease, or biomarker validation
 
+## Single-Cell Total RNA And Non-Poly(A) RNA
+
+Use this module when the assay profiles total RNA, non-poly(A) RNA, nascent RNA, small RNA fragments, or mixed coding and noncoding transcript classes at single-cell level.
+
+Current route:
+
+1. Confirm whether the assay is TotalX, VASA-seq, Smart-seq-total, SUPeR-seq, RamDA-seq, MATQ-seq, or another total-RNA protocol.
+2. Preserve chemistry, enzymatic steps, rRNA depletion, small-fragment handling, read structure, UMI convention, reference transcriptome, and gene biotype annotation.
+3. Separate coding genes, lncRNA, circRNA-supporting reads, small RNA, intronic, antisense, and repetitive or ribosomal content when the protocol supports those classes.
+4. Check protocol-specific background, rRNA fraction, fragment-size distribution, gene body coverage, strandedness, and annotation sensitivity before downstream clustering.
+5. Compare results with standard poly(A)-based scRNA-seq only after aligning gene sets and transcript classes.
+
+Required figures:
+
+- protocol workflow and read-structure summary
+- mapping category, rRNA fraction, gene biotype, and fragment-size plots
+- coding versus noncoding RNA detection plots
+- QC distributions by sample and chemistry
+- selected noncoding RNA feature plots, dot plots, and trend plots when biologically central
+
 ## Small RNA And miRNA
 
 Current route:
@@ -94,6 +114,8 @@ Required figures:
 Last checked: 2026-05-28.
 
 - nf-core/smrnaseq: https://nf-co.re/smrnaseq
+- TotalX paper: https://www.nature.com/articles/s41587-026-03068-6
+- TotalX open article: https://pmc.ncbi.nlm.nih.gov/articles/PMC12440072/
 - miRDeep2: https://github.com/rajewsky-lab/mirdeep2
 - sRNAbench: https://arn.ugr.es/srnatoolbox/srnabench/
 - rMATS: https://rnaseq-mats.sourceforge.io/

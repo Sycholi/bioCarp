@@ -63,6 +63,25 @@ Required figures:
 - TWAS or gene-based Manhattan plot
 - multi-layer evidence matrix for prioritized genes
 
+## Single-Cell And Trait Genetics Integration
+
+Use this module when GWAS, PRS, QTL, or biobank trait results are interpreted through single-cell or spatial cell states.
+
+Current route:
+
+1. Harmonize genome build, gene identifiers, trait labels, ancestry, LD reference, GWAS summary statistic format, and single-cell annotation.
+2. Use seismicGWAS, scDRS, CELLECT, MAGMA_Celltyping, RolyPoly, LDSC-SEG, or related tools according to whether the question targets cell types, individual cells, driver genes, or heritability enrichment.
+3. Check that cell-type specificity is not driven by annotation granularity, marker-gene leakage, sample composition, or tissue mismatch.
+4. For driver-gene claims, combine trait association with expression specificity, fine mapping, QTL, colocalization, and literature evidence.
+
+Required figures:
+
+- cell-type or cell-state trait association heatmap
+- single-cell trait score embedding or distribution when supported
+- driver-gene evidence table and gene-level plots
+- comparison across annotations, tissues, or reference atlases
+- fine-mapping or colocalization support for prioritized loci when available
+
 ## Source Index
 
 Last checked: 2026-05-28.
@@ -81,3 +100,7 @@ Last checked: 2026-05-28.
 - PRSice: https://choishingwan.github.io/PRSice/
 - LDpred2: https://privefl.github.io/bigsnpr/articles/LDpred2.html
 - PRS-CS: https://github.com/getian107/PRScs
+- seismicGWAS: https://ylaboratory.github.io/seismic/
+- seismic paper: https://www.nature.com/articles/s41467-025-63753-z
+- scDRS: https://github.com/martinjzhang/scDRS
+- CELLECT: https://github.com/perslab/CELLECT
