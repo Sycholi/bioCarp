@@ -1,4 +1,4 @@
-# R Repo Style Scan
+# R Style Scan
 
 Scanned root: `/home/fanglan96/r_repo`
 

@@ -1,16 +1,20 @@
-# Workflow Playbook
+# Routing
 
 ## Contents
 
 1. Intake checklist
 2. Data-to-analysis matrix
-3. Single-cell route
-4. Bulk and microarray route
-5. Spatial route
-6. Clinical and survival route
-7. Multi-omics integration route
-8. "What can this dataset do?" route
-9. Paper-oriented output chain
+3. Reference routing baseline
+4. Single-cell route
+5. Bulk and microarray route
+6. Spatial route
+7. Clinical and survival route
+8. Multi-omics integration route
+9. Metagenomics route
+10. Structural bioinformatics route
+11. Imaging route
+12. "What can this dataset do?" route
+13. Paper-oriented output chain
 
 ## Intake Checklist
 
@@ -18,13 +22,25 @@ Reconstruct these items before coding:
 
 - disease, tissue, and species
 - assay type and platform
-- sample unit: patient, sample, cell, spot, region, image, or slide
-- available metadata: response, stage, grade, survival, treatment, batch, tissue, clone
+- sample unit: patient, sample, cell, spot, region, image, slide, molecule, ligand, protein, contig, MAG, or microbial feature
+- available metadata: response, stage, grade, survival, treatment, batch, tissue, clone, collection site, scanner, sequencing run, structure source, or compound library
 - requested endpoint or biological axis
 - custom data, public data, or mixed validation
 - intended output: figure, table, reusable script, full draft result, or study design
 
 If any of these are missing and materially affect analysis logic, infer from files first. Ask the user only when the ambiguity is truly blocking.
+
+## Reference Routing Baseline
+
+After choosing a route from this file, use `index.md` to select the companion references for the data type, method family, and risk level. Every executable route must read `workflows.md` unless the task is purely conversational.
+
+Use the selected companion files to decide:
+
+- QC and preprocessing steps that cannot be skipped
+- package and model selection
+- required diagnostic and signature figures
+- recent literature figure types that should be reproduced for the module
+- conditions where the analysis should be marked blocked or exploratory
 
 ## Data-to-Analysis Matrix
 
@@ -136,6 +152,64 @@ Shortest route:
 3. project or validate that axis in the other modalities
 4. keep the figure narrative causal and compact
 
+### Metagenomics Or Microbiome
+
+Feasible branches:
+
+- amplicon ASV analysis
+- shotgun taxonomic profiling
+- functional profiling
+- differential abundance
+- microbiome diversity and ordination
+- MAG reconstruction and annotation
+- host-microbe integration
+
+Shortest route:
+
+1. define assay type, sample source, controls, and metadata
+2. run read QC and contamination review
+3. generate taxonomic or functional profiles
+4. run diversity and association analysis
+5. connect microbial features to phenotype, host omics, or literature
+
+### Structural Bioinformatics Or Virtual Screening
+
+Feasible branches:
+
+- structure retrieval or prediction
+- pocket and interface analysis
+- molecular docking
+- virtual screening
+- ADMET and chemoinformatics filtering
+- molecular dynamics and free-energy analysis
+
+Shortest route:
+
+1. define target, ligand, structure source, and endpoint
+2. validate structure and binding-site evidence
+3. run docking or structure prediction route
+4. validate poses or confidence metrics
+5. add MD or free-energy analysis only when the claim needs dynamics
+
+### Imaging, Radiomics, Or Virtual Spatial Omics
+
+Feasible branches:
+
+- radiomics feature extraction
+- WSI or pathology image classification
+- automatic segmentation or contouring
+- multiplex imaging and spatial phenotype analysis
+- virtual immunofluorescence or virtual staining
+- virtual spatial transcriptomics
+
+Shortest route:
+
+1. verify image format, resolution, modality, annotation, and patient split
+2. run image QC and segmentation or registration checks
+3. extract measured or predicted features
+4. evaluate model or biological association at patient or slide level
+5. validate against measured markers, annotations, or external cohorts
+
 ## Single-Cell Route
 
 Follow this order unless the request clearly narrows scope:
@@ -209,6 +283,18 @@ Prefer this sequence:
 2. map the signal into orthogonal modalities
 3. show convergence rather than collecting disconnected panels
 
+## Metagenomics Route
+
+Use this route when the key signal is microbial composition, microbial function, strain or MAG biology, or host-microbe association. Read `metagenomics.md` before implementation.
+
+## Structural Bioinformatics Route
+
+Use this route when the task depends on molecular structure, ligand binding, virtual screening, docking, molecular dynamics, or ADMET. Read `structural.md` before implementation.
+
+## Imaging Route
+
+Use this route when the task depends on radiomics, pathomics, WSI analysis, automatic segmentation, multiplex imaging, virtual staining, virtual immunofluorescence, or virtual spatial omics. Read `imaging.md` before implementation.
+
 ## "What Can This Dataset Do?" Route
 
 When the requester does not know what bioinformatics can contribute:
@@ -238,3 +324,4 @@ Keep the logic compact and traceable:
 6. optional communication, clonality, or spatial reinforcement
 
 Avoid building a figure set that is broader than the actual evidence.
+This limit does not permit dropping required diagnostic plots, package-signature visualizations, or literature-standard method plots. For every selected method, still generate the full figure set needed to judge that method, then choose the subset used in the final story.

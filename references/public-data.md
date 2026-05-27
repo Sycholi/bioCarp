@@ -1,4 +1,4 @@
-# Public Data And Literature Playbook
+# Public Data
 
 ## Contents
 
@@ -19,6 +19,8 @@ Build literature and public-data context in this order:
 5. processed matrix or object, if available
 6. raw-data portal only when needed
 7. official package or pipeline documentation for method reproduction
+8. `workflows.md` for the current QC, analysis, and figure baseline
+9. `tool-issues.md` for current issue trackers, known bugs, and accepted workarounds
 
 Do not claim to have preloaded the last decade of literature. Build a focused corpus around the actual disease, modality, and endpoint.
 
@@ -36,6 +38,10 @@ Use primary or source-adjacent portals first:
 - ArrayExpress for archived expression studies
 - EGA when controlled-access studies matter
 - Human Protein Atlas for expression and pathology support
+- ENA, MGnify, Qiita, HMP, GMrepo, and curated SRA projects for microbiome and metagenomics
+- PDB, AlphaFold DB, UniProt, ChEMBL, PubChem, BindingDB, DrugBank, ZINC, and PDBbind for structural and ligand data
+- TCIA, CPTAC imaging collections, Cancer Imaging Archive-linked TCGA cohorts, IDC, and institutional DICOM exports for radiomics and contouring
+- public WSI and multiplex imaging resources linked to TCGA, CPTAC, HuBMAP, HTAN, CODEX, MIBI, IMC, or spatial transcriptomics papers
 
 Secondary discovery portals may help, but always reconcile claims back to the primary source paper or official dataset record.
 
@@ -52,9 +58,12 @@ Extract these fields for every key paper:
 - QC thresholds
 - major statistical models
 - key pathway or signature methods
+- module-specific workflow steps and required diagnostic plots
+- package limitations, issue tracker notes, or code workarounds reported by the authors
 - validation cohort or orthogonal experiments
 - accession numbers
 - main figures tied to the core claim
+- supplementary figures needed to judge the method
 - explicit limitations or caveats
 
 Convert the extraction into a compact table or note so the analysis logic can be traced to evidence.
@@ -70,6 +79,7 @@ Before saying a result is reproduced, verify:
 - exclusion criteria are documented
 - statistical method is matched closely enough
 - figure-level directionality matches the paper
+- required package-signature and literature-standard method plots are reproduced or recorded as blocked with the exact reason
 
 If the requested target still fails:
 

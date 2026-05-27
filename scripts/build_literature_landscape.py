@@ -23,6 +23,9 @@ MODALITY_PATTERNS = {
     "ATAC-seq": [r"\bATAC[- ]seq\b", r"\bchromatin accessibility\b"],
     "TCR/BCR repertoire": [r"\bTCR\b", r"\bBCR\b", r"\bclonotype\b", r"\brepertoire\b"],
     "proteomics": [r"\bproteom", r"\bCPTAC\b"],
+    "metagenomics": [r"\bmetagenom", r"\bmicrobiom", r"\b16s\b", r"\bshotgun\b", r"\bMAGs?\b"],
+    "structural bioinformatics": [r"\bprotein structure\b", r"\balphafold\b", r"\bdocking\b", r"\bmolecular dynamics\b", r"\bvirtual screening\b"],
+    "imaging": [r"\bradiomics\b", r"\bpathomics\b", r"\bwhole[- ]slide\b", r"\bWSI\b", r"\bimmunofluorescence\b", r"\bsegmentation\b", r"\bnnU[- ]?Net\b"],
 }
 
 METHOD_PATTERNS = {
@@ -43,6 +46,22 @@ METHOD_PATTERNS = {
     "Startrac": [r"\bstartrac\b"],
     "CIBERSORTx": [r"\bcibersortx\b", r"\bcibersort\b"],
     "MOFA2": [r"\bmofa2\b"],
+    "QIIME2": [r"\bqiime ?2\b"],
+    "DADA2": [r"\bdada2\b"],
+    "Kraken2": [r"\bkraken ?2\b"],
+    "MetaPhlAn": [r"\bmetaphlan\b"],
+    "HUMAnN": [r"\bhumann\b"],
+    "ANCOM-BC": [r"\bancom[- ]bc\b", r"\bancombc\b"],
+    "MaAsLin2": [r"\bmaaslin ?2\b"],
+    "AlphaFold": [r"\balphafold\b"],
+    "AutoDock Vina": [r"\bvina\b", r"\bautodock\b"],
+    "GNINA": [r"\bgnina\b"],
+    "GROMACS": [r"\bgromacs\b"],
+    "OpenMM": [r"\bopenmm\b"],
+    "nnU-Net": [r"\bnnu[- ]?net\b", r"\bnnU[- ]?Net\b"],
+    "MONAI": [r"\bmonai\b"],
+    "Cellpose": [r"\bcellpose\b"],
+    "StarDist": [r"\bstardist\b"],
 }
 
 ACCESSION_PATTERNS = {
@@ -53,6 +72,8 @@ ACCESSION_PATTERNS = {
     "EGA": r"\bEGAS\d+\b",
     "TCGA": r"\bTCGA\b",
     "CPTAC": r"\bCPTAC\b",
+    "PDB": r"\bPDB\s*[A-Z0-9]{4}\b|\bPDB ID\b",
+    "TCIA": r"\bTCIA\b",
 }
 
 
@@ -207,7 +228,7 @@ def detect_labels(text, pattern_map):
     lowered = text.lower()
     labels = []
     for label, patterns in pattern_map.items():
-        if any(re.search(pattern, lowered) for pattern in patterns):
+        if any(re.search(pattern, lowered, flags=re.IGNORECASE) for pattern in patterns):
             labels.append(label)
     return labels
 

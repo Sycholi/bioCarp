@@ -1,4 +1,4 @@
-# Literature Intelligence
+# Literature
 
 ## Contents
 
@@ -39,13 +39,15 @@ Start with PubMed or PMC and then move to official accession portals and source-
 
 The first pass should be broad enough to map the field. The second pass should be narrow enough to support the exact design or analysis request.
 
+For method implementation, add a third pass when needed: collect recent papers using the same package family or modality and extract the complete module workflow and plot set. This pass is required for trajectory, RNA velocity, cell-cell communication, spatial transcriptomics, ATAC-seq, ChIP-seq, methylation, immune repertoire, CNV, survival modeling, multi-omics integration, metagenomics, molecular docking, molecular dynamics, virtual screening, radiomics, automatic segmentation, virtual immunofluorescence, and virtual spatial omics.
+
 ## Query Decomposition
 
 Break the question into a query grid:
 
 - disease: hepatocellular carcinoma, colorectal cancer, glioblastoma, AML
 - tissue: primary tumor, adjacent normal, metastatic lesion, PBMC, ascites
-- modality: bulk RNA-seq, microarray, scRNA-seq, Visium, TCR-seq, ATAC-seq
+- modality: bulk RNA-seq, microarray, scRNA-seq, Visium, TCR-seq, ATAC-seq, metagenomics, microbiome, radiomics, WSI, molecular docking, molecular dynamics
 - phenotype: response, relapse, grade, survival, metastasis, lineage state
 - biology: macrophage, CAF, stemness, hypoxia, lipid remodeling, ferroptosis
 - validation: TCGA, GEO, CPTAC, HPA, external single-cell cohort
@@ -73,9 +75,14 @@ Extract these fields into a structured table:
 - differential-analysis model
 - pathway or signature strategy
 - trajectory, communication, CNV, clonality, or survival modules
+- microbiome, structural, docking, dynamics, virtual screening, imaging, segmentation, or virtual spatial modules when present
 - validation cohort or orthogonal experiment
 - accession numbers
 - main-claim figure chain
+- method-specific main and supplementary plot types, including diagnostic and package-signature plots
+- package versions, database versions, genome build, and annotation source when reported
+- whether the paper follows the current module route in `workflows.md` or uses an older route
+- reported tool limitations, version-specific caveats, and supplementary code workarounds when visible
 - direct relevance to the user's request
 - whether the extraction came from full text or abstract only
 
@@ -112,6 +119,9 @@ From each relevant paper, capture every reusable accession or portal record:
 - cBioPortal study
 - EGA accession when controlled access matters
 - HPA or GTEx resource used for validation
+- ENA, MGnify, Qiita, HMP, or microbiome project identifiers
+- PDB, UniProt, ChEMBL, PubChem, BindingDB, ZINC, or PDBbind identifiers
+- TCIA, IDC, WSI, CODEX, MIBI, IMC, or spatial imaging dataset identifiers
 
 Also capture:
 

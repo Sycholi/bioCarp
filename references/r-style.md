@@ -1,4 +1,4 @@
-# R Repo Style
+# R Style
 
 ## Snapshot
 
@@ -13,7 +13,7 @@ This summary reflects a scan of `~/r_repo` on 2026-04-19.
 Refresh the machine-generated scan with:
 
 ```bash
-python3 scripts/summarize_r_repo.py --repo ~/r_repo --output references/r-repo-style-scan.md
+python3 scripts/summarize_r_repo.py --repo ~/r_repo --output references/r-style-scan.md
 ```
 
 ## Dominant Startup Pattern

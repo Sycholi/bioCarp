@@ -1,4 +1,4 @@
-# Tool Landscape
+# Tools
 
 ## Contents
 
@@ -9,7 +9,10 @@
 5. Spatial and deconvolution tools
 6. Immune-repertoire tools
 7. Multi-omics tools
-8. Selection checklist
+8. Metagenomics and microbiome tools
+9. Structural and chemoinformatics tools
+10. Imaging and segmentation tools
+11. Selection checklist
 
 ## How To Use This File
 
@@ -21,6 +24,8 @@ Use this file when the request asks for:
 - which route should be chosen for a dataset
 
 This file is a family map, not a package encyclopedia. Use it to narrow to a route, then read official package documentation before implementation.
+
+Before implementation, use `index.md` to load the companion files that match the route. Those files define current workflows, advanced methods, bulk inference, figure requirements, and tool issue review.
 
 ## Core Selection Rule
 
@@ -34,6 +39,12 @@ Choose the route that satisfies all four conditions:
 Do not switch to a newer package only because it is newer. Switch only when the biological fit, statistical fit, or scale requirement is materially better.
 
 ## Bulk And Cohort Tools
+
+### Raw RNA-seq preprocessing
+
+- `nf-core/rnaseq`
+  - Best for: FASTQ-to-count RNA-seq workflows with standardized QC, quantification, MultiQC, and versioned outputs
+  - Weaknesses: downstream statistical design and biological interpretation still need separate analysis
 
 ### Differential expression
 
@@ -108,6 +119,12 @@ Do not switch to a newer package only because it is newer. Switch only when the 
   - Best for: difficult batch structure, large heterogeneous cohorts, probabilistic latent modeling
   - Strengths: strong integration performance
   - Weaknesses: heavier Python dependence and extra environment complexity
+- `Scanpy`
+  - Best for: AnnData-first workflows, large-scale Python analysis, and interoperability with scVelo, Squidpy, and scirpy
+  - Weaknesses: less aligned with the user's R-first plotting style
+- `SingleCellExperiment`
+  - Best for: Bioconductor-native workflows and sample-aware statistical analysis
+  - Weaknesses: less direct handoff to Seurat-specific plotting scripts
 
 ### Annotation
 
@@ -163,6 +180,12 @@ Do not switch to a newer package only because it is newer. Switch only when the 
   - Weaknesses: not appropriate unless velocity assumptions and inputs are satisfied
 - `CytoTRACE` / `CytoTRACE2`
   - Best for: differentiation potential rather than explicit branch structure
+- `condiments`, `Lamian`
+  - Best for: formal comparison of trajectories across conditions or samples
+  - Weaknesses: require careful design and sufficient replicate structure
+- `DeepVelo`, `TFvelo`
+  - Best for: specialized velocity models when their assumptions fit
+  - Weaknesses: heavier model assumptions and higher environment cost
 
 ### Cell-cell communication
 
@@ -209,6 +232,9 @@ Do not switch to a newer package only because it is newer. Switch only when the 
 - `squidpy`
   - Best for: Scanpy/Python spatial ecosystems
   - Weaknesses: added Python complexity in an R-first environment
+- `SpatialExperiment`
+  - Best for: Bioconductor-native spatial object management
+  - Weaknesses: usually needs companion tools for rich spatial statistics and plotting
 
 ### Spatial statistics and deconvolution
 
@@ -220,6 +246,12 @@ Do not switch to a newer package only because it is newer. Switch only when the 
   - Best for: cell-type deconvolution into spots
   - Strengths: useful when paired single-cell references exist
   - Weaknesses: conclusions are only as good as reference quality and platform compatibility
+- `SpatialDWLS`
+  - Best for: Giotto-linked deconvolution workflows
+  - Weaknesses: depends on signature quality
+- `Squidpy`
+  - Best for: Python spatial neighborhood, co-occurrence, image, and ligand-receptor workflows
+  - Weaknesses: added Python complexity in an R-first environment
 
 ## Immune-Repertoire Tools
 
@@ -233,6 +265,9 @@ Do not switch to a newer package only because it is newer. Switch only when the 
   - Best for: bulk or repertoire-centric summaries
 - `scirpy`
   - Best for: Python/Scanpy ecosystems
+- `Dandelion`
+  - Best for: richer single-cell BCR/TCR network and receptor-lineage workflows
+  - Weaknesses: extra Python or mixed ecosystem complexity
 
 ## Multi-Omics Tools
 
@@ -242,6 +277,18 @@ Do not switch to a newer package only because it is newer. Switch only when the 
 - `ArchR`
   - Best for: large-scale scATAC projects with richer ATAC tooling
   - Weaknesses: larger framework shift
+- `nf-core/atacseq` and ENCODE ATAC pipeline
+  - Best for: raw bulk ATAC-seq preprocessing, QC, consensus peaks, and differential accessibility-ready outputs
+  - Weaknesses: pipeline outputs still need biological interpretation in R or Python
+- `nf-core/chipseq` and ENCODE ChIP-seq pipelines
+  - Best for: raw ChIP-seq, CUT&Tag, or CUT&Run preprocessing, QC, peak calling, and normalized tracks
+  - Weaknesses: broad marks, narrow marks, and CUT&Tag protocols need different settings
+- `nf-core/cutandrun`
+  - Best for: CUT&RUN and CUT&Tag protocol-aware preprocessing, QC, and peak outputs
+- `DiffBind`, `csaw`, `ChIPseeker`
+  - Best for: differential binding, window-based signal testing, peak annotation, enrichment, metaplots, and heatmaps
+- `minfi`, `sesame`, `DMRcate`, `missMethyl`
+  - Best for: methylation array QC, normalization, DMPs, DMRs, and methylation-aware enrichment
 - `MOFA2`
   - Best for: latent-factor integration across multiple omics
 - `mixOmics`
@@ -250,6 +297,83 @@ Do not switch to a newer package only because it is newer. Switch only when the 
   - Best for: classical cancer multi-omics subtype integration
 - Seurat `WNN`
   - Best for: multimodal single-cell integration when Seurat is already the backbone
+- `MultiAssayExperiment`
+  - Best for: organizing partially matched multi-assay cohorts
+
+## Metagenomics And Microbiome Tools
+
+- `QIIME 2`
+  - Best for: marker-gene microbiome workflows, metadata-aware visualizations, and documented analysis artifacts
+  - Weaknesses: plugin versions and artifact formats need careful recording
+- `DADA2`
+  - Best for: ASV inference in R or QIIME 2-linked workflows
+  - Weaknesses: truncation and quality choices strongly affect retained reads
+- `Kraken2` plus `Bracken`
+  - Best for: fast shotgun read classification and abundance estimation
+  - Weaknesses: database composition can dominate results
+- `MetaPhlAn`
+  - Best for: marker-gene shotgun profiling and cross-study species-level comparability
+  - Weaknesses: may miss organisms outside marker coverage
+- `HUMAnN`
+  - Best for: gene-family and pathway functional profiling from shotgun data
+  - Weaknesses: pathway coverage depends on database and taxonomic profiling
+- `ANCOM-BC2`, `ALDEx2`, `MaAsLin2`, `LinDA`
+  - Best for: differential abundance and metadata association in compositional microbiome data
+  - Weaknesses: methods answer related but distinct statistical questions
+- `MEGAHIT`, `metaSPAdes`, `metaFlye`
+  - Best for: metagenome assembly
+  - Weaknesses: assembly quality depends heavily on depth, complexity, and contamination
+- `MetaBAT2`, `MaxBin2`, `CONCOCT`, `DAS Tool`, `CheckM2`, `GTDB-Tk`, `dRep`
+  - Best for: MAG binning, refinement, quality assessment, taxonomy, and dereplication
+  - Weaknesses: MAG claims need quality thresholds and abundance support
+
+## Structural And Chemoinformatics Tools
+
+- `AlphaFold`, `ColabFold`, `AlphaFold-Multimer`
+  - Best for: protein or protein-complex structure prediction when sequence evidence and confidence metrics are suitable
+  - Weaknesses: low-confidence regions, conformational states, ligands, and disorder need caution
+- `AlphaFold 3`, `Chai-1`, `Boltz`
+  - Best for: broader biomolecular interaction prediction, including complexes and selected ligand or nucleic-acid contexts
+  - Weaknesses: access, license, molecule support, and benchmark status must be checked for each task
+- `AutoDock Vina`, `Smina`, `rDock`
+  - Best for: classical molecular docking and virtual screening
+  - Weaknesses: score ranking alone is insufficient
+- `GNINA`, `DiffDock`
+  - Best for: deep-learning-assisted docking or pose prediction
+  - Weaknesses: model domain and validation controls matter
+- `GROMACS`, `OpenMM`, `AMBER`, `NAMD`
+  - Best for: molecular dynamics and simulation diagnostics
+  - Weaknesses: setup choices can dominate conclusions
+- `RDKit`, `DeepChem`, `Therapeutics Data Commons`, `SwissADME`
+  - Best for: ligand preparation, chemical descriptors, QSAR, ADMET, and virtual-screening postprocessing
+  - Weaknesses: predictions need experimental or literature validation before biological claims
+
+## Imaging And Segmentation Tools
+
+- `nnU-Net`
+  - Best for: strong baseline automatic segmentation in compatible biomedical imaging tasks
+  - Weaknesses: label quality, patient-level splits, and inference spacing must be controlled
+- `MONAI`
+  - Best for: flexible deep-learning medical imaging pipelines
+  - Weaknesses: more implementation choices than nnU-Net
+- `TotalSegmentator`
+  - Best for: broad pretrained CT organ and structure segmentation
+  - Weaknesses: task-specific tumors or local protocols still need validation
+- `MedSAM` and SAM-derived models
+  - Best for: promptable or foundation-model-assisted segmentation
+  - Weaknesses: output must be checked against domain annotations
+- `pyradiomics`
+  - Best for: handcrafted radiomics feature extraction
+  - Weaknesses: preprocessing, segmentation, scanner, and feature stability dominate results
+- `QuPath`, `Cellpose`, `StarDist`, `Hover-Net`, `Mesmer`, `ilastik`
+  - Best for: pathology, nuclei, cell, tissue, and multiplex-image segmentation
+  - Weaknesses: marker panel and tissue morphology can require retraining or manual review
+- `histoCAT`, `imcRtools`, `Squidpy`, `Giotto`, `CODEX MAV`
+  - Best for: multiplex imaging, IMC, CODEX, MIBI, and spatial single-cell tissue analysis
+  - Weaknesses: segmentation and channel normalization quality limit downstream conclusions
+- `ST-Net`, `Hist2ST`, `HisToGene`, `THItoGene`, `iStar`, `STimage`, `FineST`
+  - Best for: virtual spatial transcriptomics and histology-to-expression prediction
+  - Weaknesses: outputs are inferred and need measured spatial or orthogonal validation
 
 ## Selection Checklist
 
