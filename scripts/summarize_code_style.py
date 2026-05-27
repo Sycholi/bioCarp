@@ -69,9 +69,9 @@ def summarize_repo(root: pathlib.Path) -> str:
               workflow_counts[tag] += 1
 
     lines = []
-    lines.append("# R Repo Style Scan")
+    lines.append("# R Analysis Code Style Scan")
     lines.append("")
-    lines.append(f"Scanned root: `{root}`")
+    lines.append("This summary is an abstracted style scan. It does not record local paths.")
     lines.append("")
     lines.append("## Snapshot")
     lines.append("")
@@ -106,8 +106,8 @@ def summarize_repo(root: pathlib.Path) -> str:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Summarize an r_repo style snapshot.")
-    parser.add_argument("--repo", default="~/r_repo", help="Path to the R repository root")
+    parser = argparse.ArgumentParser(description="Summarize an R analysis code-style snapshot.")
+    parser.add_argument("--repo", required=True, help="Path to a directory containing representative R scripts")
     parser.add_argument("--output", help="Optional output markdown file")
     args = parser.parse_args()
 

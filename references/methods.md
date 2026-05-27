@@ -67,14 +67,14 @@ Use when:
 
 Use when:
 
-- the user wants alignment with the existing local codebase
+- the task should follow the established R-first code style
 - metadata-aware batch correction is enough
 - figure production must stay close to the user's established style
 - the object is already Seurat-based and downstream modules are R-first
 
 Strengths:
 
-- dominant pattern in `~/r_repo`
+- dominant pattern in the project-style reference
 - easy handoff to downstream Seurat modules
 - Seurat v5 layer-aware workflows are preferred for new Seurat projects when the object structure fits
 
@@ -192,7 +192,7 @@ Use when:
 
 Strengths:
 
-- already embedded in the local library
+- already common in the established analysis workflow
 
 ### NicheNet or Other Prior-Knowledge Tools
 

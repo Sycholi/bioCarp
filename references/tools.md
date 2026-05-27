@@ -33,7 +33,7 @@ Choose the route that satisfies all four conditions:
 
 1. it answers the biological question directly
 2. it fits the actual data structure
-3. it stays close to the user's `~/r_repo` execution style when scientific fit is comparable
+3. it stays close to the established project code style when scientific fit is comparable
 4. it avoids unnecessary environment complexity
 
 Do not switch to a newer package only because it is newer. Switch only when the biological fit, statistical fit, or scale requirement is materially better.
@@ -103,7 +103,7 @@ Do not switch to a newer package only because it is newer. Switch only when the 
 
 - `Seurat`
   - Best for: end-to-end R workflows, broad plotting, metadata-centric analysis
-  - Strengths: dominant in the user's local library, easy handoff to downstream modules
+  - Strengths: consistent with the established R-first workflow, easy handoff to downstream modules
   - Weaknesses: some advanced scaling or probabilistic integration tasks are better elsewhere
 - `Harmony`
   - Best for: metadata-aware batch correction inside Seurat workflows
@@ -196,7 +196,7 @@ Do not switch to a newer package only because it is newer. Switch only when the 
 - `CellPhoneDB`
   - Best for: canonical ligand-receptor interaction testing
   - Strengths: widely known
-  - Weaknesses: Python workflow and less aligned with the local R-first style
+  - Weaknesses: Python workflow and less aligned with the established R-first style
 - `NicheNet`
   - Best for: ligand-to-target prioritization
   - Strengths: stronger when downstream target programs matter
@@ -386,4 +386,4 @@ Before locking the route, answer all of these:
 5. Does it materially improve the scientific fit over the user's existing route?
 6. Is the environment cost justified?
 
-If the answer to 5 or 6 is weak, stay with the route that is already coherent in `~/r_repo`.
+If the answer to 5 or 6 is weak, stay with the route that is already coherent with the established project style.

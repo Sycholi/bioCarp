@@ -7,7 +7,7 @@ Use this file first after `SKILL.md`. It maps task types to the smallest set of 
 Read these in order:
 
 1. `routing.md` for request intake, data-type routing, and paper-oriented output logic.
-2. `r-style.md` for the user's local R style before writing substantial R scripts.
+2. `r-style.md` for the abstract R analysis code style before writing substantial R scripts.
 3. `coverage.md` for complete capability scope.
 4. `execution.md` for sub-agent use, goal handling, tool deployment, figure inspection, result interpretation, and phase documentation.
 5. `learning.md` for user-level assessment, proactive method suggestions, bug learning, and method updates.

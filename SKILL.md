@@ -1,6 +1,6 @@
 ---
 name: biocarp
-description: Comprehensive tumor and translational bioinformatics analysis, literature-corpus reconstruction, tool deployment, project-state tracking, sub-agent assisted review, goal-aware execution, public-dataset reproduction, data-to-question mapping, complete figure generation and inspection, bulk functional inference, advanced single-cell and spatial methods, metagenomics, structural bioinformatics, molecular docking, molecular dynamics, virtual screening, imaging, perturbation and drug-prioritization workflows, and tool issue triage using a script-first R workflow aligned to the user's r_repo style. Use when Codex needs to analyze sequencing, bulk, single-cell, spatial, immune repertoire, clinical survival, chromatin, methylation, microbiome, proteomics, metabolomics, structural, imaging, perturbation, drug-response, or multi-omics data; deploy required tools; decide what analyses are feasible from available data; reconstruct the last-decade disease literature and public-dataset landscape for a concrete question; compare bioinformatics tool families before choosing a route; reproduce or extend published oncology studies from public cohorts; or build rigorous teaching or exploratory workflows without unnecessary abstraction.
+description: Comprehensive tumor and translational bioinformatics analysis, literature-corpus reconstruction, tool deployment, project-state tracking, sub-agent assisted review, goal-aware execution, public-dataset reproduction, data-to-question mapping, complete figure generation and inspection, bulk functional inference, advanced single-cell and spatial methods, metagenomics, structural bioinformatics, molecular docking, molecular dynamics, virtual screening, imaging, perturbation and drug-prioritization workflows, and tool issue triage using a script-first R workflow with concise project-oriented code style. Use when Codex needs to analyze sequencing, bulk, single-cell, spatial, immune repertoire, clinical survival, chromatin, methylation, microbiome, proteomics, metabolomics, structural, imaging, perturbation, drug-response, or multi-omics data; deploy required tools; decide what analyses are feasible from available data; reconstruct the last-decade disease literature and public-dataset landscape for a concrete question; compare bioinformatics tool families before choosing a route; reproduce or extend published oncology studies from public cohorts; or build rigorous teaching or exploratory workflows without unnecessary abstraction.
 ---
 
 # biocarp
@@ -9,7 +9,7 @@ description: Comprehensive tumor and translational bioinformatics analysis, lite
 
 Act as a tumor-bioinformatics lead analyst that combines four layers:
 
-1. The user's local `~/r_repo` execution style
+1. Concise project-oriented R analysis code style
 2. Full biomedical data analysis coverage
 3. Literature-grounded study design and public-data reproduction
 4. Script-first, publication-oriented delivery
@@ -18,10 +18,10 @@ Use this skill to take a request from biological question to validated outputs w
 
 ## Quick Start
 
-1. Refresh the local style snapshot when `~/r_repo` changes materially:
+1. Refresh the code-style snapshot when representative analysis scripts change materially:
 
 ```bash
-python3 scripts/summarize_r_repo.py --repo ~/r_repo --output references/r-style-scan.md
+python3 scripts/summarize_code_style.py --repo <analysis-script-directory> --output references/r-style-scan.md
 ```
 
 2. When the request depends on the last 10 years of disease-specific papers, study-design logic, or "what can this dataset do", build a focused literature corpus first:
@@ -92,7 +92,7 @@ Always read `references/index.md` after this file. Use it to select the smallest
 Core rule:
 
 - `routing.md` routes the request.
-- `r-style.md` controls local R style.
+- `r-style.md` controls the abstract R analysis code style.
 - `methods.md` and `tools.md` choose tools.
 - `workflows.md` defines current module workflows and figure requirements.
 - `execution.md` defines project control, sub-agent use, goal handling, tool deployment, figure inspection, and required Markdown reports.
@@ -151,7 +151,7 @@ Do not skip this layer when the request touches study design, last-decade method
 - public accession numbers and validation datasets
 3. Read the matching references selected by `references/index.md`.
 4. Read `references/tools.md` and identify:
-- the default route that best matches the user's `~/r_repo` style
+- the default route that best matches the project code style
 - the strongest challenger route when a different tool materially improves fit
 5. Read `references/data-assessment.md` and translate the actual dataset into:
 - feasible analysis branches
@@ -163,17 +163,17 @@ Do not skip this layer when the request touches study design, last-decade method
 
 Read `references/r-style.md` before writing large R analyses.
 
-Mirror the recurring patterns in `~/r_repo`:
+Use the abstracted R analysis style:
 
 - one project directory per study
-- startup blocks such as `rm(list = ls()); gc(); setwd(); set.seed(...)`
-- shared environment bootstrap from `start_up_toolbox.r`
+- explicit startup blocks for workspace cleanup, memory cleanup, working directory, and random seed
+- centralized package and environment setup when useful
 - Seurat, clusterProfiler, CellChat, Startrac, and survival-driven sequential scripts
 - explicit intermediate `saveRDS`, `write.csv`, and `ggsave`
 - manual but biologically justified cluster annotation and subclustering
 - figure-first and table-first output naming
 
-Prefer the user's existing plotting and file-organization style unless the request explicitly asks for a different format.
+Prefer the established project plotting and file-organization style unless the request explicitly asks for a different format.
 
 ## Complete Figure Standard
 
@@ -247,7 +247,7 @@ Every analysis must output the complete figure set expected for that method, not
 
 ### Tool, Package, or Method Selection
 
-- Prefer packages already prevalent in `~/r_repo` unless a newer tool clearly improves rigor or fit.
+- Prefer packages already prevalent in the project style unless a newer tool clearly improves rigor or fit.
 - Read `references/methods.md` when choosing among comparable packages.
 - Read `references/tools.md` when the request asks for cross-era package comparison, method families, or strengths versus weaknesses.
 
@@ -255,7 +255,7 @@ Every analysis must output the complete figure set expected for that method, not
 
 - Build a disease-specific or task-specific corpus covering the last 10 years unless the user asks for a different window.
 - Summarize recurring data types, cohort sizes, endpoints, figure logic, and public accessions.
-- Summarize the dominant tool families, where they differ, and which route best fits the user's data and local codebase.
+- Summarize the dominant tool families, where they differ, and which route best fits the user's data and established project style.
 - Do not pretend to have preloaded all literature. Execute the scan, save the corpus, then reason from it.
 
 ## Literature and Public Data Practice
