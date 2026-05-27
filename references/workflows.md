@@ -33,7 +33,7 @@ Use these companion files for detailed routes that should not be duplicated here
 - `epigenomics.md` for ATAC, ChIP, CUT&Tag, CUT&Run, methylation, Hi-C, motif, footprinting, and regulatory interpretation
 - `proteomics.md` for DDA, DIA, TMT, LFQ, PTM, phosphoproteomics, targeted proteomics, and proteogenomics
 - `metabolomics.md` for untargeted and targeted metabolomics, lipidomics, isotope tracing, metabolic flux, and metabolic modeling
-- `clinical-research.md` for clinical trial design, sample size, power, endpoint definition, SAP logic, safety, PRO, and reporting
+- `clinical-research.md` for clinical design taxonomy, sample size, power, endpoint definition, SAP logic, safety, PRO, implementation, health economics, translational study logic, and reporting
 - `causal-inference.md` for target trial emulation, real-world evidence, external controls, matching, weighting, and quasi-experimental designs
 - `clinical-data.md` for EHR, registry, REDCap, OMOP, FHIR, CDISC, SDTM, ADaM, terminology, and clinical data quality
 - `evidence-synthesis.md` for systematic review, meta-analysis, network meta-analysis, Mendelian randomization, and pharmacovigilance
@@ -361,12 +361,12 @@ Primary sources to check:
 
 Current route:
 
-1. Read `clinical-research.md` for trial design, endpoint, SAP, sample size, safety, PRO, and reporting.
+1. Read `clinical-research.md` for clinical design taxonomy, endpoint, SAP, sample size, safety, PRO, implementation, health economics, translational study logic, and reporting.
 2. Read `causal-inference.md` when the task involves observational treatment comparison, external controls, real-world evidence, target trial emulation, or causal claims.
 3. Read `clinical-data.md` when data come from EHR, registry, claims, REDCap, OMOP, FHIR, CDISC, SDTM, ADaM, or mapped terminology.
 4. Define the population, intervention or exposure, comparator, endpoint, time zero, follow-up, analysis set, missing-data process, and reporting standard before calculation or modeling.
-5. For single-arm studies, state historical benchmark, null and alternative values, precision or power target, stopping rule, and endpoint assessment schedule.
-6. For two-arm and multi-arm studies, define allocation ratio, endpoint scale, effect size, power, sidedness, dropout, multiplicity, and interim rules when present.
+5. Match the design family to the clinical question, endpoint, evidence gap, operational constraints, and reporting standard.
+6. For controlled, uncontrolled, adaptive, sequential, diagnostic, prediction, implementation, or health-economic designs, state the assumptions that determine feasibility and interpretation.
 7. For target trial emulation, write the target-trial protocol table before extracting data and check time-zero alignment, eligibility, treatment assignment, follow-up, and censoring.
 8. Use `parameters.md` for endpoint assumptions, event rates, margins, dropout, matching, weighting, trimming, missing data, and sensitivity settings.
 

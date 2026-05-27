@@ -79,3 +79,22 @@
 - 输出结果：研究设计表、样本量和 power 曲线、目标试验协议表、平衡图、权重图、临床数据质量表、meta 分析 forest、funnel、network 图、GWAS Manhattan 和 QQ 图、PRS 校准图、colocalization 图、small RNA、splicing、isoform、CLIP、Ribo-seq、RNA modification、RNA editing、fragmentomics 和 ctDNA 图、平台表、参数决策表、before-after 计数表和参数敏感性图。
 - 局限性：临床设计依赖真实终点和假设；真实世界研究依赖时间零点、处理过程、测量过程和缺失数据；遗传流行病学依赖祖源、LD reference 和等位基因匹配；平台比较依赖厂商文档和原始 QC；参数敏感性不能替代实验验证。
 - 已更新的本地参考文件：`SKILL.md`、`README.md`、`references/index.md`、`references/coverage.md`、`references/routing.md`、`references/methods.md`、`references/tools.md`、`references/workflows.md`、`references/upstream.md`、`references/single-cell-advanced.md`、`references/proteomics.md`、`references/metabolomics.md`、`references/metagenomics.md`、`references/imaging.md`、`references/statistics.md`、`references/public-data.md`、`references/data-assessment.md`、`references/clinical-research.md`、`references/causal-inference.md`、`references/clinical-data.md`、`references/evidence-synthesis.md`、`references/genetic-epidemiology.md`、`references/specialized-omics.md`、`references/platforms.md`、`references/parameters.md`
+
+### 2026-05-28
+
+- 工具、流程、数据集或文献名称：临床研究设计分类扩展与 README 精简
+- 来源链接：
+  - https://www.consort-spirit.org/extensions
+  - https://www.ideal-collaboration.net/the-ideal-framework/recommendations/
+  - https://pmc.ncbi.nlm.nih.gov/articles/PMC5963278/
+  - https://pmc.ncbi.nlm.nih.gov/articles/PMC4732571/
+  - https://pmc.ncbi.nlm.nih.gov/articles/PMC3731143/
+  - https://www.equator-network.org/reporting-guidelines/tidier/
+  - https://www.equator-network.org/reporting-guidelines/stari-statement/
+  - https://pmc.ncbi.nlm.nih.gov/articles/PMC4625997/
+  - https://www.bmj.com/content/376/bmj-2021-067975
+- 更新内容：扩展 `clinical-research.md` 的研究设计分类，覆盖药物、生物制品、器械、手术、行为、数字健康、随机、非随机、观察性、诊断、预后、预测、实施科学、质量改进、卫生经济学、转化研究、动态治疗策略、SMART、MOST、micro-randomized、master protocol、真实世界和注册登记研究。同步更新 `SKILL.md`、`references/index.md`、`references/coverage.md`、`references/routing.md`、`references/workflows.md`、`references/methods.md`。精简 `README.md`，去掉平台差异条目，将临床能力改为概括性表述。
+- 输入要求：临床问题、设计家族、研究目的、目标人群、干预或暴露、对照、终点、随访、随机或抽样规则、样本量假设、实施场景、经济学视角、数据来源、报告规范。
+- 输出结果：设计分类选择、假设表、样本量或模拟结果、研究流程图、分析集定义、报告规范清单、阶段报告。
+- 局限性：临床设计分类不能替代具体方案论证。罕见或监管用途研究仍需结合真实方案、伦理要求、统计分析计划和主管部门要求核对。
+- 已更新的本地参考文件：`README.md`、`SKILL.md`、`references/clinical-research.md`、`references/index.md`、`references/coverage.md`、`references/routing.md`、`references/workflows.md`、`references/methods.md`、`references/method-updates.md`

@@ -148,7 +148,7 @@ Shortest route:
 
 Feasible branches:
 
-- single-arm, two-arm, multi-arm, randomized, nonrandomized, cluster, crossover, stepped-wedge, factorial, adaptive, basket, umbrella, platform, registry, external-control, or pragmatic design
+- interventional, observational, diagnostic, prognostic, prediction, implementation, health-services, health-economic, translational, randomized, nonrandomized, cluster, crossover, stepped-wedge, factorial, adaptive, basket, umbrella, platform, registry, external-control, pragmatic, decentralized, device, surgical, behavioral, or digital-health design
 - sample size, power, precision, event count, interim boundary, and operating-characteristic simulation
 - protocol, SAP, endpoint, safety, PRO, and reporting-checklist support
 - target trial emulation, external control construction, matching, weighting, g-methods, TMLE, instrumental-variable, difference-in-differences, self-controlled, and sensitivity analyses
@@ -157,7 +157,7 @@ Feasible branches:
 Shortest route:
 
 1. define the clinical question, population, intervention or exposure, comparator, endpoint, time zero, follow-up, and analysis set
-2. choose trial, observational, target-trial, diagnostic, prognostic, or clinical-data-standard route
+2. choose trial, observational, target-trial, diagnostic, prognostic, prediction, implementation, health-economic, translational, or clinical-data-standard route
 3. state assumptions and sample-size or design requirements when planning is requested
 4. clean and validate clinical data or define the target trial elements
 5. run endpoint, balance, power, or operating-characteristic analyses
@@ -370,7 +370,7 @@ Focus on:
 
 Only add matching, subgrouping, or cut-point optimization when the question truly depends on them.
 
-Read `clinical-research.md` for trial design, sample size, power, SAP, safety, PRO, and reporting. Read `causal-inference.md` for target trial emulation, external controls, and real-world evidence. Read `clinical-data.md` for EHR, registry, REDCap, OMOP, FHIR, CDISC, SDTM, ADaM, and terminology mapping.
+Read `clinical-research.md` for clinical design taxonomy, sample size, power, SAP, safety, PRO, implementation, health economics, translational study logic, and reporting. Read `causal-inference.md` for target trial emulation, external controls, and real-world evidence. Read `clinical-data.md` for EHR, registry, REDCap, OMOP, FHIR, CDISC, SDTM, ADaM, and terminology mapping.
 
 ## Evidence Synthesis And Genetic Epidemiology Route
 

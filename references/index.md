@@ -28,7 +28,7 @@ Use:
 - `literature.md`
 - `public-data.md`
 - `data-assessment.md`
-- `clinical-research.md` for protocol, endpoint, sample size, or clinical reporting questions
+- `clinical-research.md` for protocol, endpoint, sample size, implementation, health economics, translational, or clinical reporting questions
 - `causal-inference.md` for target trial emulation, real-world evidence, external controls, or causal claims
 - `clinical-data.md` for EHR, registry, REDCap, OMOP, FHIR, CDISC, SDTM, ADaM, terminology, or clinical data quality
 - `evidence-synthesis.md` for systematic reviews, meta-analysis, network meta-analysis, Mendelian randomization, or pharmacovigilance
@@ -40,7 +40,7 @@ Triggers:
 - "what can this dataset do?"
 - last-decade method or paper landscape
 - public validation cohort selection
-- single-arm, two-arm, adaptive, master-protocol, diagnostic, prognostic, or real-world evidence study design
+- interventional, observational, adaptive, master-protocol, diagnostic, prognostic, prediction, implementation, health-economic, translational, or real-world evidence study design
 - sample-size, power, target trial emulation, or clinical data standardization
 
 ### Current Module Execution
@@ -64,7 +64,7 @@ Triggers:
 - ATAC-seq, scATAC-seq, ChIP-seq, CUT&Tag, CUT&Run, or methylation
 - sequence analysis, alignment, variant calling, genome assembly, genome annotation, Hi-C, long-read sequencing, RNA biology, proteomics, metabolomics, flow cytometry, CRISPR screens, or phylogenetics
 - survival, prediction modeling, clinical cohorts
-- clinical trial design, sample size, target trial emulation, registry, EHR, claims, OMOP, FHIR, CDISC, systematic review, meta-analysis, GWAS, PRS, or biobank genetics
+- clinical study design, sample size, target trial emulation, registry, EHR, claims, OMOP, FHIR, CDISC, systematic review, meta-analysis, GWAS, PRS, or biobank genetics
 - multi-omics integration
 
 ### Upstream Sequencing And Workflow Processing
@@ -144,7 +144,7 @@ Use:
 
 Triggers:
 
-- single-arm, two-arm, multi-arm, randomized, nonrandomized, cluster, crossover, stepped-wedge, factorial, adaptive, basket, umbrella, platform, registry, pragmatic, diagnostic, prognostic, or external-control study
+- interventional, observational, diagnostic, prognostic, prediction, implementation, health-services, health-economic, translational, randomized, nonrandomized, cluster, crossover, stepped-wedge, factorial, adaptive, basket, umbrella, platform, registry, pragmatic, decentralized, device, surgical, behavioral, digital-health, or external-control study
 - sample size, power, precision, interim analysis, operating characteristics, endpoint design, SAP, safety analysis, PRO, quality-of-life analysis, clinical prediction, diagnostic accuracy, or reporting checklist
 - target trial emulation, clone-censor-weight, matching, weighting, TMLE, g-methods, instrumental variables, difference-in-differences, self-controlled designs, real-world evidence, or external controls
 - REDCap, OMOP CDM, ATLAS, WhiteRabbit, Achilles, DataQualityDashboard, FHIR, CDISC SDTM, ADaM, CDASH, Define-XML, MedDRA, CTCAE, WHO Drug, ICD, SNOMED CT, LOINC, RxNorm, or ATC

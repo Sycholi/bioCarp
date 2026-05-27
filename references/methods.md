@@ -249,14 +249,13 @@ Use when:
 
 Use when:
 
-- the request is about single-arm, two-arm, multi-arm, randomized, nonrandomized, cluster, crossover, stepped-wedge, factorial, adaptive, basket, umbrella, platform, registry, diagnostic, prognostic, or pragmatic design
+- the request is about interventional, observational, diagnostic, prognostic, prediction, implementation, health-services, health-economic, translational, randomized, nonrandomized, cluster, crossover, stepped-wedge, factorial, adaptive, basket, umbrella, platform, registry, decentralized, surgical, device, behavioral, digital-health, or pragmatic design
 - sample size, power, precision, interim boundary, endpoint design, SAP, safety, PRO, or clinical reporting is required
 
 Best practice:
 
 - define population, intervention or exposure, comparator, endpoint, time zero, follow-up, analysis set, and reporting standard before calculation
-- for single-arm studies, state historical benchmark and stopping rule
-- for two-arm studies, state effect size, allocation ratio, dropout, power, sidedness, and endpoint scale
+- state the design family, assumptions, endpoint scale, allocation or sampling rule, power or precision target, and reporting standard
 
 ### causal-inference.md
 

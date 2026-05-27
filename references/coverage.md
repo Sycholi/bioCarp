@@ -27,7 +27,7 @@ When a task falls into a capability group:
 - regulatory and causal: gene regulatory networks, causal genomics, RNA structure
 - temporal and ecological: time-series genomics, ecological genomics
 - immunology and clinical: immunoinformatics, clinical databases, clinical trial design, real-world evidence, target trial emulation, TCR/BCR, epidemiological genomics
-- clinical research and evidence: single-arm, two-arm, multi-arm, adaptive, basket, umbrella, platform, diagnostic, prognostic, registry, EHR, REDCap, OMOP, FHIR, CDISC, sample size, SAP, meta-analysis, network meta-analysis, pharmacovigilance, Mendelian randomization
+- clinical research and evidence: interventional, observational, diagnostic, prognostic, prediction, implementation, health-services, health-economic, translational, adaptive, master-protocol, registry, EHR, REDCap, OMOP, FHIR, CDISC, sample size, SAP, meta-analysis, network meta-analysis, pharmacovigilance, Mendelian randomization
 - specialized omics: proteomics, phosphoproteomics, immunopeptidomics, metabolomics, lipidomics, isotope tracing, metabolic flux, alternative splicing, long-read transcriptomics, CLIP-seq, ribo-seq, epitranscriptomics, RNA editing, chemoinformatics, and liquid biopsy
 - genetic epidemiology: GWAS, PheWAS, PRS, fine mapping, colocalization, QTL, TWAS, heritability, genetic correlation, and biobank genetics
 - RNA biology: small RNA-seq, epitranscriptomics, CLIP-seq, ribo-seq
@@ -61,7 +61,7 @@ Use these files first:
 - `metagenomics.md`: microbiome and metagenomics
 - `structural.md`: structure prediction, docking, molecular dynamics, virtual screening, ADMET
 - `imaging.md`: radiomics, pathomics, automatic segmentation, automatic contouring, multiplex imaging, virtual multiplex immunofluorescence, virtual spatial transcriptomics, pathology imaging
-- `clinical-research.md`: clinical study design, sample size, power, endpoints, SAP logic, safety, PRO, and reporting standards
+- `clinical-research.md`: clinical study design taxonomy, sample size, power, endpoints, SAP logic, safety, PRO, implementation, health economics, and reporting standards
 - `causal-inference.md`: target trial emulation, external controls, real-world evidence, matching, weighting, g-methods, and quasi-experimental designs
 - `clinical-data.md`: EHR, registry, REDCap, OMOP, FHIR, CDISC, SDTM, ADaM, terminology, and clinical data quality
 - `evidence-synthesis.md`: systematic review, meta-analysis, network meta-analysis, diagnostic and prognostic meta-analysis, Mendelian randomization, and pharmacovigilance

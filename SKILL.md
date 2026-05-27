@@ -112,7 +112,7 @@ Core rule:
 - `metagenomics.md` covers microbiome, metagenomics, metatranscriptomics, MAGs, and host-microbe integration.
 - `structural.md` covers protein structure prediction, docking, molecular dynamics, virtual screening, and ADMET.
 - `imaging.md` covers pathology imaging, multiplex imaging, virtual multiplex immunofluorescence, and virtual spatial transcriptomics.
-- `clinical-research.md` covers single-arm and two-arm studies, randomized and nonrandomized trials, sample size, power, endpoints, SAP logic, clinical reporting, and protocol design.
+- `clinical-research.md` covers interventional, observational, diagnostic, prognostic, implementation, health-economic, translational, adaptive, master-protocol, sample size, endpoints, SAP logic, clinical reporting, and protocol design.
 - `causal-inference.md` covers target trial emulation, real-world evidence, external controls, matching, weighting, g-methods, and quasi-experimental designs.
 - `clinical-data.md` covers EHR, registry, REDCap, OMOP, FHIR, CDISC, SDTM, ADaM, terminology, and clinical data quality.
 - `evidence-synthesis.md` covers systematic reviews, meta-analysis, network meta-analysis, Mendelian randomization, and pharmacovigilance.
@@ -150,7 +150,7 @@ Then classify the data type:
 - proteomics, phosphoproteomics, metabolomics, lipidomics, isotope tracing, metabolic flux, small RNA, CLIP-seq, ribo-seq, or other specialized omics
 - protein structure prediction, molecular docking, molecular dynamics, virtual screening, or chemoinformatics
 - multiplex imaging, imaging mass cytometry, radiomics, automatic segmentation, automatic contouring, virtual immunofluorescence, virtual staining, or virtual spatial omics
-- clinical trial, single-arm study, two-arm study, sample-size planning, target trial emulation, EHR, registry, claims, REDCap, OMOP, FHIR, CDISC, real-world evidence, prediction model, diagnostic study, systematic review, meta-analysis, GWAS, PRS, fine mapping, colocalization, or genetic epidemiology
+- clinical trial, observational clinical study, sample-size planning, target trial emulation, EHR, registry, claims, REDCap, OMOP, FHIR, CDISC, real-world evidence, prediction model, diagnostic study, implementation study, health-economic study, systematic review, meta-analysis, GWAS, PRS, fine mapping, colocalization, or genetic epidemiology
 - mixed public/private validation workflow
 
 Then choose the smallest end-to-end route using `references/index.md`. The route must answer the question without creating a larger pipeline than needed.
