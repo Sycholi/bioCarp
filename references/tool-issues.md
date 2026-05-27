@@ -243,6 +243,51 @@ Typical checks:
 - Cache model files in the project working directory when allowed.
 - Report access restrictions clearly.
 
+### Clinical research, causal inference, and clinical data standards
+
+Common issues:
+
+- Sample-size tools can silently use different sidedness, allocation, dropout, accrual, event-rate, or interim assumptions.
+- Target trial emulation fails when eligibility, treatment assignment, time zero, follow-up, and endpoint timing are misaligned.
+- Matching and weighting workflows can produce extreme weights, poor positivity, or a changed target population.
+- REDCap, OMOP, FHIR, CDISC, MedDRA, CTCAE, ICD, SNOMED CT, LOINC, RxNorm, and ATC mappings can change definitions across versions.
+
+Typical checks:
+
+- Record every sample-size and operating-characteristic assumption.
+- Save target-trial protocol table before analysis.
+- Inspect balance, overlap, effective sample size, missingness, and sensitivity plots.
+- Record terminology version, data dictionary, source table, and mapping logic.
+
+### Evidence synthesis and genetic epidemiology
+
+Common issues:
+
+- Meta-analysis results change with effect scale, continuity correction, heterogeneity estimator, outcome definition, and duplicate cohorts.
+- MR results can be distorted by allele harmonization errors, weak instruments, sample overlap, horizontal pleiotropy, or wrong LD reference.
+- GWAS, PRS, fine mapping, and colocalization depend on ancestry, imputation quality, relatedness, genome build, allele coding, and summary-statistic format.
+
+Typical checks:
+
+- Preserve screening decisions, study IDs, effect scales, and risk-of-bias judgments.
+- Record allele harmonization, palindromic SNP handling, LD reference, genome build, and ancestry.
+- Inspect QQ, Manhattan, regional association, colocalization, PRS calibration, and validation plots.
+
+### Specialized RNA and liquid biopsy
+
+Common issues:
+
+- Small RNA, CLIP, Ribo-seq, long-read isoform, and RNA modification tools are protocol-sensitive.
+- Splicing tools differ in event definitions and junction-count requirements.
+- Direct RNA and RNA editing workflows can confuse modification, editing, SNP, mapping artifact, and strand bias without controls.
+- cfDNA and ctDNA workflows depend on UMI depth, fragment size, panel design, tumor fraction, and limit of detection.
+
+Typical checks:
+
+- Record protocol, library design, read length, strandedness, UMI, annotation, and controls.
+- Preserve read-length, junction, isoform, peak, periodicity, modification, editing, fragment-size, and molecular-support diagnostics.
+- Treat MRD and longitudinal ctDNA claims as clinical hypotheses unless assay validation supports the threshold.
+
 ## Practical Source Index
 
 Last checked: 2026-05-28.
@@ -267,6 +312,9 @@ Last checked: 2026-05-28.
 - TotalSegmentator repository: https://github.com/wasserth/TotalSegmentator
 - nf-core documentation: https://nf-co.re/docs
 - Cell Ranger: https://www.10xgenomics.com/support/software/cell-ranger
+- BD Rhapsody documentation: https://bd-rhapsody-bioinfo-docs.genomics.bd.com/
+- ScaleBio Seq Suite documentation: https://scalebio.github.io/ScaleRna-docs/
+- Fluent PIPseeker documentation: https://www.fluentbio.com/
 - alevin-fry: https://alevin-fry.readthedocs.io/
 - GATK documentation: https://gatk.broadinstitute.org/
 - pVACtools documentation: https://pvactools.readthedocs.io/
@@ -277,3 +325,9 @@ Last checked: 2026-05-28.
 - XCMS: https://bioconductor.org/packages/release/bioc/html/xcms.html
 - MACS3: https://macs3-project.github.io/MACS/
 - Bismark: https://www.bioinformatics.babraham.ac.uk/projects/bismark/
+- rpact: https://www.rpact.org/
+- TrialEmulation: https://causal-lda.r-universe.dev/TrialEmulation/TrialEmulation.pdf
+- MatchIt: https://kosukeimai.github.io/MatchIt/
+- WeightIt: https://ngreifer.github.io/WeightIt/
+- PLINK2: https://www.cog-genomics.org/plink/2.0/
+- metafor: https://www.metafor-project.org/

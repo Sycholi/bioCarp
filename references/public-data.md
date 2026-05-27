@@ -45,6 +45,11 @@ Use primary or source-adjacent portals first:
 - PDB, AlphaFold DB, UniProt, ChEMBL, PubChem, BindingDB, DrugBank, ZINC, and PDBbind for structural and ligand data
 - TCIA, CPTAC imaging collections, Cancer Imaging Archive-linked TCGA cohorts, IDC, and institutional DICOM exports for radiomics and contouring
 - public WSI and multiplex imaging resources linked to TCGA, CPTAC, HuBMAP, HTAN, CODEX, MIBI, IMC, or spatial transcriptomics papers
+- ClinicalTrials.gov, EU Clinical Trials Register, WHO ICTRP, ChiCTR, ISRCTN, PubMed, PMC, and regulatory guidance pages for clinical trial design, protocol, and reporting context
+- NIH dbGaP, UK Biobank, FinnGen, GWAS Catalog, OpenGWAS, IEU GWAS, PheWeb resources, eQTL Catalogue, GTEx QTL, eQTLGen, pQTL resources, and LD reference panels for genetic epidemiology
+- OHDSI, OMOP vocabulary resources, HL7 FHIR documentation, CDISC standards, REDCap documentation, and institutional data dictionaries for clinical-data standardization
+- PROSPERO, Cochrane Library, Epistemonikos, OpenAlex, Crossref, Europe PMC, OpenGWAS, openFDA FAERS, and source-journal supplementary tables for evidence synthesis, MR, and pharmacovigilance
+- ENCODE, POSTAR, ENCORI, CLIPdb, Ribo-seq databases, REDIportal, RADAR, RMBase, circBase, circAtlas, MiRBase, miRGeneDB, piRBase, exoRBase, cfDNA and ctDNA study portals when specialized RNA or liquid-biopsy assays are relevant
 
 Secondary discovery portals may help, but always reconcile claims back to the primary source paper or official dataset record.
 
@@ -57,11 +62,13 @@ Extract these fields for every key paper:
 - species
 - cohort size and grouping
 - assay platform
+- chemistry, instrument, acquisition mode, vendor pipeline, and key platform parameters when relevant
 - preprocessing pipeline
 - QC thresholds
 - major statistical models
 - key pathway or signature methods
 - module-specific workflow steps and required diagnostic plots
+- parameter choices with expected effects on result interpretation
 - package limitations, issue tracker notes, or code workarounds reported by the authors
 - validation cohort or orthogonal experiments
 - accession numbers

@@ -11,11 +11,13 @@ Read these in order:
 3. `coverage.md` for complete capability scope.
 4. `execution.md` for sub-agent use, goal handling, tool deployment, figure inspection, result interpretation, and phase documentation.
 5. `learning.md` for user-level assessment, proactive method suggestions, bug learning, and method updates.
-6. `methods.md` for concise package choice.
-7. `workflows.md` for current module-level QC, modeling, figure, and source requirements.
-8. `tools.md` when the task needs method-family comparison or a newer challenger route.
-9. `upstream.md`, `variants.md`, `immunopeptidomics.md`, `multiomics.md`, `epigenomics.md`, `proteomics.md`, `metabolomics.md`, `statistics.md`, or another modality file when the task enters that specific domain.
-10. `tool-issues.md` before using version-sensitive, web-service, fast-moving, or error-prone tools.
+6. `platforms.md` when platform, chemistry, instrument, acquisition mode, sample handling, or run design affects the result.
+7. `parameters.md` when threshold, normalization, integration strength, model setting, database, or software option can change the conclusion.
+8. `methods.md` for concise package choice.
+9. `workflows.md` for current module-level QC, modeling, figure, and source requirements.
+10. `tools.md` when the task needs method-family comparison or a newer challenger route.
+11. `upstream.md`, `variants.md`, `immunopeptidomics.md`, `multiomics.md`, `epigenomics.md`, `proteomics.md`, `metabolomics.md`, `clinical-research.md`, `causal-inference.md`, `clinical-data.md`, `evidence-synthesis.md`, `genetic-epidemiology.md`, `specialized-omics.md`, `statistics.md`, or another modality file when the task enters that specific domain.
+12. `tool-issues.md` before using version-sensitive, web-service, fast-moving, or error-prone tools.
 
 ## Task-Specific Layers
 
@@ -26,6 +28,10 @@ Use:
 - `literature.md`
 - `public-data.md`
 - `data-assessment.md`
+- `clinical-research.md` for protocol, endpoint, sample size, or clinical reporting questions
+- `causal-inference.md` for target trial emulation, real-world evidence, external controls, or causal claims
+- `clinical-data.md` for EHR, registry, REDCap, OMOP, FHIR, CDISC, SDTM, ADaM, terminology, or clinical data quality
+- `evidence-synthesis.md` for systematic reviews, meta-analysis, network meta-analysis, Mendelian randomization, or pharmacovigilance
 
 Triggers:
 
@@ -34,6 +40,8 @@ Triggers:
 - "what can this dataset do?"
 - last-decade method or paper landscape
 - public validation cohort selection
+- single-arm, two-arm, adaptive, master-protocol, diagnostic, prognostic, or real-world evidence study design
+- sample-size, power, target trial emulation, or clinical data standardization
 
 ### Current Module Execution
 
@@ -43,6 +51,8 @@ Use:
 - `execution.md`
 - `methods.md`
 - `tools.md`
+- `platforms.md` when platform or chemistry can change QC, processing, or interpretation
+- `parameters.md` when thresholds, normalization, integration, peak calling, search, annotation, or model settings can change the result
 
 Triggers:
 
@@ -54,12 +64,15 @@ Triggers:
 - ATAC-seq, scATAC-seq, ChIP-seq, CUT&Tag, CUT&Run, or methylation
 - sequence analysis, alignment, variant calling, genome assembly, genome annotation, Hi-C, long-read sequencing, RNA biology, proteomics, metabolomics, flow cytometry, CRISPR screens, or phylogenetics
 - survival, prediction modeling, clinical cohorts
+- clinical trial design, sample size, target trial emulation, registry, EHR, claims, OMOP, FHIR, CDISC, systematic review, meta-analysis, GWAS, PRS, or biobank genetics
 - multi-omics integration
 
 ### Upstream Sequencing And Workflow Processing
 
 Use:
 
+- `platforms.md`
+- `parameters.md`
 - `upstream.md`
 - `workflows.md`
 - `methods.md`
@@ -71,6 +84,7 @@ Triggers:
 - FASTQ-to-count, FASTQ-to-BAM, FASTQ-to-matrix, FASTQ-to-peak, FASTQ-to-ASV, FASTQ-to-VCF, FASTQ-to-protein, or raw data processing
 - demultiplexing, sample-sheet review, lane merging, adapter trimming, alignment, quantification, UMI handling, MultiQC, or workflow deployment
 - nf-core, Nextflow, Snakemake, Cell Ranger, Space Ranger, STARsolo, alevin-fry, kallisto-bustools, simpleaf, Velocyto, bcl-convert, bcl2fastq, FastQC, MultiQC, STAR, Salmon, kallisto, featureCounts, or tximport
+- 10x Genomics, BD Rhapsody, MGI, BGI, DNBelab, Singleron, Parse, ScaleBio, Fluent, SMART-seq, split-pool, Visium, Visium HD, Xenium, CosMx, MERSCOPE, MERFISH, Stereo-seq, Slide-seq, DNBSEQ, Illumina, Nanopore, PacBio, Orbitrap, timsTOF, Q-TOF, triple quadrupole, MALDI, NMR, or documented vendor-specific platforms
 
 ### Variants, HLA, Antigen Peptides, And Immunopeptidomics
 
@@ -93,6 +107,8 @@ Triggers:
 
 Use:
 
+- `platforms.md` when chemistry, sample handling, or platform-specific pipeline matters
+- `parameters.md` when QC threshold, doublet rate, ambient correction, normalization, integration, dimensions, or clustering resolution matters
 - `single-cell-advanced.md`
 - `multiomics.md` for CITE-seq, multiome, cross-modal integration, and reference mapping
 - `epigenomics.md` for scATAC, motif, footprinting, and regulatory interpretation
@@ -114,6 +130,55 @@ Triggers:
 - cell-cell and spatial communication tools such as COMMOT, SpaTalk, NATMI, SingleCellSignalR, iTALK, CellCall, MISTy, MEBOCOST, MultiNicheNet, NicheCompass, or Tensor-cell2cell
 - advanced spatial algorithms, niches, adjacency, neighborhood enrichment, BANKSY, CellCharter, Milo, BayesSpace, SpaGCN, GraphST, PRECAST, STAGATE, DeepST, SEDR, SpaSEG, SpatialDE, nnSVG, MERINGUE, DestVI, SPOTlight, STdeconvolve, SpatialDecon, STRIDE, SpaOTsc, novoSpaRc, CellTrek, or CytoSPACE
 - emerging named tools such as scALPI that require name and source verification
+
+### Clinical Research, Real-World Evidence, And Clinical Data Standards
+
+Use:
+
+- `clinical-research.md`
+- `causal-inference.md` when observational comparisons, external controls, or target trial emulation are involved
+- `clinical-data.md` when EHR, registry, claims, REDCap, OMOP, FHIR, CDISC, or terminology mapping is involved
+- `parameters.md` when endpoint, time zero, sample-size assumptions, matching, weighting, trimming, or missing-data settings affect the result
+- `statistics.md`
+- `tool-issues.md`
+
+Triggers:
+
+- single-arm, two-arm, multi-arm, randomized, nonrandomized, cluster, crossover, stepped-wedge, factorial, adaptive, basket, umbrella, platform, registry, pragmatic, diagnostic, prognostic, or external-control study
+- sample size, power, precision, interim analysis, operating characteristics, endpoint design, SAP, safety analysis, PRO, quality-of-life analysis, clinical prediction, diagnostic accuracy, or reporting checklist
+- target trial emulation, clone-censor-weight, matching, weighting, TMLE, g-methods, instrumental variables, difference-in-differences, self-controlled designs, real-world evidence, or external controls
+- REDCap, OMOP CDM, ATLAS, WhiteRabbit, Achilles, DataQualityDashboard, FHIR, CDISC SDTM, ADaM, CDASH, Define-XML, MedDRA, CTCAE, WHO Drug, ICD, SNOMED CT, LOINC, RxNorm, or ATC
+
+### Evidence Synthesis And Genetic Epidemiology
+
+Use:
+
+- `evidence-synthesis.md`
+- `genetic-epidemiology.md`
+- `parameters.md`
+- `statistics.md`
+- `public-data.md`
+- `tool-issues.md`
+
+Triggers:
+
+- systematic review, scoping review, meta-analysis, diagnostic meta-analysis, prognostic meta-analysis, network meta-analysis, umbrella review, pharmacovigilance, FAERS, VigiBase-style signal detection, or Mendelian randomization
+- GWAS, PheWAS, PRS, fine mapping, colocalization, TWAS, eQTL, pQTL, mQTL, sQTL, LDSC, genetic correlation, heritability, ancestry, imputation, UK Biobank, FinnGen, OpenGWAS, dbGaP, or GWAS Catalog
+
+### Specialized RNA, Long-Read, And Liquid-Biopsy Assays
+
+Use:
+
+- `specialized-omics.md`
+- `platforms.md`
+- `parameters.md`
+- `upstream.md` when raw sequencing or raw signal files are used
+- `statistics.md`
+- `tool-issues.md`
+
+Triggers:
+
+- small RNA, miRNA, piRNA, tRNA fragment, lncRNA, circRNA, alternative splicing, isoform, long-read transcriptomics, CLIP-seq, RIP-seq, Ribo-seq, epitranscriptomics, RNA editing, cfDNA, ctDNA, CTC, exosome RNA, liquid biopsy, fragmentomics, or MRD analysis
 
 ### Bulk Functional Inference
 

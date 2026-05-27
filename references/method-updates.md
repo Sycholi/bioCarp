@@ -53,3 +53,29 @@
 - 输出结果：MultiQC、alignment QC、variant QC、oncoplot、HLA 支持、抗原肽候选表、MHC binding 图、免疫肽组 motif、蛋白质组 QC、差异蛋白图、PTM 位点图、激酶活性图、代谢物注释图、脂质类别图、同位素分布、flux map、FBA 结果、多组学因子、modality weight、motif 和 footprint 图、统计诊断和最终图表清单。
 - 局限性：这些工具族依赖输入质量、数据库版本、样本匹配、批次设计、HLA 准确性、肽段证据、代谢物注释等级、同位素实验设计和模型假设。每次真实分析仍需读取官方文档、近期论文和 issue 后再执行。
 - 已更新的本地参考文件：`SKILL.md`、`README.md`、`references/index.md`、`references/coverage.md`、`references/routing.md`、`references/methods.md`、`references/tools.md`、`references/workflows.md`、`references/tool-issues.md`、`references/public-data.md`、`references/data-assessment.md`、`references/single-cell-advanced.md`、`references/metagenomics.md`、`references/structural.md`、`references/imaging.md`、`references/upstream.md`、`references/variants.md`、`references/immunopeptidomics.md`、`references/proteomics.md`、`references/metabolomics.md`、`references/multiomics.md`、`references/epigenomics.md`、`references/statistics.md`
+
+### 2026-05-28
+
+- 工具、流程、数据集或文献名称：临床研究设计、目标试验模拟、临床数据标准、证据合成、遗传流行病学、专项 RNA 与液体活检、组学平台差异、参数影响
+- 来源链接：
+  - https://www.bmj.com/content/389/bmj-2024-081123
+  - https://jamanetwork.com/journals/jama/fullarticle/2833408
+  - https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e9r1-statistical-principles-clinical-trials-addendum-estimands-and-sensitivity-analysis-clinical
+  - https://www.rpact.org/
+  - https://causal-lda.r-universe.dev/TrialEmulation/TrialEmulation.pdf
+  - https://www.hl7.org/fhir/
+  - https://www.ohdsi.org/data-standardization/the-common-data-model/
+  - https://www.cdisc.org/standards
+  - https://www.prisma-statement.org/
+  - https://www.metafor-project.org/
+  - https://gwas.mrcieu.ac.uk/
+  - https://www.cog-genomics.org/plink/2.0/
+  - https://www.10xgenomics.com/support/software/cell-ranger
+  - https://bd-rhapsody-bioinfo-docs.genomics.bd.com/
+  - https://scalebio.github.io/ScaleRna-docs/
+  - https://mzmine.github.io/mzmine_documentation/workflows/lcmsworkflow/lcms-workflow.html
+- 更新内容：新增并接入 `clinical-research.md`、`causal-inference.md`、`clinical-data.md`、`evidence-synthesis.md`、`genetic-epidemiology.md`、`specialized-omics.md`、`platforms.md`、`parameters.md`。补齐单臂和双臂研究、样本量、SAP、目标试验模拟、真实世界研究、EHR、REDCap、OMOP、FHIR、CDISC、meta 分析、MR、药物警戒、GWAS、PRS、fine mapping、colocalization、small RNA、splicing、long-read isoform、CLIP、Ribo-seq、RNA modification、RNA editing、cfDNA、ctDNA、CTC、exosome、10x、BD、MGI、BGI、Singleron/新格元、Parse、ScaleBio、Fluent、SMART-seq、空间平台、质谱平台、影像平台和关键参数影响。
+- 输入要求：按任务检查临床问题、PICO 或目标试验元素、数据字典、终点、时间零点、随访、样本量假设、平台、化学版本、仪器、采集模式、原始 pipeline、参数、公共数据库、summary statistics、LD reference、raw MS、mzML、junction、isoform、fragment、ctDNA、图像和分割标签。
+- 输出结果：研究设计表、样本量和 power 曲线、目标试验协议表、平衡图、权重图、临床数据质量表、meta 分析 forest、funnel、network 图、GWAS Manhattan 和 QQ 图、PRS 校准图、colocalization 图、small RNA、splicing、isoform、CLIP、Ribo-seq、RNA modification、RNA editing、fragmentomics 和 ctDNA 图、平台表、参数决策表、before-after 计数表和参数敏感性图。
+- 局限性：临床设计依赖真实终点和假设；真实世界研究依赖时间零点、处理过程、测量过程和缺失数据；遗传流行病学依赖祖源、LD reference 和等位基因匹配；平台比较依赖厂商文档和原始 QC；参数敏感性不能替代实验验证。
+- 已更新的本地参考文件：`SKILL.md`、`README.md`、`references/index.md`、`references/coverage.md`、`references/routing.md`、`references/methods.md`、`references/tools.md`、`references/workflows.md`、`references/upstream.md`、`references/single-cell-advanced.md`、`references/proteomics.md`、`references/metabolomics.md`、`references/metagenomics.md`、`references/imaging.md`、`references/statistics.md`、`references/public-data.md`、`references/data-assessment.md`、`references/clinical-research.md`、`references/causal-inference.md`、`references/clinical-data.md`、`references/evidence-synthesis.md`、`references/genetic-epidemiology.md`、`references/specialized-omics.md`、`references/platforms.md`、`references/parameters.md`

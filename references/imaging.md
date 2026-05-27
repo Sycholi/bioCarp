@@ -11,17 +11,20 @@ Before implementation, verify:
 - paired data: segmentation masks, contours, DICOM RTSTRUCT, cell table, spatial transcriptomics, IHC, mIF, scRNA-seq, clinical labels, regions of interest, pathologist annotations, radiologist annotations, or treatment planning structures
 - endpoint: cell phenotyping, spatial neighborhood, automatic contouring, radiomics, virtual staining, virtual mIF, virtual spatial transcriptomics, prognosis, treatment response, or validation figure
 - whether the task is analysis of measured imaging data or prediction of unmeasured markers
+- whether `platforms.md` and `parameters.md` are needed for scanner, resolution, staining, tile size, color normalization, resampling, segmentation, train-test split, or model preprocessing
 
 ## Measured Multiplex Imaging
 
 Current route:
 
 1. Preserve raw images, channel metadata, panel design, exposure settings, tissue masks, segmentation masks, and cell tables.
-2. Run image QC for blur, saturation, tissue folds, background, autofluorescence, channel spillover, registration, and batch effects.
-3. Segment nuclei and cells with method appropriate to the platform. Use existing validated masks when available.
-4. Quantify marker intensities, normalize channels, define cell phenotypes, and preserve marker evidence.
-5. Analyze cell abundance, co-expression, neighborhoods, cell-cell contacts, spatial statistics, and tissue regions.
-6. Use pathology review or marker panels to validate phenotypes before biological interpretation.
+2. Read `platforms.md` for scanner, resolution, channel, registration, segmentation, and acquisition differences when images come from different instruments or assays.
+3. Read `parameters.md` for tile size, color normalization, segmentation thresholds, patient-level split, radiomics settings, and preprocessing choices.
+4. Run image QC for blur, saturation, tissue folds, background, autofluorescence, channel spillover, registration, and batch effects.
+5. Segment nuclei and cells with method appropriate to the platform. Use existing validated masks when available.
+6. Quantify marker intensities, normalize channels, define cell phenotypes, and preserve marker evidence.
+7. Analyze cell abundance, co-expression, neighborhoods, cell-cell contacts, spatial statistics, and tissue regions.
+8. Use pathology review or marker panels to validate phenotypes before biological interpretation.
 
 Required figures:
 

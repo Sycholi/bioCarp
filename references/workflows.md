@@ -11,17 +11,21 @@ Before running a module:
 1. Read the current official package vignette, manual, or pipeline documentation.
 2. Read representative recent papers using the same data type and disease context.
 3. Extract preprocessing, QC, model choice, comparison design, required figures, signature figures, and known limitations.
-4. Write a module figure manifest before declaring the module complete.
-5. Record package version, genome or annotation version, database version, and key parameters.
-6. Deploy missing required tools when feasible and record the installation in `工具部署记录.md`.
-7. Inspect every figure and record per-figure interpretation as required by `execution.md`.
-8. Regenerate failed figures until they pass inspection or a real blocker is documented.
+4. Read `platforms.md` when platform, chemistry, instrument, acquisition mode, or sample handling can affect QC or interpretation.
+5. Read `parameters.md` when thresholds, normalization, integration, model choices, databases, or software options can change the conclusion.
+6. Write a module figure manifest before declaring the module complete.
+7. Record package version, genome or annotation version, database version, platform, chemistry, acquisition mode, and key parameters.
+8. Deploy missing required tools when feasible and record the installation in `工具部署记录.md`.
+9. Inspect every figure and record per-figure interpretation as required by `execution.md`.
+10. Regenerate failed figures until they pass inspection or a real blocker is documented.
 
 ## Detailed Companion Layers
 
 Use these companion files for detailed routes that should not be duplicated here:
 
 - `upstream.md` for raw FASTQ, BCL, BAM, CRAM, mzML, vendor MS files, demultiplexing, alignment, quantification, and workflow outputs
+- `platforms.md` for sequencing, single-cell, spatial, MS, imaging, sample-handling, acquisition, and platform-output differences
+- `parameters.md` for threshold, normalization, integration, model, database, and software-option effects on results
 - `variants.md` for germline, somatic, CNV, SV, HLA, MSI, TMB, and mutational signatures
 - `immunopeptidomics.md` for antigen peptides, MHC binding prediction, neoantigens, immunopeptidomics, and TCR-pMHC follow-up
 - `single-cell-advanced.md` for advanced single-cell, spatial, perturbation, annotation, communication, trajectory, velocity, GRN, and drug-prediction modules
@@ -29,6 +33,12 @@ Use these companion files for detailed routes that should not be duplicated here
 - `epigenomics.md` for ATAC, ChIP, CUT&Tag, CUT&Run, methylation, Hi-C, motif, footprinting, and regulatory interpretation
 - `proteomics.md` for DDA, DIA, TMT, LFQ, PTM, phosphoproteomics, targeted proteomics, and proteogenomics
 - `metabolomics.md` for untargeted and targeted metabolomics, lipidomics, isotope tracing, metabolic flux, and metabolic modeling
+- `clinical-research.md` for clinical trial design, sample size, power, endpoint definition, SAP logic, safety, PRO, and reporting
+- `causal-inference.md` for target trial emulation, real-world evidence, external controls, matching, weighting, and quasi-experimental designs
+- `clinical-data.md` for EHR, registry, REDCap, OMOP, FHIR, CDISC, SDTM, ADaM, terminology, and clinical data quality
+- `evidence-synthesis.md` for systematic review, meta-analysis, network meta-analysis, Mendelian randomization, and pharmacovigilance
+- `genetic-epidemiology.md` for GWAS, PheWAS, PRS, fine mapping, colocalization, TWAS, QTL, LDSC, and biobank genetics
+- `specialized-omics.md` for small RNA, splicing, long-read transcriptomics, CLIP-seq, Ribo-seq, epitranscriptomics, RNA editing, and liquid biopsy
 - `statistics.md` for model diagnostics, visualization, figure construction, clinical prediction plots, and report tables
 
 ## Bulk RNA-seq And Microarray
@@ -68,18 +78,21 @@ Primary sources to check:
 Current route:
 
 1. Import raw count matrices or processed objects with sample-level metadata intact.
-2. Run per-sample QC for counts, detected genes, mitochondrial fraction, ribosomal fraction when relevant, doublets, ambient RNA, cell-cycle effects, and batch structure.
-3. Normalize with the selected route, usually Seurat `SCTransform` or log-normalization for R-first workflows. Use Bioconductor `SingleCellExperiment` or Scanpy routes when the object ecosystem requires it.
-4. Integrate only after checking whether biology and batch are separable. In Seurat v5 workflows, prefer layer-aware integration when it fits the object structure. Use Harmony, RPCA, scVI, or scANVI only when their assumptions fit the data.
-5. Quantify integration quality with iLISI, cLISI, kBET, ASW or silhouette, graph connectivity, marker preservation, and sample or patient composition when integration affects the conclusion.
-6. Cluster at multiple resolutions, annotate with manual markers plus reference transfer where useful, and preserve marker evidence for every final label.
-7. Quantify cluster purity and heterogeneity with ROGUE, marker coherence, ASW or silhouette, cluster size, clustree or resolution stability, and reference-label agreement when annotation or subtype claims depend on clusters.
-8. For group comparisons, use sample-aware pseudobulk or replicate-aware tools when biological replicates exist. Treat cell-level tests as descriptive unless the design justifies them.
-9. Run lineage subclustering before trajectory, communication, CNV, or functional state modules.
+2. Record platform, chemistry, sample handling, dissociation or nuclei protocol, fixation, sequencing instrument, raw pipeline, read structure, and reference version. Use `platforms.md` when the data come from 10x, BD, MGI, BGI, Singleron, Parse, ScaleBio, Fluent, SMART-seq, or another platform with nonstandard output.
+3. Run per-sample QC for counts, detected genes, mitochondrial fraction, ribosomal fraction when relevant, doublets, ambient RNA, cell-cycle effects, and batch structure.
+4. Normalize with the selected route, usually Seurat `SCTransform` or log-normalization for R-first workflows. Use Bioconductor `SingleCellExperiment` or Scanpy routes when the object ecosystem requires it.
+5. Integrate only after checking whether biology and batch are separable. In Seurat v5 workflows, prefer layer-aware integration when it fits the object structure. Use Harmony, RPCA, scVI, or scANVI only when their assumptions fit the data.
+6. Quantify integration quality with iLISI, cLISI, kBET, ASW or silhouette, graph connectivity, marker preservation, and sample or patient composition when integration affects the conclusion.
+7. Cluster at multiple resolutions, annotate with manual markers plus reference transfer where useful, and preserve marker evidence for every final label.
+8. Quantify cluster purity and heterogeneity with ROGUE, marker coherence, ASW or silhouette, cluster size, clustree or resolution stability, and reference-label agreement when annotation or subtype claims depend on clusters.
+9. For group comparisons, use sample-aware pseudobulk or replicate-aware tools when biological replicates exist. Treat cell-level tests as descriptive unless the design justifies them.
+10. Run lineage subclustering before trajectory, communication, CNV, or functional state modules.
+11. Use `parameters.md` to record QC thresholds, doublet assumptions, ambient correction, normalization, integration, dimensions, neighbor count, clustering resolution, and marker thresholds with before-after cell counts.
 
 Required figures:
 
 - per-sample QC violin, ridge, and scatter plots, doublet and ambient RNA summaries, cell counts by sample
+- platform, chemistry, vendor summary, barcode rank, sequencing saturation, mapping, and sample-retention plots when raw or vendor summaries are available
 - PCA elbow or variance plots before final clustering
 - integration diagnostics by sample, batch, condition, and major cell type
 - integration metric plots: iLISI, cLISI, kBET, ASW or silhouette, graph connectivity, marker preservation, and batch-versus-biology comparison when integration is used
@@ -344,6 +357,57 @@ Primary sources to check:
 - survival, survminer, rms, glmnet, timeROC documentation
 - TRIPOD and TRIPOD+AI reporting statements
 
+## Clinical Study Design, Sample Size, And Real-World Evidence
+
+Current route:
+
+1. Read `clinical-research.md` for trial design, endpoint, SAP, sample size, safety, PRO, and reporting.
+2. Read `causal-inference.md` when the task involves observational treatment comparison, external controls, real-world evidence, target trial emulation, or causal claims.
+3. Read `clinical-data.md` when data come from EHR, registry, claims, REDCap, OMOP, FHIR, CDISC, SDTM, ADaM, or mapped terminology.
+4. Define the population, intervention or exposure, comparator, endpoint, time zero, follow-up, analysis set, missing-data process, and reporting standard before calculation or modeling.
+5. For single-arm studies, state historical benchmark, null and alternative values, precision or power target, stopping rule, and endpoint assessment schedule.
+6. For two-arm and multi-arm studies, define allocation ratio, endpoint scale, effect size, power, sidedness, dropout, multiplicity, and interim rules when present.
+7. For target trial emulation, write the target-trial protocol table before extracting data and check time-zero alignment, eligibility, treatment assignment, follow-up, and censoring.
+8. Use `parameters.md` for endpoint assumptions, event rates, margins, dropout, matching, weighting, trimming, missing data, and sensitivity settings.
+
+Required figures:
+
+- study schema, participant flow, inclusion and exclusion flow, baseline table, and missingness plot
+- sample-size assumptions, power or precision curves, event timeline, and interim boundary or operating-characteristic plots
+- endpoint summary, Kaplan-Meier, cumulative incidence, longitudinal, recurrent-event, safety, and PRO plots as applicable
+- covariate balance, weight distribution, effective sample size, target-trial alignment, and sensitivity plots for observational or real-world evidence analyses
+- reporting checklist table selected from CONSORT, SPIRIT, STROBE, RECORD, STARD, TRIPOD+AI, PROBAST+AI, or relevant extensions
+
+Primary sources to check:
+
+- `clinical-research.md`
+- `causal-inference.md`
+- `clinical-data.md`
+- CONSORT 2025, SPIRIT 2025, ICH E6(R3), ICH E9(R1), STROBE, RECORD, STARD, TRIPOD+AI, PROBAST+AI
+- rpact, gsDesign, clinfun, pmsampsize, TrialEmulation, MatchIt, WeightIt, cobalt, OHDSI documentation
+
+## Evidence Synthesis And Genetic Epidemiology
+
+Current route:
+
+1. Read `evidence-synthesis.md` for systematic review, meta-analysis, network meta-analysis, diagnostic or prognostic meta-analysis, MR, and pharmacovigilance.
+2. Read `genetic-epidemiology.md` for GWAS, PheWAS, PRS, fine mapping, colocalization, TWAS, QTL, LDSC, and biobank genetics.
+3. Define phenotype, exposure, outcome, ancestry, population, effect scale, inclusion criteria, data source, and quality-control rules before analysis.
+4. Harmonize identifiers, genome builds, alleles, effect directions, sample overlap, and summary-statistic format before model fitting.
+5. Use `parameters.md` for heterogeneity model, effect scale, MR instrument thresholds, GWAS QC, imputation quality, LD reference, PRS clumping, fine-mapping priors, and colocalization priors.
+
+Required figures:
+
+- study selection flow, risk-of-bias summary, forest, funnel, influence, heterogeneity, and network plots for evidence synthesis
+- pharmacovigilance disproportionality and signal-prioritization plots when used
+- GWAS sample QC, ancestry PCA, QQ, Manhattan, regional association, fine-mapping credible set, colocalization, PRS calibration, stratification, and validation plots
+
+Primary sources to check:
+
+- `evidence-synthesis.md`
+- `genetic-epidemiology.md`
+- PRISMA 2020, RoB 2, ROBINS-I, metafor, meta, netmeta, OpenGWAS, TwoSampleMR, PLINK2, SAIGE, REGENIE, PRSice, LDpred2, coloc, susieR
+
 ## Multi-Omics And Public/Private Validation
 
 Current route:
@@ -459,8 +523,9 @@ Current route:
 5. For genome assembly and annotation, preserve assembly graph or contigs, N50, BUSCO or equivalent completeness, contamination, repeat annotation, gene calls, and functional annotation.
 6. For proteomics, phosphoproteomics, PTM analysis, and targeted proteomics, use `proteomics.md`.
 7. For metabolomics, lipidomics, isotope tracing, metabolic flux, and metabolic modeling, use `metabolomics.md`.
-8. For small RNA, CLIP-seq, ribo-seq, epitranscriptomics, and alternative splicing, follow assay-specific QC, normalization, identification, quantification, differential testing, annotation, and enrichment routes.
-9. For flow cytometry, CyTOF, CRISPR screens, Perturb-seq, temporal genomics, ecological genomics, population genetics, phylogenetics, and comparative genomics, preserve assay-specific QC, design, statistical unit, and complete diagnostic figures.
+8. For small RNA, CLIP-seq, ribo-seq, epitranscriptomics, alternative splicing, isoforms, long-read transcriptomics, RNA editing, liquid biopsy, cfDNA, ctDNA, CTC, and exosome data, read `specialized-omics.md` and follow assay-specific QC, normalization, identification, quantification, differential testing, annotation, and enrichment routes.
+9. For platform-sensitive assays, read `platforms.md`. For parameter-sensitive assays, read `parameters.md`.
+10. For flow cytometry, CyTOF, CRISPR screens, Perturb-seq, temporal genomics, ecological genomics, population genetics, phylogenetics, and comparative genomics, preserve assay-specific QC, design, statistical unit, and complete diagnostic figures.
 
 Required figures:
 
@@ -470,6 +535,7 @@ Required figures:
 - assembly, annotation, BUSCO, genome feature, synteny, phylogeny, and comparative genomics plots when genomes are analyzed
 - proteomics raw QC, peptide or protein counts, missingness, normalization, PCA, volcano, heatmap, PTM-site, kinase, and protein network plots when proteomics is analyzed
 - metabolomics peak QC, annotation, blank and pooled-QC review, PCA, volcano, heatmap, pathway, lipid class, isotopologue, flux, and model-fit plots when metabolomics or flux is analyzed
+- small RNA length, mapping class, miRNA, isomiR, splicing, sashimi, isoform, CLIP, Ribo-seq, RNA modification, RNA editing, fragmentomics, ctDNA, CTC, exosome, and MRD plots when specialized assays are analyzed
 - assay-specific PCA, heatmap, volcano, enrichment, pathway, network, and validation plots for specialized omics
 
 Primary sources to check:

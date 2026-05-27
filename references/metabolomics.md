@@ -10,16 +10,19 @@ Before implementation, verify:
 - raw format, ion mode, chromatography, batch, pooled QC, blank, internal standard, dilution series, isotope tracer, time points, labeling steady state, and metadata
 - annotation evidence level, database, adduct rules, retention time support, MS/MS support, and compound class
 - statistical unit, repeated measures, batch design, normalization strategy, and pathway question
+- whether `platforms.md` and `parameters.md` are needed for instrument, acquisition mode, peak picking, alignment, blank filtering, QC correction, annotation, isotope correction, or flux model settings
 
 ## Untargeted And Targeted Metabolomics
 
 Current route:
 
 1. Preserve raw spectra, vendor files, converted mzML or mzXML, sample table, batch, blanks, pooled QC, and internal standards.
-2. Run peak detection, deconvolution, retention-time correction, alignment, gap filling, adduct grouping, isotope grouping, blank filtering, and QC filtering.
-3. Use `XCMS`, `MZmine`, `MS-DIAL`, `asari`, `OpenMS`, `MetaboAnalystR`, or vendor tools according to input and lab practice.
-4. Annotate metabolites using MS/MS libraries, exact mass, isotope pattern, retention time, SIRIUS, CSI:FingerID, MS-FINDER, GNPS, HMDB, KEGG, LIPID MAPS, or MassBank.
-5. Report annotation confidence. Do not treat formula-level or class-level annotations as confirmed metabolites.
+2. Read `platforms.md` for LC-MS, GC-MS, CE-MS, MALDI-MSI, NMR, ion mode, chromatography, and instrument-specific interpretation.
+3. Read `parameters.md` for peak picking, retention-time alignment, gap filling, blank filtering, pooled-QC correction, normalization, adduct grouping, isotope grouping, and annotation confidence.
+4. Run peak detection, deconvolution, retention-time correction, alignment, gap filling, adduct grouping, isotope grouping, blank filtering, and QC filtering.
+5. Use `XCMS`, `MZmine`, `MS-DIAL`, `asari`, `OpenMS`, `MetaboAnalystR`, or vendor tools according to input and lab practice.
+6. Annotate metabolites using MS/MS libraries, exact mass, isotope pattern, retention time, SIRIUS, CSI:FingerID, MS-FINDER, GNPS, HMDB, KEGG, LIPID MAPS, or MassBank.
+7. Report annotation confidence. Do not treat formula-level or class-level annotations as confirmed metabolites.
 
 Required figures:
 

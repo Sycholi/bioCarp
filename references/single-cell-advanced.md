@@ -53,23 +53,27 @@ Training sources to use:
 Current route:
 
 1. Preserve raw counts, filtered counts, sample metadata, chemistry version, tissue handling, dissociation or nuclei protocol, genome build, feature annotation, and Cell Ranger or equivalent version.
-2. Run empty-droplet and barcode-level review when raw droplet matrices are available.
-3. Review ambient RNA contamination with `SoupX`, `CellBender`, `DecontX`, or package-specific alternatives when marker leakage, high background, damaged tissue, nuclei data, or dissociation artifacts are plausible.
-4. Review doublets or multiplets with `scDblFinder`, `DoubletFinder`, `Scrublet`, `Solo`, or hashtag/genotype demultiplexing when available.
-5. Check sample identity, sex markers, species-mixing markers, mitochondrial fraction, ribosomal fraction, hemoglobin genes, dissociation stress genes, cell-cycle scores, total counts, detected genes, and batch composition.
-6. Apply thresholds after plotting each metric by sample. Avoid one global threshold when samples have different quality distributions.
-7. Preserve a QC manifest with before-after cell counts per sample and reason for each filtering decision.
-8. After preliminary clustering, evaluate cluster quality and cell-state heterogeneity with marker coherence, cluster purity, silhouette or average silhouette width, graph connectivity, entropy-based metrics, and `ROGUE` when the question depends on cluster purity or subtype definition.
-9. For integrated objects, evaluate batch mixing and biological separation with `LISI` metrics such as iLISI and cLISI, plus kBET, ASW, graph connectivity, marker preservation, and sample or patient composition. Do not optimize batch mixing alone when it erases real biology.
-10. For snRNA-seq, adjust mitochondrial expectations and ambient RNA review. For CITE-seq, multiome, or hashtag data, include modality-specific QC.
+2. Read `platforms.md` when the data come from 10x, BD, MGI, BGI, DNBelab, Singleron, Parse, ScaleBio, Fluent, SMART-seq, split-pool, nuclei, fixed-cell, FFPE, documented vendor-specific, or spatial-linked workflows.
+3. Read `parameters.md` before setting QC thresholds, doublet rate, ambient correction strength, normalization, integration, dimensions, clustering resolution, and marker thresholds.
+4. Run empty-droplet and barcode-level review when raw droplet matrices are available.
+5. Review ambient RNA contamination with `SoupX`, `CellBender`, `DecontX`, or package-specific alternatives when marker leakage, high background, damaged tissue, nuclei data, or dissociation artifacts are plausible.
+6. Review doublets or multiplets with `scDblFinder`, `DoubletFinder`, `Scrublet`, `Solo`, or hashtag/genotype demultiplexing when available.
+7. Check sample identity, sex markers, species-mixing markers, mitochondrial fraction, ribosomal fraction, hemoglobin genes, dissociation stress genes, cell-cycle scores, total counts, detected genes, and batch composition.
+8. Apply thresholds after plotting each metric by sample. Avoid one global threshold when samples have different quality distributions.
+9. Preserve a QC manifest with before-after cell counts per sample and reason for each filtering decision.
+10. After preliminary clustering, evaluate cluster quality and cell-state heterogeneity with marker coherence, cluster purity, silhouette or average silhouette width, graph connectivity, entropy-based metrics, and `ROGUE` when the question depends on cluster purity or subtype definition.
+11. For integrated objects, evaluate batch mixing and biological separation with `LISI` metrics such as iLISI and cLISI, plus kBET, ASW, graph connectivity, marker preservation, and sample or patient composition. Do not optimize batch mixing alone when it erases real biology.
+12. For snRNA-seq, adjust mitochondrial expectations and ambient RNA review. For CITE-seq, multiome, or hashtag data, include modality-specific QC.
 
 Required figures:
 
+- platform, chemistry, vendor summary, barcode rank, sample-retention, mapping, saturation, and raw pipeline summary plots when available
 - per-sample counts, detected genes, mitochondrial, ribosomal, hemoglobin, stress, and cell-cycle distributions
 - scatter plots for counts versus genes and counts versus mitochondrial fraction
 - empty-droplet, ambient RNA, and doublet diagnostic plots when those tools are used
 - before-after UMAP or PCA by sample and QC class
 - removed-cell summary bar plot and QC manifest table
+- parameter before-after plots for central QC and integration choices
 - cluster quality plots: marker coherence, silhouette or ASW, cluster size distribution, ROGUE score distribution or heatmap when used
 - integration metric plots: iLISI, cLISI, kBET rejection rate, graph connectivity, batch mixing by sample and biology-preservation views when integration is used
 

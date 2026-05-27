@@ -1,6 +1,6 @@
 ---
 name: biocarp
-description: Comprehensive tumor and translational bioinformatics analysis, literature-corpus reconstruction, tool deployment, project-state tracking, sub-agent assisted review, goal-aware execution, public-dataset reproduction, data-to-question mapping, complete figure generation and inspection, upstream FASTQ processing, variant and antigen-peptide analysis, bulk functional inference, advanced single-cell and spatial methods, metagenomics, proteomics, metabolomics, metabolic flux, structural bioinformatics, molecular docking, molecular dynamics, virtual screening, imaging, perturbation and drug-prioritization workflows, and tool issue triage using a script-first R workflow with concise project-oriented code style. Use when Codex needs to analyze sequencing, bulk, single-cell, spatial, immune repertoire, clinical survival, variants, antigen peptides, HLA, chromatin, methylation, microbiome, proteomics, metabolomics, fluxomics, structural, imaging, perturbation, drug-response, or multi-omics data; deploy required tools; decide what analyses are feasible from available data; reconstruct the last-decade disease literature and public-dataset landscape for a concrete question; compare bioinformatics tool families before choosing a route; reproduce or extend published oncology studies from public cohorts; or build rigorous teaching or exploratory workflows without unnecessary abstraction.
+description: Comprehensive biomedical, tumor, and translational bioinformatics analysis, literature-corpus reconstruction, tool deployment, project-state tracking, sub-agent assisted review, goal-aware execution, public-dataset reproduction, data-to-question mapping, complete figure generation and inspection, platform-aware assay review, clinical study design, sample-size planning, target trial emulation, causal inference, evidence synthesis, upstream FASTQ processing, variant and antigen-peptide analysis, genetic epidemiology, bulk functional inference, advanced single-cell and spatial methods, metagenomics, proteomics, metabolomics, metabolic flux, structural bioinformatics, molecular docking, molecular dynamics, virtual screening, imaging, perturbation and drug-prioritization workflows, and tool issue triage using a script-first R workflow with concise project-oriented code style. Use when Codex needs to analyze sequencing, bulk, single-cell, spatial, immune repertoire, clinical trials, clinical survival, EHR, registry, OMOP, FHIR, variants, antigen peptides, HLA, chromatin, methylation, microbiome, proteomics, metabolomics, fluxomics, structural, imaging, perturbation, drug-response, or multi-omics data; deploy required tools; decide what analyses are feasible from available data; reconstruct the last-decade disease literature and public-dataset landscape for a concrete question; compare bioinformatics tool families before choosing a route; reproduce or extend published biomedical studies from public cohorts; or build rigorous teaching or exploratory workflows without unnecessary abstraction.
 ---
 
 # biocarp
@@ -98,6 +98,8 @@ Core rule:
 - `execution.md` defines project control, sub-agent use, goal handling, tool deployment, figure inspection, and required Markdown reports.
 - `learning.md` defines user-level assessment, proactive method suggestions, user habit records, bug learning, and method updates.
 - `coverage.md` lists the full capability scope and where each family belongs.
+- `platforms.md` covers assay platforms, chemistry, instrument, sample handling, sequencing or MS acquisition, imaging acquisition, and parameter effects.
+- `parameters.md` covers threshold, normalization, integration, model, database, and software-option effects on results.
 - `upstream.md` covers FASTQ-to-matrix, workflow pipelines, raw QC, alignment, quantification, demultiplexing, and workflow outputs.
 - `variants.md` covers germline, somatic, CNV, SV, HLA typing, mutational signatures, and variant-to-antigen handoff.
 - `immunopeptidomics.md` covers antigen peptides, HLA binding prediction, neoantigens, immunopeptidomics, and TCR-pMHC follow-up.
@@ -110,6 +112,12 @@ Core rule:
 - `metagenomics.md` covers microbiome, metagenomics, metatranscriptomics, MAGs, and host-microbe integration.
 - `structural.md` covers protein structure prediction, docking, molecular dynamics, virtual screening, and ADMET.
 - `imaging.md` covers pathology imaging, multiplex imaging, virtual multiplex immunofluorescence, and virtual spatial transcriptomics.
+- `clinical-research.md` covers single-arm and two-arm studies, randomized and nonrandomized trials, sample size, power, endpoints, SAP logic, clinical reporting, and protocol design.
+- `causal-inference.md` covers target trial emulation, real-world evidence, external controls, matching, weighting, g-methods, and quasi-experimental designs.
+- `clinical-data.md` covers EHR, registry, REDCap, OMOP, FHIR, CDISC, SDTM, ADaM, terminology, and clinical data quality.
+- `evidence-synthesis.md` covers systematic reviews, meta-analysis, network meta-analysis, Mendelian randomization, and pharmacovigilance.
+- `genetic-epidemiology.md` covers GWAS, PheWAS, PRS, fine mapping, colocalization, TWAS, QTL, LDSC, and biobank genetics.
+- `specialized-omics.md` covers small RNA, alternative splicing, long-read transcriptomics, CLIP-seq, ribo-seq, epitranscriptomics, RNA editing, liquid biopsy, cfDNA, ctDNA, CTC, and exosome assays.
 - `statistics.md` covers downstream statistics, clinical models, figure construction, report tables, and visualization quality checks.
 - `tool-issues.md` covers known bugs, open issues, version conflicts, and workarounds.
 - `literature.md`, `public-data.md`, and `data-assessment.md` cover study design, public data, and dataset opportunity mapping.
@@ -142,13 +150,14 @@ Then classify the data type:
 - proteomics, phosphoproteomics, metabolomics, lipidomics, isotope tracing, metabolic flux, small RNA, CLIP-seq, ribo-seq, or other specialized omics
 - protein structure prediction, molecular docking, molecular dynamics, virtual screening, or chemoinformatics
 - multiplex imaging, imaging mass cytometry, radiomics, automatic segmentation, automatic contouring, virtual immunofluorescence, virtual staining, or virtual spatial omics
+- clinical trial, single-arm study, two-arm study, sample-size planning, target trial emulation, EHR, registry, claims, REDCap, OMOP, FHIR, CDISC, real-world evidence, prediction model, diagnostic study, systematic review, meta-analysis, GWAS, PRS, fine mapping, colocalization, or genetic epidemiology
 - mixed public/private validation workflow
 
 Then choose the smallest end-to-end route using `references/index.md`. The route must answer the question without creating a larger pipeline than needed.
 
 ## Mandatory Literature, Tool, And Opportunity Sweep
 
-Do not skip this layer when the request touches study design, last-decade methods, unfamiliar diseases, unfamiliar modalities, structure-based methods, imaging prediction, microbiome analysis, or "what can this dataset do".
+Do not skip this layer when the request touches study design, platform choice, assay chemistry, parameter sensitivity, last-decade methods, unfamiliar diseases, unfamiliar modalities, structure-based methods, imaging prediction, microbiome analysis, or "what can this dataset do".
 
 1. Build a focused last-10-years corpus with `scripts/build_literature_landscape.py`.
 2. Read `references/literature.md` and extract:
@@ -159,14 +168,16 @@ Do not skip this layer when the request touches study design, last-decade method
 - method-specific main and supplementary plot types used in comparable papers
 - public accession numbers and validation datasets
 3. Read the matching references selected by `references/index.md`.
-4. Read `references/tools.md` and identify:
+4. Read `references/platforms.md` when platform, chemistry, instrument, acquisition mode, sample handling, sequencing depth, or parameter settings can change the result.
+5. Read `references/parameters.md` when threshold, normalization, integration strength, model setting, database, or software option can change the conclusion.
+6. Read `references/tools.md` and identify:
 - the default route that best matches the project code style
 - the strongest challenger route when a different tool materially improves fit
-5. Read `references/data-assessment.md` and translate the actual dataset into:
+7. Read `references/data-assessment.md` and translate the actual dataset into:
 - feasible analysis branches
 - publication-value branches
 - blocked branches that need more metadata or validation
-6. If no focused corpus has been built yet, say so and build it before making strong literature or tool claims.
+8. If no focused corpus has been built yet, say so and build it before making strong literature or tool claims.
 
 ## Use the Local Style
 
@@ -205,6 +216,8 @@ Every analysis must output the complete figure set expected for that method, not
   - proteomics, phosphoproteomics, metabolomics, lipidomics, and metabolic flux: raw MS QC, identification counts, missingness, normalization, PCA, volcano, heatmap, PTM-site and kinase plots, metabolite annotation and class plots, pathway maps, isotopologue distributions, flux maps, model-fit diagnostics, and uncertainty plots
   - structural bioinformatics: pLDDT or confidence plots, PAE maps, structure views, docking poses, interaction diagrams, score distributions, MD RMSD, RMSF, radius of gyration, SASA, hydrogen-bond, PCA, and free-energy plots
   - imaging, automatic segmentation, virtual immunofluorescence, and virtual spatial omics: raw channel montages, registration and segmentation QC, ground-truth versus prediction overlays, Dice or surface Dice, Hausdorff or boundary-error plots, phenotype maps, neighborhood plots, measured-versus-predicted marker or expression maps, uncertainty maps, and external validation plots
+  - clinical study design, clinical cohorts, target trial emulation, and causal inference: study schema, participant flow, baseline table, missingness, balance, power or operating-characteristic plots, endpoint plots, KM or cumulative-incidence plots, forest plots, sensitivity plots, and model diagnostics
+  - GWAS, PRS, fine mapping, colocalization, meta-analysis, evidence synthesis, and specialized RNA or liquid-biopsy assays: cohort QC, ancestry or population structure, Manhattan and QQ plots, locuszoom or regional plots, PRS calibration and stratification, evidence forest or network plots, splicing or isoform plots, CLIP and Ribo-seq diagnostics, fragmentomics, ctDNA, and longitudinal monitoring plots
 - If a required or signature plot cannot be produced because the data lack required inputs, package assumptions fail, or metadata are missing, record the exact blocker in the result notes and do not replace it with a simpler plot as if the full method had been completed.
 - Verify at the end of each analysis that every expected figure file exists and is nonempty, and include the figure manifest in the final result directory.
 - Inspect every figure for dimensions, length, aspect ratio, resolution, label clipping, legend placement, color scale, group order, statistical annotation, data range, and visual consistency with the underlying table.
@@ -308,6 +321,8 @@ Every analysis must output the complete figure set expected for that method, not
 - `references/method-updates.md`
 - `references/methods.md`
 - `references/workflows.md`
+- `references/platforms.md`
+- `references/parameters.md`
 - `references/upstream.md`
 - `references/variants.md`
 - `references/immunopeptidomics.md`
@@ -320,6 +335,12 @@ Every analysis must output the complete figure set expected for that method, not
 - `references/metagenomics.md`
 - `references/structural.md`
 - `references/imaging.md`
+- `references/clinical-research.md`
+- `references/causal-inference.md`
+- `references/clinical-data.md`
+- `references/evidence-synthesis.md`
+- `references/genetic-epidemiology.md`
+- `references/specialized-omics.md`
 - `references/statistics.md`
 - `references/tool-issues.md`
 - `references/public-data.md`

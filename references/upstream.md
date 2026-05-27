@@ -10,6 +10,7 @@ Before implementation, verify:
 - raw data source, checksum, lane structure, barcode structure, adapter sequence, index hopping risk, sample swaps, and expected output unit
 - compute environment, container support, reference-cache location, thread count, memory, GPU availability, and storage requirement
 - whether the task needs raw-count preservation, transcript-level quantification, allele-specific output, splice-aware alignment, or spliced/unspliced matrices
+- whether `platforms.md` or `parameters.md` is required because chemistry, barcode structure, acquisition mode, vendor output, or threshold settings can change the result
 
 ## Sequencing Workflow Selection
 
@@ -25,6 +26,7 @@ Primary routes:
 
 - bulk RNA-seq: `nf-core/rnaseq`, STAR plus Salmon, HISAT2, RSEM, kallisto, featureCounts, tximport
 - scRNA-seq: `nf-core/scrnaseq`, Cell Ranger, STARsolo, kallisto-bustools, simpleaf, alevin-fry, velocyto when spliced or unspliced counts are needed
+- platform-specific single-cell: Cell Ranger for 10x, BD Rhapsody Sequence Analysis Pipeline for BD, ScaleBio Seq Suite for ScaleBio, Parse Split Pipe or Trailmaker-supported exports for Parse, PIPseeker for Fluent, Singleron or vendor-supported workflows for GEXSCOPE, and documented vendor workflows for MGI, BGI, DNBelab, or other platforms
 - scATAC or multiome: Cell Ranger ARC, Cell Ranger ATAC, Signac-compatible fragment files, ArchR-compatible fragment files
 - spatial transcriptomics: Space Ranger, Xenium Ranger, CosMx SMI tools, platform vendor outputs, Giotto or Squidpy import routes
 - ATAC-seq: `nf-core/atacseq`, ENCODE ATAC pipeline

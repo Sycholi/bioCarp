@@ -32,6 +32,26 @@ Return the consultation in four blocks:
 
 For every data type below, check `workflows.md` before promising the analysis. A branch is feasible only when the data support the current QC, modeling, and figure requirements for that branch.
 
+### Platform and parameter review
+
+Directly required when:
+
+- platform, chemistry, instrument, acquisition mode, sample handling, run design, or vendor output is unknown
+- 10x, BD, MGI, BGI, Singleron, Parse, ScaleBio, Fluent, SMART-seq, Visium, Xenium, CosMx, MERSCOPE, Stereo-seq, MS, imaging, Nanopore, PacBio, or documented vendor-specific data are used
+- filtering thresholds, normalization, integration, clustering, peak calling, MS search, metabolite peak picking, clinical design assumptions, matching, weighting, GWAS QC, PRS LD reference, docking, MD, segmentation, or image preprocessing can change the conclusion
+
+Usually blocked without:
+
+- chemistry and read structure for raw single-cell processing
+- instrument and acquisition mode for raw MS interpretation
+- scanner, spacing, staining, or segmentation protocol for imaging
+- parameter table and before-after counts for threshold-sensitive conclusions
+
+Use:
+
+- `platforms.md`
+- `parameters.md`
+
 ### Bulk RNA-seq or microarray
 
 If group labels exist:
@@ -209,6 +229,48 @@ Usually blocked without molecular data:
 
 - mechanistic claims
 
+### Clinical study design, sample size, and real-world evidence
+
+Directly feasible:
+
+- single-arm, two-arm, multi-arm, randomized, nonrandomized, cluster, crossover, stepped-wedge, factorial, adaptive, basket, umbrella, platform, registry, external-control, diagnostic, prognostic, or pragmatic design review
+- sample size, power, precision, event count, operating-characteristic simulation, and interim boundary planning
+- protocol, SAP, endpoint, safety, PRO, and reporting-checklist support
+- target trial emulation, external control, matching, weighting, g-methods, TMLE, instrumental-variable, difference-in-differences, and self-controlled design
+- REDCap, EHR, registry, claims, OMOP, FHIR, CDISC, SDTM, ADaM, and terminology review when data dictionaries exist
+
+High-value routes:
+
+- clinical question -> endpoint and time-zero definition -> sample size or target trial -> endpoint analysis -> sensitivity and reporting checklist
+- molecular biomarker -> clinical endpoint -> prediction or validation -> public data or external cohort support
+
+Usually blocked without key inputs:
+
+- sample-size calculation without endpoint scale, expected effect, error rate, power, follow-up, or dropout
+- target trial emulation without treatment start, time zero, eligibility, comparator, and outcome timing
+- external control analysis without comparable eligibility, calendar time, endpoint, assessment schedule, and follow-up
+- CDISC or OMOP mapping without source data dictionary and terminology versions
+
+### Evidence synthesis and genetic epidemiology
+
+Directly feasible:
+
+- systematic review, scoping review, meta-analysis, network meta-analysis, diagnostic meta-analysis, prognostic meta-analysis, MR, and pharmacovigilance
+- GWAS, PheWAS, PRS, fine mapping, colocalization, QTL, TWAS, LDSC, heritability, genetic correlation, and biobank analysis
+
+High-value routes:
+
+- literature question -> search and screening -> risk-of-bias -> meta-analysis -> sensitivity and reporting
+- exposure or biomarker -> GWAS or QTL source -> MR or colocalization -> external evidence support
+- phenotype -> GWAS -> PRS -> calibration and external validation
+
+Usually blocked without key inputs:
+
+- pooled estimates without comparable population, endpoint, and effect scale
+- MR without valid instruments, harmonized alleles, and pleiotropy checks
+- PRS without ancestry-matched LD reference and validation cohort
+- fine mapping or colocalization without dense summary statistics and LD reference
+
 ### Variants, HLA, and antigen peptides
 
 Directly feasible:
@@ -343,6 +405,25 @@ Usually blocked without annotations or paired measurements:
 - virtual marker or virtual expression claims without measured paired validation
 - patient-level outcome modeling without patient-level split and external validation
 
+### Specialized RNA, long-read, and liquid biopsy assays
+
+Directly feasible:
+
+- small RNA, miRNA, piRNA, tRNA fragment, lncRNA, circRNA, alternative splicing, isoform, long-read transcriptomics, CLIP-seq, RIP-seq, Ribo-seq, epitranscriptomics, RNA editing, cfDNA, ctDNA, CTC, exosome, fragmentomics, and MRD analysis
+- assay-specific raw QC, mapping, feature detection, annotation, differential testing, and longitudinal review
+
+High-value routes:
+
+- splicing or isoform event -> sashimi or transcript model -> expression and pathway support -> clinical or perturbation link
+- CLIP or Ribo-seq signal -> target or translation evidence -> RNA-seq or proteomics support
+- ctDNA or cfDNA feature -> longitudinal monitoring -> tissue or clinical endpoint support
+
+Usually blocked without key inputs:
+
+- splicing claims without junction or transcript-level support
+- RNA modification claims without protocol controls or direct evidence
+- ctDNA MRD claims without UMI depth, limit of detection, and longitudinal sampling
+
 ## Metadata Gates
 
 Before promising an analysis branch, verify:
@@ -352,12 +433,16 @@ Before promising an analysis branch, verify:
 3. batch or platform metadata are known
 4. paired or longitudinal structure is explicit
 5. validation material exists
-6. covariates needed for confounding control exist
+6. adjustment variables needed for bias control exist
 7. controls exist for low-biomass microbiome or imaging prediction tasks when needed
 8. structure, ligand, annotation, or segmentation labels exist for structure and imaging tasks
 9. HLA, expression, clonality, peptide evidence, or TCR evidence exist when antigen claims are requested
 10. raw spectra, search database, FDR, and batch design exist when proteomics or immunopeptidomics claims are requested
 11. blanks, pooled QC, internal standards, annotation evidence, isotope correction, or tracer design exist when metabolomics or flux claims are requested
+12. platform, chemistry, read structure, acquisition mode, or scanner metadata exist when platform-specific processing is required
+13. endpoint, time zero, follow-up, event rate, dropout, historical benchmark, or target-trial elements exist when clinical design or causal inference is requested
+14. search strategy, inclusion criteria, effect scale, risk-of-bias rule, or allele harmonization exists when evidence synthesis, MR, GWAS, or PRS is requested
+15. raw junction, isoform, fragment, modification, editing, cfDNA, ctDNA, CTC, or exosome evidence exists when specialized assays are requested
 
 If a gate is missing, mark the branch as blocked or exploratory-only.
 
@@ -369,5 +454,9 @@ Shortest common paths:
 - single-cell state discovery -> pathway plus trajectory -> public cohort validation
 - single-cell discovery -> spatial support -> external cohort validation
 - clinical cohort signal -> public expression support -> targeted single-cell follow-up
+- clinical question -> sample-size design -> endpoint analysis -> reporting checklist
+- observational treatment question -> target trial emulation -> balance and sensitivity -> external validation
+- literature evidence -> meta-analysis or MR -> public molecular support -> focused omics follow-up
+- GWAS or PRS -> fine mapping or colocalization -> expression or protein support -> clinical validation
 
 Choose the shortest route that can support the target claim with the existing data. Do not create a larger pipeline than the data can defend.

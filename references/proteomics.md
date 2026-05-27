@@ -10,16 +10,19 @@ Before implementation, verify:
 - raw format, instrument, acquisition method, fractionation, labeling design, batch, reference channel, search database, digestion enzyme, modification list, and FDR level
 - statistical unit, biological replicates, missingness pattern, batch design, normalization method, and peptide-to-protein summarization route
 - downstream need: differential abundance, pathway analysis, kinase activity, PTM site analysis, protein complex, drug target, or multi-omics integration
+- whether `platforms.md` and `parameters.md` are needed for instrument, acquisition mode, raw conversion, search, FDR, normalization, imputation, or protein grouping choices
 
 ## Raw Processing And Quantification
 
 Current route:
 
 1. Preserve raw spectra, metadata, sample annotation, search database, FASTA version, contaminant database, decoy strategy, and all search parameters.
-2. Choose software by acquisition type and local availability.
-3. Run QC before differential analysis: identification counts, peptide counts, protein counts, PSM FDR, mass error, retention time, missingness, intensity distribution, batch, and carryover.
-4. Normalize and summarize at the peptide, protein, or PTM-site level according to the question.
-5. Keep peptide-level evidence visible for high-value proteins or PTM sites.
+2. Read `platforms.md` for Orbitrap, Q-TOF, timsTOF, triple quadrupole, MALDI, DDA, DIA, diaPASEF, TMT, LFQ, PRM, and SRM platform effects when raw data or acquisition design matters.
+3. Read `parameters.md` for search engine, spectral library, enzyme, missed cleavages, modifications, FDR, match-between-runs, normalization, missing values, protein grouping, and PTM localization choices.
+4. Choose software by acquisition type and local availability.
+5. Run QC before differential analysis: identification counts, peptide counts, protein counts, PSM FDR, mass error, retention time, missingness, intensity distribution, batch, and carryover.
+6. Normalize and summarize at the peptide, protein, or PTM-site level according to the question.
+7. Keep peptide-level evidence visible for high-value proteins or PTM sites.
 
 Primary tools:
 

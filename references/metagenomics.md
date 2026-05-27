@@ -12,18 +12,20 @@ Before choosing tools, verify:
 - primer region for amplicon data and reference database release
 - host-depletion status, read length, paired-end status, expected biomass, contamination risk, and metadata
 - biological unit: subject, sample, time point, cage, litter, site, lesion, or batch
+- whether `platforms.md` and `parameters.md` are needed for sequencing platform, primer trimming, truncation, host removal, taxonomy database, differential method, or MAG quality thresholds
 
 ## Amplicon Route
 
 Current route:
 
 1. Inspect raw read quality, primer structure, barcode structure, read pairing, and metadata.
-2. Use `QIIME 2`, `DADA2`, or `mothur` according to the project ecosystem and required outputs.
-3. Prefer ASV-level processing for modern 16S or ITS work when the data support it.
-4. Remove primers, filter low-quality reads, infer ASVs, remove chimeras, and assign taxonomy against a stated database.
-5. Track read counts through every step and preserve representative sequences, feature table, taxonomy, phylogeny, and metadata.
-6. Rarefy only for diversity plots or methods that require it. Do not use rarefaction as the only normalization strategy for differential abundance.
-7. Run alpha diversity, beta diversity, ordination, PERMANOVA or equivalent tests, taxonomic composition, and differential abundance with compositional-data-aware methods.
+2. Read `parameters.md` before choosing truncation length, expected error, chimera rule, host removal, contaminant filtering, taxonomy database, rarefaction, normalization, PERMANOVA formula, and differential abundance method.
+3. Use `QIIME 2`, `DADA2`, or `mothur` according to the project ecosystem and required outputs.
+4. Prefer ASV-level processing for modern 16S or ITS work when the data support it.
+5. Remove primers, filter low-quality reads, infer ASVs, remove chimeras, and assign taxonomy against a stated database.
+6. Track read counts through every step and preserve representative sequences, feature table, taxonomy, phylogeny, and metadata.
+7. Rarefy only for diversity plots or methods that require it. Do not use rarefaction as the only normalization strategy for differential abundance.
+8. Run alpha diversity, beta diversity, ordination, PERMANOVA or equivalent tests, taxonomic composition, and differential abundance with compositional-data-aware methods.
 
 Required figures:
 

@@ -20,6 +20,7 @@ Current route:
 3. Adjust multiple testing with method appropriate to the family of tests.
 4. Report effect size, confidence interval, adjusted P value, sample count, and model formula whenever possible.
 5. Check assumptions and model diagnostics before interpreting significance.
+6. For clinical study planning, sample size, target trial emulation, external controls, evidence synthesis, or genetic epidemiology, read the specific companion file before modeling.
 
 Primary tools:
 
@@ -29,6 +30,15 @@ Primary tools:
 - metafor for meta-analysis
 - coin, exactRankTests, permutation, boot, rsample for nonparametric or resampling routes
 
+Companion files for design-specific statistics:
+
+- `clinical-research.md` for single-arm, two-arm, sample size, power, SAP, safety, PRO, and reporting
+- `causal-inference.md` for target trial emulation, real-world evidence, matching, weighting, and sensitivity analysis
+- `clinical-data.md` for EHR, registry, REDCap, OMOP, FHIR, CDISC, and terminology data quality
+- `evidence-synthesis.md` for meta-analysis, network meta-analysis, MR, and pharmacovigilance
+- `genetic-epidemiology.md` for GWAS, PRS, fine mapping, colocalization, QTL, and biobank statistics
+- `parameters.md` for parameter effects and sensitivity checks
+
 Required figures:
 
 - design and sample-count summary
@@ -36,6 +46,7 @@ Required figures:
 - effect-size forest plots
 - subgroup and sensitivity plots
 - correlation, concordance, Bland-Altman, and agreement plots when comparing assays or methods
+- sample-size, power, operating-characteristic, balance, weight, target-trial, forest, funnel, Manhattan, QQ, regional, PRS, and colocalization plots when those companion routes are used
 
 ## Visualization Tools
 
@@ -91,3 +102,6 @@ Last checked: 2026-05-28.
 - metafor: https://www.metafor-project.org/
 - lme4: https://cran.r-project.org/package=lme4
 - glmmTMB: https://cran.r-project.org/package=glmmTMB
+- rpact: https://www.rpact.org/
+- TrialEmulation: https://causal-lda.r-universe.dev/TrialEmulation/TrialEmulation.pdf
+- PLINK2: https://www.cog-genomics.org/plink/2.0/

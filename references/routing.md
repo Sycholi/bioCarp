@@ -9,14 +9,17 @@
 5. Bulk and microarray route
 6. Spatial route
 7. Clinical and survival route
-8. Multi-omics integration route
-9. Variant and antigen route
-10. Proteomics, metabolomics, and flux route
-11. Metagenomics route
-12. Structural bioinformatics route
-13. Imaging route
-14. "What can this dataset do?" route
-15. Paper-oriented output chain
+8. Clinical trial and real-world evidence route
+9. Evidence synthesis and genetic epidemiology route
+10. Multi-omics integration route
+11. Variant and antigen route
+12. Proteomics, metabolomics, and flux route
+13. Metagenomics route
+14. Structural bioinformatics route
+15. Imaging route
+16. Specialized omics route
+17. "What can this dataset do?" route
+18. Paper-oriented output chain
 
 ## Intake Checklist
 
@@ -29,12 +32,15 @@ Reconstruct these items before coding:
 - requested endpoint or biological axis
 - custom data, public data, or mixed validation
 - intended output: figure, table, reusable script, full draft result, or study design
+- platform, chemistry, instrument, acquisition mode, and parameter-sensitive steps when they are relevant
 
 If any of these are missing and materially affect analysis logic, infer from files first. Ask the user only when the ambiguity is truly blocking.
 
 ## Reference Routing Baseline
 
 After choosing a route from this file, use `index.md` to select the companion references for the data type, method family, and risk level. Every executable route must read `workflows.md` unless the task is purely conversational.
+
+Read `platforms.md` when platform, chemistry, instrument, acquisition mode, sample handling, or run design can affect QC or interpretation. Read `parameters.md` when thresholds, normalization, integration, models, databases, or software options can change the conclusion.
 
 Use the selected companion files to decide:
 
@@ -127,6 +133,8 @@ Feasible branches:
 - matching or balancing when design requires it
 - biomarker cut-point comparison
 - nomogram or risk score if explicitly requested
+- sample size and power for clinical endpoints when planning is requested
+- target trial emulation or real-world evidence when observational treatment comparisons are requested
 
 Shortest route:
 
@@ -135,6 +143,40 @@ Shortest route:
 3. generate baseline table
 4. run KM and Cox analyses
 5. add subgroup or matched analysis only if it answers the stated question
+
+### Clinical Trial, Real-World Evidence, Or Clinical Data Standard
+
+Feasible branches:
+
+- single-arm, two-arm, multi-arm, randomized, nonrandomized, cluster, crossover, stepped-wedge, factorial, adaptive, basket, umbrella, platform, registry, external-control, or pragmatic design
+- sample size, power, precision, event count, interim boundary, and operating-characteristic simulation
+- protocol, SAP, endpoint, safety, PRO, and reporting-checklist support
+- target trial emulation, external control construction, matching, weighting, g-methods, TMLE, instrumental-variable, difference-in-differences, self-controlled, and sensitivity analyses
+- EHR, registry, REDCap, OMOP, FHIR, CDISC, SDTM, ADaM, terminology mapping, and data quality
+
+Shortest route:
+
+1. define the clinical question, population, intervention or exposure, comparator, endpoint, time zero, follow-up, and analysis set
+2. choose trial, observational, target-trial, diagnostic, prognostic, or clinical-data-standard route
+3. state assumptions and sample-size or design requirements when planning is requested
+4. clean and validate clinical data or define the target trial elements
+5. run endpoint, balance, power, or operating-characteristic analyses
+6. produce study schema, flow, baseline, endpoint, diagnostics, sensitivity, and reporting tables
+
+### Evidence Synthesis Or Genetic Epidemiology
+
+Feasible branches:
+
+- systematic review, scoping review, meta-analysis, network meta-analysis, diagnostic meta-analysis, prognostic meta-analysis, umbrella review, pharmacovigilance, or Mendelian randomization
+- GWAS, PheWAS, PRS, fine mapping, colocalization, QTL, TWAS, LDSC, heritability, genetic correlation, and biobank analysis
+
+Shortest route:
+
+1. define the clinical, genetic, or evidence question
+2. define inclusion criteria, phenotype, exposure, outcome, population, and data source
+3. choose evidence-synthesis or genetic-epidemiology route
+4. run quality control, harmonization, model fitting, and sensitivity checks
+5. produce required forest, funnel, network, Manhattan, QQ, regional, PRS, or colocalization plots
 
 ### Multi-Omics or Mixed Public/Private Validation
 
@@ -191,6 +233,21 @@ Shortest route:
 3. perform normalization, missingness review, and sample-level QC
 4. run differential, pathway, PTM, lipid, flux, or modeling module
 5. connect results to expression, phenotype, or validation evidence
+
+### Specialized RNA, Long-Read, Or Liquid-Biopsy Assay
+
+Feasible branches:
+
+- small RNA, miRNA, piRNA, tRNA fragment, lncRNA, circRNA, alternative splicing, isoform, long-read transcriptomics, CLIP-seq, RIP-seq, Ribo-seq, epitranscriptomics, RNA editing, cfDNA, ctDNA, CTC, exosome, fragmentomics, or MRD analysis
+- assay-specific raw QC, mapping, annotation, feature quantification, differential testing, target or pathway interpretation, and clinical linkage
+
+Shortest route:
+
+1. identify assay, platform, library design, input file level, and endpoint
+2. select the assay-specific reference and pipeline
+3. run raw or matrix-level QC and feature detection
+4. run differential, annotation, enrichment, or longitudinal analysis
+5. produce assay-specific diagnostic and manuscript figures
 
 ### Metagenomics Or Microbiome
 
@@ -313,6 +370,21 @@ Focus on:
 
 Only add matching, subgrouping, or cut-point optimization when the question truly depends on them.
 
+Read `clinical-research.md` for trial design, sample size, power, SAP, safety, PRO, and reporting. Read `causal-inference.md` for target trial emulation, external controls, and real-world evidence. Read `clinical-data.md` for EHR, registry, REDCap, OMOP, FHIR, CDISC, SDTM, ADaM, and terminology mapping.
+
+## Evidence Synthesis And Genetic Epidemiology Route
+
+Use this route when the request depends on pooled evidence, public GWAS, PRS, QTL, biobank, MR, pharmacovigilance, or systematic review logic.
+
+Read:
+
+- `evidence-synthesis.md`
+- `genetic-epidemiology.md`
+- `statistics.md`
+- `public-data.md`
+
+Keep phenotype definitions, ancestry, population, outcome, effect scale, data source, and risk-of-bias rules explicit.
+
 ## Multi-Omics Integration Route
 
 Use this route when one omics layer alone cannot support the biological claim.
@@ -334,6 +406,10 @@ Use this route when the task depends on molecular structure, ligand binding, vir
 ## Imaging Route
 
 Use this route when the task depends on radiomics, pathomics, WSI analysis, automatic segmentation, multiplex imaging, virtual staining, virtual immunofluorescence, or virtual spatial omics. Read `imaging.md` before implementation.
+
+## Specialized Omics Route
+
+Use this route when the request involves small RNA, miRNA, splicing, isoforms, long-read transcriptomics, CLIP-seq, Ribo-seq, epitranscriptomics, RNA editing, cfDNA, ctDNA, CTC, exosome, fragmentomics, or MRD. Read `specialized-omics.md`, `platforms.md`, and `parameters.md` before implementation.
 
 ## "What Can This Dataset Do?" Route
 

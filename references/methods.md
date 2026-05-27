@@ -6,6 +6,33 @@ Before implementation, use `index.md` to load the required companion files. This
 
 Read `tools.md` as well when the user asks for broader package-family comparison, last-decade or last-two-decade method trends, or explicit strengths-versus-weaknesses across tools.
 
+## Platform And Parameter Review
+
+### platforms.md
+
+Use when:
+
+- platform, chemistry, instrument, acquisition mode, sample handling, or vendor output can change QC or interpretation
+- the project mixes 10x, BD, MGI, BGI, Singleron, Parse, ScaleBio, Fluent, SMART-seq, spatial, MS, imaging, long-read, or documented vendor-specific platforms
+
+Best practice:
+
+- record platform and chemistry before filtering
+- use vendor summaries and raw QC as evidence
+- do not apply 10x assumptions to non-10x data without checking barcode, UMI, read, and output format
+
+### parameters.md
+
+Use when:
+
+- thresholds, normalization, integration, clustering, peak calling, variant filtering, MS search, metabolite peak extraction, matching, weighting, PRS LD reference, docking grid, or imaging preprocessing can change the conclusion
+
+Best practice:
+
+- preserve the baseline
+- record chosen values and before-after counts
+- run focused sensitivity checks only where interpretation depends on the setting
+
 ## Bulk Differential Expression
 
 ### Upstream FASTQ Processing
@@ -215,6 +242,80 @@ Use when:
 
 - terminal fate probabilities, vector-field dynamics, diffusion pseudotime, or transport-based fate mapping are central
 - the data contain suitable time, differentiation, perturbation, or state-transition information
+
+## Clinical Research Design
+
+### clinical-research.md
+
+Use when:
+
+- the request is about single-arm, two-arm, multi-arm, randomized, nonrandomized, cluster, crossover, stepped-wedge, factorial, adaptive, basket, umbrella, platform, registry, diagnostic, prognostic, or pragmatic design
+- sample size, power, precision, interim boundary, endpoint design, SAP, safety, PRO, or clinical reporting is required
+
+Best practice:
+
+- define population, intervention or exposure, comparator, endpoint, time zero, follow-up, analysis set, and reporting standard before calculation
+- for single-arm studies, state historical benchmark and stopping rule
+- for two-arm studies, state effect size, allocation ratio, dropout, power, sidedness, and endpoint scale
+
+### causal-inference.md
+
+Use when:
+
+- observational treatment comparison, external control, real-world evidence, target trial emulation, or causal claim is requested
+
+Best practice:
+
+- specify the target trial before extracting observational data
+- align eligibility, time zero, treatment assignment, follow-up, and outcome definition
+- use matching, weighting, g-methods, TMLE, quasi-experimental, or self-controlled route only when assumptions fit the data
+
+### clinical-data.md
+
+Use when:
+
+- data come from EHR, registry, claims, REDCap, OMOP, FHIR, CDISC, SDTM, ADaM, or terminology mapping
+
+Best practice:
+
+- check data dictionary, provenance, date logic, missingness, terminology versions, and patient or encounter identity before modeling
+
+## Evidence Synthesis And Genetic Epidemiology
+
+### evidence-synthesis.md
+
+Use when:
+
+- systematic review, scoping review, meta-analysis, network meta-analysis, diagnostic meta-analysis, prognostic meta-analysis, Mendelian randomization, or pharmacovigilance is requested
+
+Best practice:
+
+- define PICOS or review question, inclusion rules, effect scale, risk-of-bias tool, and heterogeneity method before pooling
+- separate evidence synthesis from exploratory data mining
+
+### genetic-epidemiology.md
+
+Use when:
+
+- GWAS, PheWAS, PRS, fine mapping, colocalization, TWAS, QTL, LDSC, heritability, genetic correlation, or biobank genetics is requested
+
+Best practice:
+
+- check phenotype definition, ancestry, relatedness, population structure, imputation quality, allele harmonization, and LD reference before model fitting
+
+## Specialized RNA And Liquid Biopsy
+
+### specialized-omics.md
+
+Use when:
+
+- small RNA, miRNA, piRNA, tRNA fragment, alternative splicing, isoforms, long-read transcriptomics, CLIP-seq, RIP-seq, Ribo-seq, epitranscriptomics, RNA editing, cfDNA, ctDNA, CTC, exosome, fragmentomics, or MRD is requested
+
+Best practice:
+
+- identify library design and input file level first
+- select event-level, transcript-level, junction-level, peak-level, fragment-level, or longitudinal route according to the assay
+- keep assay-specific QC and signature plots before downstream interpretation
 
 ## Cell-Cell Communication
 

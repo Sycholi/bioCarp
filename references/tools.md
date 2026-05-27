@@ -4,19 +4,23 @@
 
 1. How to use this file
 2. Core selection rule
-3. Upstream workflow tools
-4. Bulk and cohort tools
-5. Single-cell tools
-6. Spatial and deconvolution tools
-7. Immune-repertoire and antigen tools
-8. Variant and epigenomics tools
-9. Multi-omics tools
-10. Proteomics, metabolomics, and flux tools
-11. Metagenomics and microbiome tools
-12. Structural and chemoinformatics tools
-13. Imaging and segmentation tools
-14. Statistics and visualization tools
-15. Selection checklist
+3. Platform and parameter-sensitive tools
+4. Upstream workflow tools
+5. Bulk and cohort tools
+6. Single-cell tools
+7. Spatial and deconvolution tools
+8. Immune-repertoire and antigen tools
+9. Variant and epigenomics tools
+10. Multi-omics tools
+11. Proteomics, metabolomics, and flux tools
+12. Metagenomics and microbiome tools
+13. Clinical research and causal tools
+14. Evidence synthesis and genetic epidemiology tools
+15. Specialized RNA and liquid-biopsy tools
+16. Structural and chemoinformatics tools
+17. Imaging and segmentation tools
+18. Statistics and visualization tools
+19. Selection checklist
 
 ## How To Use This File
 
@@ -41,6 +45,21 @@ Choose the route that satisfies all four conditions:
 4. it avoids unnecessary environment complexity
 
 Do not switch to a newer package only because it is newer. Switch only when the biological fit, statistical fit, or scale requirement is materially better.
+
+## Platform And Parameter-Sensitive Tools
+
+- vendor pipelines and run reports
+  - Best for: preserving chemistry, barcode, UMI, reference, sequencing, MS acquisition, and imaging acquisition assumptions before downstream analysis
+  - Examples: Cell Ranger, Cell Ranger ARC, Cell Ranger ATAC, Space Ranger, Xenium Ranger, BD Rhapsody Sequence Analysis Pipeline, ScaleBio Seq Suite, Parse Split Pipe or Trailmaker, Fluent PIPseeker, vendor spatial and imaging software
+  - Weaknesses: vendor defaults are not automatically optimal for every biological question
+- `MultiQC`, `pmultiqc`, vendor QC summaries, and assay-specific QC dashboards
+  - Best for: checking raw run quality and platform-specific failure modes
+  - Weaknesses: downstream biological interpretation still requires modality-specific analysis
+- sensitivity and parameter-review scripts
+  - Best for: checking QC thresholds, integration strength, clustering resolution, peak-calling settings, MS search settings, metabolite peak parameters, matching or weighting choices, PRS LD references, and imaging preprocessing
+  - Weaknesses: broad sweeps can add noise; use focused ranges tied to the conclusion
+
+Read `platforms.md` and `parameters.md` before committing to a platform-sensitive or parameter-sensitive route.
 
 ## Upstream Workflow Tools
 
@@ -100,6 +119,18 @@ Do not switch to a newer package only because it is newer. Switch only when the 
 - `MatchIt`
   - Best for: confounding reduction in observational cohorts
   - Weaknesses: matching cannot rescue missing biology or poor endpoint definition
+
+### Clinical trial planning and cohort design
+
+- `rpact`, `gsDesign`, `gsDesign2`
+  - Best for: group sequential, adaptive, fixed-sample, binary, continuous, and survival trial design
+  - Weaknesses: assumptions and operating characteristics must be explicit
+- `clinfun`, `ph2simon`, `OneArmPhaseTwoStudy`, `BOIN`, `dfcrm`, `bcrm`
+  - Best for: single-arm phase II, two-stage, Bayesian, and dose-finding designs
+  - Weaknesses: historical benchmark and endpoint quality dominate interpretation
+- `pmsampsize`, `powerSurvEpi`, `simtrial`, `simr`, `clusterPower`, `CRTsize`, `steppedwedge`, `longpower`
+  - Best for: prediction-model, survival, simulation, mixed-model, cluster, stepped-wedge, and longitudinal sample-size planning
+  - Weaknesses: formula outputs are only as defensible as the design assumptions
 
 ### Bulk deconvolution and microenvironment
 
@@ -453,6 +484,58 @@ Do not switch to a newer package only because it is newer. Switch only when the 
 - `PICRUSt2`, `AMRFinderPlus`, `ResFinder`, `VFDB`
   - Best for: function prediction, resistome, and virulence review
   - Weaknesses: marker-gene inferred function is weaker than shotgun functional profiling
+
+## Clinical Research And Causal Tools
+
+- `TrialEmulation`
+  - Best for: target trial emulation of observational time-to-event data
+  - Weaknesses: requires explicit target trial elements and time-zero alignment
+- `MatchIt`, `WeightIt`, `cobalt`, `optmatch`, `CBPS`, `twang`, `PSweight`
+  - Best for: matching, weighting, balance diagnostics, and propensity-score workflows
+  - Weaknesses: cannot resolve missing design variables or unmeasured factors
+- `ipw`, `tmle`, `ltmle`, `drtmle`, `SuperLearner`, `grf`, `DoubleML`, `AIPW`
+  - Best for: weighting, doubly robust estimation, TMLE, causal forests, and causal machine learning
+  - Weaknesses: target estimand, positivity, and tuning must be checked
+- `dagitty`, `EValue`, `episensr`, `tipr`
+  - Best for: DAG review and quantitative sensitivity analysis
+- `did`, `fixest`, `CausalImpact`, `gsynth`, `Synth`, `rdd`, `ivreg`, `AER`, `SelfControlledCaseSeries`
+  - Best for: difference-in-differences, interrupted time series, synthetic controls, regression discontinuity, instrumental variables, and self-controlled designs
+- `REDCapR`, `redcapAPI`, `SqlRender`, `DatabaseConnector`, `Achilles`, `DataQualityDashboard`, `CohortDiagnostics`, `FeatureExtraction`, `admiral`, `metacore`, `xportr`, `fhircrackr`
+  - Best for: REDCap, OMOP, OHDSI, CDISC, FHIR, and clinical data quality workflows
+
+## Evidence Synthesis And Genetic Epidemiology Tools
+
+- `revtools`, `litsearchr`, `RISmed`, `rentrez`, `ASReview`
+  - Best for: literature search, screening support, and review preparation
+- `metafor`, `meta`, `netmeta`, `gemtc`, `BUGSnet`, `bayesmeta`, `dmetar`, `robvis`, `mada`, `diagmeta`
+  - Best for: pairwise meta-analysis, network meta-analysis, Bayesian meta-analysis, risk-of-bias visualization, diagnostic meta-analysis, and prognostic evidence synthesis
+  - Weaknesses: heterogeneity, publication bias, and endpoint differences must be explicit
+- `TwoSampleMR`, `MendelianRandomization`, `MR-PRESSO`, `RadialMR`, `coloc`, `susieR`
+  - Best for: Mendelian randomization, pleiotropy checks, colocalization, and fine-mapping support
+- `PLINK2`, `SAIGE`, `REGENIE`, `BOLT-LMM`, `GEMMA`, `GCTA`, `Hail`, `SNPTEST`
+  - Best for: GWAS, rare variant, mixed-model, and large biobank analysis
+- `PRSice`, `LDpred2`, `lassosum2`, `PRS-CS`, `SBayesR`
+  - Best for: PRS construction and validation
+- `FINEMAP`, `SuSiE`, `PolyFun`, `PAINTOR`, `CAVIAR`, `eCAVIAR`, `HyPrColoc`, `SMR`, `FUSION`, `S-PrediXcan`, `MAGMA`, `Pascal`
+  - Best for: fine mapping, colocalization, TWAS, gene-level tests, and pathway analysis
+
+## Specialized RNA And Liquid-Biopsy Tools
+
+- `nf-core/smrnaseq`, `miRDeep2`, `sRNAbench`, `miRge`, `miRTrace`, `ShortStack`
+  - Best for: small RNA, miRNA, isomiR, piRNA, and related short RNA workflows
+- `rMATS`, `MAJIQ`, `SUPPA2`, `DEXSeq`, `JunctionSeq`, `LeafCutter`, `MISO`, `SplAdder`
+  - Best for: event-level, transcript-level, and junction-level alternative splicing
+- `FLAIR`, `TALON`, `IsoQuant`, `Bambu`, `StringTie2`, `FLAMES`, `TAMA`, `Mandalorion`
+  - Best for: long-read transcriptomics and isoform analysis
+- `CIRI2`, `CIRCexplorer2`, `find_circ`, `DCC`, `circRNAprofiler`
+  - Best for: circRNA discovery and back-splice junction review
+- `nf-core/clipseq`, `CLIPper`, `PureCLIP`, `iCount`, `PARalyzer`, `Piranha`, `CTK`, `PEAKachu`
+  - Best for: CLIP, RIP, RNA-binding protein targets, motif, and peak analysis
+- `nf-core/riboseq`, `RiboTaper`, `RiboCode`, `riboWaltz`, `RiboProfiling`, `ORFquant`, `Ribo-seQC`
+  - Best for: Ribo-seq, translation efficiency, ORF discovery, and frame periodicity
+- `exomePeak2`, `MeTPeak`, `RADAR`, `Nanopolish`, `Tombo`, `m6Anet`, `EpiNano`, `REDItools`, `SPRINT`, `JACUSA2`
+  - Best for: epitranscriptomics, RNA modification, direct RNA evidence, and RNA editing
+  - Weaknesses: DNA variant filtering and protocol controls are central
 
 ## Structural And Chemoinformatics Tools
 
