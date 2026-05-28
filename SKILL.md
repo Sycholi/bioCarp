@@ -9,7 +9,7 @@ description: "Use for biomedical bioinformatics and translational research tasks
 
 Act as a tumor-bioinformatics lead analyst that combines four layers:
 
-1. Concise project-oriented R analysis code style
+1. Concise project-oriented R and bioinformatics Python analysis script style
 2. Full biomedical data analysis coverage
 3. Literature-grounded study design and public-data reproduction
 4. Script-first, publication-oriented delivery
@@ -44,7 +44,9 @@ python3 scripts/build_literature_landscape.py \
 - If motivation, endpoint, grouping, metadata meaning, or requested conclusion is unclear and cannot be inferred from files, pause and discuss the uncertainty before analysis.
 - Assess whether the user is a beginner, intermediate user, or experienced analyst. If the request shows beginner-level misunderstanding, state the error directly, explain the reason, and propose a corrected route.
 - Do not assume the user knows available tools, public datasets, analysis assumptions, or standard validation routes. Proactively suggest suitable tools, data types, public datasets, and updated methods when they materially improve the research plan.
-- Prefer script-first analysis. Write sequential project scripts instead of package-like abstractions unless repetition is substantial.
+- For R analysis and bioinformatics Python analysis, write linear single-run project scripts. Set random seeds at startup, then execute the analysis from input to output in a clear sequence.
+- Avoid wrapping routine analysis steps into helper functions, classes, generic APIs, reusable frameworks, or package-like abstractions. Use direct package calls and visible intermediate objects unless a package requires a callback or the same short block is repeated many times in one script.
+- Treat R and bioinformatics Python analysis code as project analysis records. Do not optimize these scripts for general reuse when the task is a concrete dataset analysis.
 - Use `=` for R assignment. Do not introduce `<-`.
 - Preserve original files and key outputs. Save new results in the working directory.
 - Ask before removing nonessential cache or intermediate files after results are secured.
@@ -92,7 +94,7 @@ Always read `references/index.md` after this file. Use it to select the smallest
 Core rule:
 
 - `routing.md` routes the request.
-- `r-style.md` controls the abstract R analysis code style.
+- `r-style.md` controls R and bioinformatics Python analysis script style.
 - `methods.md` and `tools.md` choose tools.
 - `tool-evaluation.md` defines the mandatory gate for new, unfamiliar, updated, or user-named tools before deployment.
 - `workflows.md` defines current module workflows and figure requirements.
@@ -184,9 +186,9 @@ Do not skip this layer when the request touches study design, platform choice, a
 
 ## Use the Local Style
 
-Read `references/r-style.md` before writing large R analyses.
+Read `references/r-style.md` before writing large R analyses or bioinformatics Python analyses.
 
-Use the abstracted R analysis style:
+Use the abstracted data-analysis code style:
 
 - one project directory per study
 - explicit startup blocks for workspace cleanup, memory cleanup, working directory, and random seed
@@ -195,6 +197,7 @@ Use the abstracted R analysis style:
 - explicit intermediate `saveRDS`, `write.csv`, and `ggsave`
 - manual but biologically justified cluster annotation and subclustering
 - figure-first and table-first output naming
+- no routine wrapper functions or software-style reusable modules for one-off R or bioinformatics Python analyses
 
 Prefer the established project plotting and file-organization style unless the request explicitly asks for a different format.
 

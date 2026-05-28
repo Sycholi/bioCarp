@@ -1,16 +1,19 @@
-# R Style
+# R And Bioinformatics Python Style
 
 ## Purpose
 
-This file stores an abstract R analysis code style. It must not expose local directory names, private project names, absolute paths, or machine-specific structure.
+This file stores the analysis-script style for R code and bioinformatics Python code. It must not expose local directory names, private project names, absolute paths, or machine-specific structure.
 
 ## Core Style
 
-- Prefer linear, script-first analysis over package-like abstraction.
+- Prefer linear, script-first analysis.
 - Use one main script per analysis stage unless splitting improves clarity.
 - Keep code readable from data loading to final figure.
 - Use `=` for new R assignments.
-- Use functions only when repetition is substantial.
+- Set random seeds near the top of every R or bioinformatics Python analysis script.
+- Avoid helper functions, classes, generic APIs, wrapper functions, and reusable pipeline frameworks for routine analysis steps.
+- Use functions only for identical repeated plotting, export, or package-required callback blocks. Keep them short and local to the script.
+- Run direct package calls in the visible analysis sequence so parameters, intermediate objects, and outputs are easy to audit.
 - Keep manual biological curation visible and documented.
 - Save intermediate objects when they mark meaningful analysis states.
 - Save final tables and figures with clear names.
@@ -27,6 +30,18 @@ set.seed(23112647)
 
 Then load packages and set project paths in a clear, project-relative way. Avoid hard-coded private absolute paths in reusable scripts and reports.
 
+Use an explicit startup block when writing bioinformatics Python scripts:
+
+```python
+import random
+import numpy as np
+
+random.seed(23112647)
+np.random.seed(23112647)
+```
+
+If `torch`, `tensorflow`, `jax`, `scanpy`, `scvi-tools`, or another package has its own seed control, set it in the same startup block and record the value.
+
 ## Package Pattern
 
 Common analysis stacks include:
@@ -39,6 +54,7 @@ Common analysis stacks include:
 - scRepertoire, Startrac, immunarch, scirpy, or Dandelion for repertoire work
 - survival, survminer, rms, glmnet, or related clinical tools
 - reticulate when Python tools are required from an R-first workflow
+- Scanpy, AnnData, scvi-tools, Squidpy, pandas, numpy, scipy, scikit-learn, PyTorch, or package-specific Python stacks when the selected method requires Python
 
 Choose tools by scientific fit first. Use familiar stacks when fit is comparable.
 
@@ -55,6 +71,8 @@ Preferred sequence:
 7. generate complete figure set
 8. inspect figures
 9. write Chinese interpretation and methods report
+
+Do not convert this sequence into a general-purpose pipeline unless the task explicitly asks for reusable software. For ordinary data analysis, the script should document one complete run.
 
 ## Output Pattern
 
